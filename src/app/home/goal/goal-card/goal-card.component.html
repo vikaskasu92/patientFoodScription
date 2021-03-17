@@ -1,0 +1,33 @@
+<ion-card class="big-screen">
+    <ion-item lines="none">
+      <ion-text slot="start"><h2>Goal</h2></ion-text>
+      <ion-icon slot="end" name="chevron-forward-outline" (click)="setGoal()"></ion-icon>
+    </ion-item>
+    <hr/>
+    
+  <ion-card-content class="goal-card-content">
+   <ion-grid class="grid-adjust">
+     <ion-row>
+       <ion-col size="4" class="ion-text-center">
+          <ion-text class="goal-type">Weight:</ion-text><br>
+          <ion-text class="goal-value">{{currentWeight}} lbs</ion-text>
+       </ion-col>
+       <ion-col size="4" class="ion-text-center">
+        <ion-text class="goal-type">BMI:</ion-text><br>
+        <ion-text class="goal-value">{{bmi}}</ion-text>
+      </ion-col>
+      <ion-col size="4" class="ion-text-center">
+        <ion-text class="goal-type">Goal:</ion-text><br>
+        <ion-text class="goal-value">{{currentGoal}} lb/week</ion-text>
+      </ion-col>
+     </ion-row>
+   </ion-grid>
+   <ion-grid *ngIf="!noWeightGraph">
+     <ion-row>
+       <ion-col size="12" class="col-adjust">
+        <canvas id="lineWeightGoalCard" class="card-body-chart-canvas"></canvas>
+       </ion-col>
+     </ion-row>
+   </ion-grid>
+  </ion-card-content>
+</ion-card>

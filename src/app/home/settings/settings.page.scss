@@ -1,0 +1,57 @@
+ion-icon {
+    --ionicon-stroke-width: 16px;
+}
+
+.icon{
+
+    &-size{
+        color: #8482F5;
+        font-size: 2rem;
+    }
+    
+}
+
+hr{
+    background: #999999;
+    width: 100%;
+}
+
+.adjust-title{
+    padding-left: 10%;
+}
+
+.text-size{
+    font-size: 1.5rem;
+    padding-left: 4px;
+}
+
+.font-adjust{
+    font-size: 1.5rem;
+}
+
+.setting-text{
+    color:black;
+}
+
+ion-toggle {
+    --background-checked: #01CCAD;
+    --handle-background: white;
+    --handle-background-checked: white;
+}
+
+/* ----------- Non-Retina Screens ----------- */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+
+    .adjust-title{
+        padding-left: 0;
+    }
+}
+
+/* ----------- Retina Screens ----------- */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (min-resolution: 192dpi) { 
+}

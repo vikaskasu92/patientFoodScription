@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar class="toolbar-background">
+    <ion-buttons slot="start">
+      <ion-back-button color="light" slot="start" defaultHref="/message-dietitian"></ion-back-button>
+    </ion-buttons>
+    <div class="convo-heading">
+      <ion-text class="text-size">Conversations</ion-text>
+    </div>
+    <ion-buttons slot="primary">
+      <ion-icon class="create-icon-top" name="create-outline" (click)="createChat()"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div [formGroup]="chatForm" *ngIf="showNewChatCreate">
+  <ion-card class="new-convo">
+    <ion-card-content class="new-convo-box">
+        <ion-item class="input-element">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="text" required color="primary" formControlName="chatTo"></ion-input>
+        </ion-item>
+        <div class="create-icon">
+          <ion-button (click)="initiateChat()" size="small">Chat</ion-button>
+          <a href="#" class="quit-btn" (click)="cancelCreateChat($event)">Cancel</a>
+        </div>
+    </ion-card-content>
+  </ion-card>
+</div>
+<div *ngIf="showConversations">
+  <ion-item *ngFor="let conversation of conversations" detail (click)="openAConversation(conversation.conversationId,conversation.fromUser, conversation.toUser)">
+    <ion-label>{{conversation | oppositeConversationId:currentUser}}</ion-label>
+    &nbsp;&nbsp;&nbsp;<span *ngIf="conversation.unread !== 0"><span *ngIf="conversation.unread >= 10 && conversation.unread < 100"  class="new-messages-double">{{conversation.unread}}</span><span *ngIf="conversation.unread <10" class="new-messages-single">{{conversation.unread}}</span><span *ngIf="conversation.unread >=100" class="new-messages-tripple">{{conversation.unread}}</span></span>
+  </ion-item>
+</div>
+</ion-content>

@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="primary">
+      <ion-button (click)="dismissModel()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-searchbar  class="padding-searchbar" debounce="300" spellcheck=true (ionChange)="searchMedicalCondition($event)" (ionCancel)="cancelSearch($event)"></ion-searchbar>
+
+  <ion-list>
+    <ion-item *ngFor="let searchResult of searchResults">
+      <ion-checkbox id="{{searchResult | removeSpace}}" slot="start" (ionChange)="searchResultChange($event,searchResult)"> </ion-checkbox>
+      <ion-label>{{searchResult}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="!resultsAvailable" class="no-results">
+      <ion-text>There are no results available for your search!</ion-text>
+  </div>
+
+  <div class="no-results">
+    <ion-item *ngFor="let savedResult of savedResults">
+      <ion-label>{{savedResult}}</ion-label>
+        <ion-icon (click)="removeMedicalCondition(savedResult)" class="remove-icon" slot="end" name="remove-circle-outline"></ion-icon>
+    </ion-item>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="8" offsetMd="2" size-lg="4" offsetLg="4">
+          <ion-button expand="block" color="primary"  (click)="dismissModel()">
+            Back
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="light" slot="start" defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+      <ion-buttons>
+          <ion-item lines="none" class="adjust-title">
+            <ion-icon class="icon-size" name="cog"></ion-icon>
+            <ion-label><ion-text class="text-size">Settings</ion-text></ion-label>
+          </ion-item>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-lg="6" size-md="10"  offset-lg="3"  offset-md="1">
+        <ion-item lines="none" class="ion-margin-top">
+          <ion-label>
+            <ion-text class="font-adjust">Customize Home</ion-text>
+          </ion-label>
+        </ion-item>
+       <ion-card>
+         <ion-card-content>
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="6" class="ion-text-left">
+                    <ion-text class="setting-text">Goal</ion-text>
+                  </ion-col>
+                  <ion-col size="6" class="ion-text-right">
+                    <div *ngIf="showGoal; else hideGoal">
+                        <ion-icon name="eye-outline" size="large" color="primary"  (click)="eyeClicked('goal')"></ion-icon>
+                    </div>
+                    <ng-template #hideGoal>
+                        <ion-icon name="eye-off-outline" size="large"  (click)="eyeClicked('goal')"></ion-icon>
+                    </ng-template>
+                  </ion-col>
+                </ion-row>
+                <hr>
+                <ion-row class="ion-padding-top">
+                  <ion-col size="6" class="ion-text-left">
+                    <ion-text class="setting-text">Today</ion-text>
+                  </ion-col>
+                  <ion-col size="6" class="ion-text-right">
+                    <div *ngIf="showToday; else hideToday">
+                        <ion-icon name="eye-outline" color="primary" size="large" (click)="eyeClicked('today')"></ion-icon>
+                    </div>
+                    <ng-template #hideToday>
+                        <ion-icon name="eye-off-outline" size="large" (click)="eyeClicked('today')"></ion-icon>
+                    </ng-template>
+                  </ion-col>
+                </ion-row>   
+              </ion-grid>
+         </ion-card-content>
+       </ion-card>
+      
+      <!--  <ion-item lines="none" >
+       <ion-label>
+          <ion-text class="font-adjust">Measurement display</ion-text>
+        </ion-label>
+      </ion-item>
+      <ion-card>
+       <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="4" class="ion-text-right">
+                  <ion-text class="setting-text">Imperial</ion-text>
+                </ion-col>
+                <ion-col size="4" class="ion-text-center">
+                  <ion-toggle></ion-toggle>
+                </ion-col>
+                <ion-col size="4" class="ion-text-left">
+                  <ion-text class="setting-text">Metric</ion-text>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+       </ion-card-content>
+      </ion-card>  -->    
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+ 

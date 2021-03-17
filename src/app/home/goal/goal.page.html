@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="light" slot="start" defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title >Goal</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-lg="6" size-md="10"  offset-lg="3"  offset-md="1">
+        <ion-segment (ionChange)="segmentChanged($event)" scrollable value="week">
+          <ion-segment-button value="week">
+            <ion-text>Week</ion-text>
+          </ion-segment-button>
+          <ion-segment-button value="month">
+            <ion-text>Month</ion-text>
+          </ion-segment-button>
+          <ion-segment-button value="all">
+            <ion-text>All</ion-text>
+          </ion-segment-button>
+        </ion-segment>
+        <ion-card>
+          <ion-card-header>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="4" class="ion-text-center">
+                  <ion-card-subtitle >Loss/Gain:</ion-card-subtitle>
+                  <ion-text class="goal-setting-text">{{weeklyGainLoss}} lb/week</ion-text>
+                </ion-col>
+                <ion-col size="4" class="ion-text-center">
+                  <ion-card-subtitle >BMI:</ion-card-subtitle>
+                  <ion-text class="goal-setting-text">{{bmi}}</ion-text>
+                </ion-col>
+                <ion-col size="4" class="ion-text-center">
+                  <ion-card-subtitle >Goal:</ion-card-subtitle>
+                  <ion-text class="goal-setting-text">{{currentGoal}} lb/week</ion-text>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="12" class="col-adjust">
+                  <div *ngIf="showWeek && hasWeekData">
+                     <canvas id="lineWeightWeek" class="card-body-chart-canvas"></canvas>
+                  </div>
+                  <div *ngIf="showMonth && hasWMonthData">
+                     <canvas id="lineWeightMonth" class="card-body-chart-canvas"></canvas>
+                  </div>
+                  <div *ngIf="showAll && hasAllData">
+                     <canvas id="lineWeightAll" class="card-body-chart-canvas"></canvas>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
+           
+          </ion-card-content>
+        </ion-card>
+        <ion-card>
+          <ion-card-content>
+            <ion-grid>
+              <!-- Commenting for future use
+              <ion-row class="adjust-goal-setting-row">
+                <ion-col size="2" class="ion-padding-end">
+                  <ion-icon class="goal-setting-icons" name="bluetooth-outline"></ion-icon>
+                </ion-col>
+                <ion-col size="10">
+                  <ion-text>Connect a smart scale</ion-text>
+                </ion-col>
+              </ion-row>
+              <hr>-->
+              <ion-row class="adjust-goal-setting-row" (click)="updateWeight()">
+                <ion-col size="2" >
+                  <ion-icon color="warning" class="goal-setting-icons" name="barbell-outline"></ion-icon>
+                </ion-col>
+                <ion-col  size="10">
+                  <ion-text class="goal-setting-text">Update weight</ion-text>
+                </ion-col>
+              </ion-row>
+              <!-- <hr> Commenting for Future use
+              <ion-row class="adjust-goal-setting-row" (click)="setNewGoal()">
+                <ion-col size="2" class="ion-padding-end">
+                  <ion-icon class="goal-setting-icons" color="secondary" name="flag-outline"></ion-icon>
+                </ion-col>
+                <ion-col size="10">
+                  <ion-text class="goal-setting-text">Set a new goal</ion-text>
+                </ion-col>
+              </ion-row>-->
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

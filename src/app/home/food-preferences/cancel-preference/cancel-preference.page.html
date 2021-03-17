@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="light" slot="start" defaultHref="/home/food-preferences"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-lg="6" offset-lg="3">
+        <ion-item lines="none">
+          <ion-text color="primary" class="ion-padding-top">
+            <h2 class="custom-text-primary">Are you sure you want to quit the cuisine quiz?</h2>
+          </ion-text>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-text color="light" class="ion-padding-top">
+            <h3 class="custom-text-secondary">You can take the quiz anytime in Home - Food preferences</h3>
+          </ion-text>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" class="ion-text-center" size-lg="4" offset-lg="4">
+        <a href="#" class="quit-btn" (click)="quitQuiz($event)">Quit quiz</a>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" class="ion-text-center" size-lg="4" offset-lg="4">
+        <ion-button expand="block" color="primary" (click)="navigate()">
+          Continue
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

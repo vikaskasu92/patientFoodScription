@@ -1,0 +1,204 @@
+<app-header></app-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-lg="6" size-md="10"  offset-lg="3"  offset-md="1">
+        <ion-card >
+          <ion-grid>
+            <ion-row>
+              <ion-col size="12" class="ion-text-left">
+                <ion-text class="bold-heading">Create grocery list for:</ion-text>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-text class="date-view-month">{{month}}</ion-text>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <div class="scrolling-wrapper-gl">
+            <ion-fab-button id="fabButtonGL{{i}}" class="fab-buttons" *ngFor="let week of weekArray;let i='index'" (click)="fabButtonClicked(i)" >
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                    <ion-text>
+                      {{ week | getDay }}
+                    </ion-text>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-text class="bold-content"> 
+                      {{ week | getDate }}
+                    </ion-text>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-fab-button>
+          </div>
+        </ion-card>
+        <div *ngIf="mealsAvailable">
+          <ion-card class="card-bottom-adjust">
+            <ion-grid>
+              <ion-row class="toggle-row">
+                <ion-col size="4" class="ion-text-right toggle-text">
+                  <ion-text class="toggle-text">By category</ion-text>
+                </ion-col>
+                <ion-col size="2" class="ion-text-center">
+                  <ion-toggle (ionChange)="groceryTypeToggle($event)" checked></ion-toggle>
+                </ion-col>
+                <ion-col size="3" class="ion-text-left toggle-text">
+                  <ion-text class="toggle-text">By recipe</ion-text>
+                </ion-col>
+                <ion-col size="3" class="ion-text-right share-icon-col">
+                  <div *ngIf="mobile;else web">
+                    <ion-icon name="share-outline" class="share-icon" (click)="shareMealsOnApp(meals)"></ion-icon>
+                  </div>
+                  <ng-template #web>
+                    <ion-icon name="copy-outline" class="share-icon" (click)="copyToClipboard(meals)"></ion-icon>
+                  </ng-template>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            <hr>
+            <div *ngIf="!groceryCategoryDisplay">
+              <div *ngFor="let meal of meals; let i = index">
+                <div class="title-div">
+                  <ion-grid class="remove-padding">
+                    <ion-row>
+                      <ion-col size="10" class="ingredients">
+                        <ion-text class="ingredients-label">{{meal.title}}</ion-text>
+                      </ion-col>
+                      <ion-col size="2" class="ingredients-col-adjust ion-text-right">
+                        <div #showUpIngredients>
+                          <ion-icon name="chevron-up" class="chevron-directions" (click)="chevronToggle('up',showUpIngredients,showDownIngredients,ingredientInfo)"></ion-icon>
+                        </div>
+                        <div #showDownIngredients style="display: none;">
+                          <ion-icon name="chevron-down" class="chevron-directions" (click)="chevronToggle('down',showUpIngredients,showDownIngredients,ingredientInfo)"></ion-icon>
+                        </div>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </div>
+                <div #ingredientInfo>
+                  <div *ngFor="let mealIngredient of meal.ingredients">
+                    <ion-item-sliding> 
+                      <ion-item>
+                        <ion-grid class="remove-padding"> 
+                          <ion-row>
+                            <ion-col size="5" size-md="6" size-lg="7" class="ion-text-left ion-padding-top ingredient-name" id="ingredientName{{mealIngredient.ingredientId}}">
+                              <ion-text class="ingredient-value" [ngClass]="{'textStrikerFalse':mealIngredient.checked == true,'textStrikerTrue':mealIngredient.checked == false}">{{ mealIngredient.name  }}</ion-text><br>
+                            </ion-col>
+                            <ion-col size="7" size-md="6" size-lg="5" class="ion-text-right ingredient-quantity-col" id="ingredientQuantity{{mealIngredient.ingredientId}}">
+                              <ion-grid>
+                                <ion-row>
+                                  <ion-col size="3">
+                                    <ion-button class="button-add-sub" (click)="increaseQuantity(mealIngredient.ingredientId)"><ion-icon name="add-outline"></ion-icon></ion-button>
+                                  </ion-col>
+                                  <ion-col size="6">
+                                   <ion-textarea rows="1" id="textAreaValue{{mealIngredient.ingredientId}}" readonly="true"  class="unit-value" value="{{mealIngredient.value | digits:2 | roundNumber:mealIngredient.unit}} {{mealIngredient.unit}}"></ion-textarea>
+                                  </ion-col>
+                                  <ion-col size="3">
+                                    <ion-button class="button-add-sub" id="buttonSub{{mealIngredient.ingredientId}}" disabled="{{!mealIngredient.checked}}" (click)="decreaseQuantity(mealIngredient.ingredientId)"> <ion-icon name="remove-outline"></ion-icon></ion-button>
+                                  </ion-col>
+                                </ion-row>
+                              </ion-grid>
+                              <input type="hidden" id="nonFractionQuantity{{mealIngredient.ingredientId}}" value="{{mealIngredient.value}}"/>
+                              <input type="hidden" id="ingredientUnit{{mealIngredient.ingredientId}}" value="{{mealIngredient.unit}}"/>
+                            </ion-col>
+                          </ion-row>
+                        </ion-grid>
+                      </ion-item>
+                      <ion-item-options side="end">
+                        <ion-item-option color="secondary" (click)="addItemToCart(mealIngredient.ingredientId,mealIngredient.name,mealIngredient.value,mealIngredient.unit)">Add</ion-item-option>
+                      </ion-item-options>
+                    </ion-item-sliding>
+                  </div>
+                </div>
+              </div> 
+            </div>
+            <div *ngIf="groceryCategoryDisplay">
+              <div *ngFor="let ingredient of ingredientsCategories; let i = index">
+                <div class="title-div-with-no-padding-bottom">
+                  <ion-grid class="remove-padding">
+                    <ion-row>
+                      <ion-col size="10">
+                        <ion-text class="ingredients-label">{{ingredient.category}}</ion-text>
+                      </ion-col>
+                      <ion-col size="2" class=" ion-text-right">
+                        <div #showUpIngredientsCat>
+                          <ion-icon name="chevron-up" class="chevron-directions" (click)="chevronToggle('up',showUpIngredientsCat,showDownIngredientsCat,ingredientInfoCat)"></ion-icon>
+                        </div>
+                        <div #showDownIngredientsCat style="display: none;">
+                          <ion-icon name="chevron-down" class="chevron-directions" (click)="chevronToggle('down',showUpIngredientsCat,showDownIngredientsCat,ingredientInfoCat)"></ion-icon>
+                        </div>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </div>
+                <div #ingredientInfoCat>
+                  <div *ngFor="let ingredient of ingredient.ingredients">
+                    <ion-item-sliding> 
+                      <ion-item>
+                        <ion-grid class="remove-padding"> 
+                          <ion-row>
+                            <ion-col size="5" size-md="6" size-lg="7" class="ion-text-left ion-padding-top ingredient-name" id="ingredientNameCat{{ingredient.id}}">
+                              <ion-text class="ingredient-value" [ngClass]="{'textStrikerFalse':ingredient.checked == true,'textStrikerTrue':ingredient.checked == false}">{{ingredient.name}}</ion-text><br>
+                            </ion-col>
+                            <ion-col size="7" size-md="6" size-lg="5" class="ion-text-right ingredient-quantity-col" id="ingredientQuantityCat{{ingredient.id}}">
+                              <ion-grid>
+                                <ion-row>
+                                  <ion-col size="3">
+                                    <ion-button class="button-add-sub" (click)="increaseQuantityCat(ingredient.id)"><ion-icon name="add-outline"></ion-icon></ion-button>
+                                  </ion-col>
+                                  <ion-col size="6">
+                                   <ion-textarea rows="1" id="textAreaValueCat{{ingredient.id}}" readonly="true"  class="unit-value" value="{{ingredient.amount | digits:2 | roundNumber:ingredient.unit}} {{ingredient.unit}}"></ion-textarea>
+                                  </ion-col>
+                                  <ion-col size="3">
+                                    <ion-button class="button-add-sub" id="buttonSubCat{{ingredient.id}}" (click)="decreaseQuantityCat(ingredient.id)"> <ion-icon name="remove-outline"></ion-icon></ion-button>
+                                  </ion-col>
+                                </ion-row>
+                              </ion-grid>
+                              <input type="hidden" id="nonFractionQuantityCat{{ingredient.id}}" value="{{ingredient.amount}}"/>
+                              <input type="hidden" id="ingredientUnitCat{{ingredient.id}}" value="{{ingredient.unit}}"/>
+                            </ion-col>
+                          </ion-row>
+                        </ion-grid>
+                      </ion-item>
+                      <ion-item-options side="end">
+                        <ion-item-option color="secondary" (click)="addItemToCart(ingredient.id,ingredient.name,ingredient.amount,ingredient.unit)">Add</ion-item-option>
+                      </ion-item-options>
+                    </ion-item-sliding>
+                  </div>
+                </div>
+              </div> 
+
+            </div>
+          </ion-card>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="12" size-md="8" offsetMd="2" size-lg="8" offsetLg="2">
+                <ion-button expand="block" color="warning" (click)="addToCart()">
+                  Add to Cart
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+       <div *ngIf="noMealsAvailable">
+        <ion-card>
+          <ion-card-subtitle class="no-meals">
+            <ion-text>You have no meals on {{dateNotAvailable}}, Please contact your dietitian.</ion-text>
+          </ion-card-subtitle>
+        </ion-card>
+      </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

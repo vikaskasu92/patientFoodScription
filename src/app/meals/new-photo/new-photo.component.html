@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Meal Photo</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="dismissModel()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="picker">
+    <ion-img role="button" class="image" (click)="onPickImage()" [src]="selectedImage" *ngIf="selectedImage"></ion-img>
+    <ion-button color="primary" (click)="onPickImage()" *ngIf="!selectedImage">
+      <ion-icon name="camera" slot="start"></ion-icon>
+      <ion-label>Take Meal Photo</ion-label>
+    </ion-button>
+  </div>
+  <div *ngIf="selectedImage" class="clear-image">
+    <ion-button size="small" (click)="clearImage()">clear</ion-button>
+  </div>
+  <div [formGroup]="recipePictureForm">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label>Recipe Name</ion-label>
+            <ion-input class="form-data" formControlName="recipeName" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Meal Type</ion-label>
+            <ion-select required placeholder="Select Meal Type" formControlName="mealType">
+              <ion-select-option value="breakfast">Breakfast</ion-select-option>
+              <ion-select-option value="lunch">Lunch</ion-select-option>
+              <ion-select-option value="dinner">Dinner</ion-select-option>
+              <ion-select-option value="snack">Snack</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Meal Date</ion-label>
+            <ion-datetime formControlName="date" placeholder="Select Date"></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label>Meal Time</ion-label>
+            <ion-datetime formControlName="time" display-format="h:mm A" picker-format="h:mm A" placeholder="Select Time"></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label>Calories</ion-label>
+            <ion-input class="form-data" formControlName="calories" ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Carbs</ion-label>
+            <ion-input class="form-data" formControlName="carbs" ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Protein</ion-label>
+            <ion-input class="form-data" formControlName="protein" ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Fat</ion-label>
+            <ion-input class="form-data" formControlName="fat" ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div class="save-get-images">
+    <ion-button size="small" (click)="saveImageToS3()" >Save</ion-button>
+    <ion-button size="small" (click)="getDataFromS3()" disabled="true">Get Image</ion-button>
+  </div>
+</ion-content>

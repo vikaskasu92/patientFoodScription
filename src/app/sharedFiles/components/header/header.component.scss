@@ -1,0 +1,70 @@
+.background{
+    --background: #E8E9EA;
+}
+
+
+.smaller-image{
+    width: 70%;
+    margin-left: .5rem;
+}
+
+ion-icon {
+    --ionicon-stroke-width: 16px;
+}
+
+.larger-header-middle{
+    display: flex;
+    justify-content: center;
+}
+
+.icon{
+
+    &-menu{
+        font-size:2.5rem;
+
+        & > *{
+            padding-right: 0;
+        }
+    }
+
+    &-search{
+        font-size:1.5rem;
+        margin-right: 1.5rem;
+        margin-left: .5rem;
+    }
+
+    &-cart{
+        font-size:1.5rem;
+        margin-right: 2rem;
+    }
+    
+}
+
+/* ----------- Non-Retina Screens ----------- */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+
+    .background{
+        padding: 0;
+    }
+
+    .smaller-image{
+        margin: 0 auto;
+        transform: scale(.4);
+    }
+
+    .cart-button{
+        margin-right: 4rem;
+    }
+
+    .icon-search{
+        font-size: 2rem !important;
+        margin-left: 1.5rem;
+    }
+
+    .icon-cart{
+        font-size: 2rem !important;
+    }
+    
+}

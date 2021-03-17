@@ -1,0 +1,31 @@
+.following-text{
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    color: black;
+}
+
+.doughnut-index{
+    &-1{
+        background-color: #A977C0;
+        padding: 0rem .2rem;
+        margin-right: .5rem;
+    }
+
+    &-2{
+        padding: 0rem .2rem;
+        margin-right: .5rem;
+        background-color: #FF7760;
+    }
+
+    &-3{
+        padding: 0rem .2rem;
+        margin-right: .5rem;
+        background-color: #FCBE5B;
+    }
+}
+
+.col-adjust{
+    display: flex;
+    justify-content: center;
+}

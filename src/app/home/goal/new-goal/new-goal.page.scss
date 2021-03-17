@@ -1,0 +1,67 @@
+
+.margin-top{
+
+    &-1{
+        margin-top: 3vh;
+    }
+    
+}
+
+.icon-border{
+    font-size: 3rem;
+    padding: 27px;
+    border-radius: 50%;
+    background: white;
+    border: 1px solid black;
+}
+
+
+.loseWeight{
+
+    &-clicked{
+        background: #FF0666;
+        color: white;
+    }
+    
+
+    &-unclicked{
+        background: white;
+        color: black;
+    }
+}
+
+.keepIt{
+
+    &-clicked{
+        background: #FF0666;
+        color: white;
+    }
+    
+
+    &-unclicked{
+        background: white;
+        color: black;
+    }
+}
+
+.gainWeight{
+
+    &-clicked{
+        background: #FF0666;
+        color: white;
+    }
+    
+
+    &-unclicked{
+        background: white;
+        color: black;
+    }
+}
+
+.small-margin{
+    margin-top: 3px;
+}
+
+.push-margin{
+    margin-top: 15vh;
+}

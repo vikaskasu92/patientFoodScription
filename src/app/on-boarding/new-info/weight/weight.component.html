@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button color="light" slot="start" defaultHref="/on-boarding/new-info/height"></ion-back-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item lines="none">
+    <ion-text color="primary" class="ion-padding-top">
+      <h2 class="custom-text-primary">Your weight is...</h2>
+    </ion-text>
+  </ion-item>
+  <ion-grid>
+    <ion-row *ngIf="imperial" class="margin-top">
+      <ion-col size="10" offset="1">
+        <ion-item lines="none">
+          <ion-range min="45" max="300" pin="true" color="secondary"  (ionChange)="lbsOnChange($event)">
+            <ion-label slot="end">Lbs</ion-label>
+          </ion-range>
+        </ion-item>
+        <div *ngIf="showLbs" class="ion-text-center ion-margin-top">
+          {{lbsWeight}} &nbsp; Pounds
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="metric" class="margin-top">
+      <ion-col size="10" offset="1">
+        <ion-item lines="none">
+          <ion-range min="20" max="140" pin="true" color="secondary"  (ionChange)="kgsOnChange($event)">
+            <ion-label slot="end">Kgs</ion-label>
+          </ion-range>
+        </ion-item>
+        <div *ngIf="showKgs" class="ion-text-center ion-margin-top">
+          {{kgsWeight}} &nbsp; Kilograms
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="ion-text-end ion-padding-top ion-margin-top">
+          <ion-text (click)="imperialClicked()"  [ngClass]="{'imperial-clicked':imperial == true,'imperial-unclicked':imperial == false}">Imperial</ion-text>  
+          | 
+          <ion-text (click)="metricClicked()" [ngClass]="{'metric-clicked':metric == true,'metric-unclicked':metric == false}">Metric</ion-text>  
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="8" offsetMd="2" size-lg="8" offsetLg="2">
+          <ion-button expand="block" color="primary"  disabled="{{disabled}}" (click)="navigate()">
+            Next
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
+

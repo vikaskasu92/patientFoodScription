@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button color="light" slot="start" defaultHref="/on-boarding/new-info/medical-conditions"></ion-back-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col size-lg="6" offset-lg="3">
+        <ion-item lines="none">
+          <ion-text color="primary" class="ion-padding-top">
+            <h2 class="custom-text-primary">Any Food Allergies...</h2>
+          </ion-text>
+        </ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col size-lg="6" size ="12">
+              <ion-list>
+                <ion-item>
+                  <ion-checkbox slot="start" (ionChange)="checkBoxSelectionChanged('dairy')"> </ion-checkbox>
+                  <ion-label>Dairy</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-checkbox slot="start" (ionChange)="checkBoxSelectionChanged('fish')"> </ion-checkbox>
+                  <ion-label>Fish</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-checkbox slot="start" (ionChange)="checkBoxSelectionChanged('mollusk')"> </ion-checkbox>
+                  <ion-label>Mollusk</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-checkbox slot="start" (ionChange)="checkBoxSelectionChanged('peanut')"> </ion-checkbox>
+                  <ion-label>Peanut</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-checkbox slot="start" (ionChange)="checkBoxSelectionChanged('soy')"> </ion-checkbox>
+                  <ion-label>Soy</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-checkbox slot="start" (ionChange)="checkBoxSelectionChanged('sesame')"> </ion-checkbox>
+                  <ion-label>Sesame</ion-label>
+                </ion-item>
+              </ion-list>
+            </ion-col>
+            <ion-col size-lg="6" size="12">
+              <ion-list>
+                <ion-item>
+                  <ion-checkbox slot="start" (ionChange)="checkBoxSelectionChanged('egg')"> </ion-checkbox>
+                  <ion-label>Egg</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-checkbox slot="start" (ionChange)="checkBoxSelectionChanged('shellfish')"> </ion-checkbox>
+                  <ion-label>Shell Fish</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-checkbox slot="start" (ionChange)="checkBoxSelectionChanged('tree nut')"> </ion-checkbox>
+                  <ion-label>Treenut</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-checkbox slot="start" (ionChange)="checkBoxSelectionChanged('wheat')"> </ion-checkbox>
+                  <ion-label>Wheat</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-checkbox slot="start" (ionChange)="checkBoxSelectionChanged('gluten')"> </ion-checkbox>
+                  <ion-label>Gluten</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-checkbox slot="start" (ionChange)="checkBoxSelectionChanged('alcohol')"> </ion-checkbox>
+                  <ion-label>Alcohol</ion-label>
+                </ion-item>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="8" offsetMd="2" size-lg="4" offsetLg="4">
+          <ion-button expand="block" color="primary" (click)="navigate()">
+            Next
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
+

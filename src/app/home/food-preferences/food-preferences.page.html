@@ -1,0 +1,130 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+        <ion-button (click)="cancelFoodPreferences()">
+          <ion-icon name="close" color="light" slot="icon-only" size="large" ></ion-icon>
+        </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-lg="4" offset-lg="4">
+        <div class="card card-0" *ngIf="!foodPreferencesNotDone">
+          <ion-grid class="final-card">
+            <ion-row>
+              <ion-col class="ion-text-center">
+                <ion-label class="ion-margin-bottom">
+                  <ion-text >You're Done!</ion-text>
+                </ion-label>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col  class="ion-text-center">
+                <ion-label class="ion-margin-bottom">
+                  <ion-text class="ion-padding-bottom">\(^o^)/</ion-text>
+                </ion-label>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col  class="ion-text-center">
+                <ion-label class="ion-margin-bottom">
+                  <ion-text>You can update this anytime in <br> Home - Food preferences</ion-text>
+                </ion-label>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+        <div class="card card-1" #cardMovable1>
+          <ion-text class="text-on-photo">Brazillian</ion-text>
+        </div>
+        <div class="card  card-2" #cardMovable2>
+          <ion-text class="text-on-photo">Caribbean</ion-text>
+        </div>
+        <div class="card  card-3" #cardMovable3>
+          <ion-text class="text-on-photo">Chinese</ion-text>
+        </div>
+        <div class="card  card-4" #cardMovable4>
+          <ion-text class="text-on-photo">French</ion-text>
+        </div>
+       <div class="card  card-5" #cardMovable5>
+        <ion-text class="text-on-photo">Greek</ion-text>
+        </div>
+        <div class="card  card-6" #cardMovable6>
+          <ion-text class="text-on-photo">Indian</ion-text>
+        </div>
+        <div class="card  card-7" #cardMovable7>
+          <ion-text class="text-on-photo">Italian</ion-text>
+        </div>
+        <div class="card  card-8" #cardMovable8>
+          <ion-text class="text-on-photo">Japanese</ion-text>
+        </div>
+        <div class="card  card-9" #cardMovable9>
+          <ion-text class="text-on-photo">Mexican</ion-text>
+        </div>
+        <div class="card  card-10" #cardMovable10>
+          <ion-text class="text-on-photo">Middle Eastern</ion-text>
+        </div>
+        <div class="card  card-11" #cardMovable11>
+          <ion-text class="text-on-photo">Nordic</ion-text>
+        </div>
+        <div class="card  card-12" #cardMovable12>
+          <ion-text class="text-on-photo">North African</ion-text>
+        </div>
+        <div class="card  card-13" #cardMovable13>
+          <ion-text class="text-on-photo">Spain & Portugal</ion-text>
+        </div>
+        <div class="card  card-14" #cardMovable14>
+          <ion-text class="text-on-photo">Thai</ion-text>
+        </div>
+      
+        <div *ngIf="foodPreferencesNotDone">
+          <ion-grid>
+            <ion-row class="decision-row">
+              <ion-col size="4" class="ion-text-center icon-click-down" (click)="foodLikeDislike('down')">
+                <ion-icon class="icon-border icon-border-down" name="thumbs-down"></ion-icon>
+              </ion-col>
+              <ion-col size="4" class="ion-text-center skip-col" (click)="cancelFoodPreferences()" >
+                <ion-text class="skip">Skip</ion-text>
+              </ion-col>
+              <ion-col size="4" class="ion-text-center icon-click-up col-adjust" (click)="foodLikeDislike('up')">
+                <ion-icon class="icon-border icon-border-up" name="thumbs-up"></ion-icon>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<div *ngIf="!foodPreferencesNotDone">
+  <ion-footer>
+    <ion-toolbar>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12" size-md="8" offsetMd="2" size-lg="4" offsetLg="4">
+              <ion-button expand="block" color="primary" (click)="navigate()">
+                Home
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+    </ion-toolbar>
+  </ion-footer>
+  <!--<ion-footer>
+    <ion-toolbar>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12" size-md="8" offsetMd="2" size-lg="4" offsetLg="4">
+              <ion-button expand="block" color="primary" (click)="navigate()">
+                Next: Eating
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+    </ion-toolbar>
+  </ion-footer>-->
+</div>

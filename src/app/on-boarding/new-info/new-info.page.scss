@@ -1,0 +1,16 @@
+ion-icon {
+    --ionicon-stroke-width: 16px;
+}
+
+.custom-text{
+
+    &-primary{
+        font-size: 2.1rem;
+        line-height: 3rem;
+    }
+
+    &-secondary{
+        font-size: 1.8rem;
+    }
+    
+}

@@ -1,0 +1,129 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>New Weight Goal</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="dismissModel()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card #cardEasy (click)="difficultySelected('easy')" [ngClass]="{'card-selected':easyCardSelected == true ,'card-unselected':easyCardSelected == false}">
+          <ion-card-header class="ion-text-center card-header">
+            <ion-text class="difficulty" [ngClass]="{'card-heading-selected':easyCardSelected == true ,'card-heading-unselected':easyCardSelected == false}">Easy</ion-text>
+          </ion-card-header>
+          <ion-card-content class="card-content">
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-card-subtitle [ngClass]="{'card-subtitle-selected':easyCardSelected == true ,'card-subtitle-unselected':easyCardSelected == false}">
+                    Weekly Loss
+                  </ion-card-subtitle>
+                  <ion-card-title  class="ion-padding-start card-title">
+                    1% (1.2 lb)
+                  </ion-card-title>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-card-subtitle [ngClass]="{'card-subtitle-selected':easyCardSelected == true ,'card-subtitle-unselected':easyCardSelected == false}">
+                    Get there by
+                  </ion-card-subtitle>
+                  <ion-card-title  class="ion-padding-start card-title">
+                    Oct 20, 2020
+                  </ion-card-title>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card #cardMedium (click)="difficultySelected('medium')" [ngClass]="{'card-selected':mediumCardSelected == true ,'card-unselected':mediumCardSelected == false}">
+          <ion-card-header class="ion-text-center card-header">
+            <ion-text color="success" class="difficulty" [ngClass]="{'card-heading-selected':mediumCardSelected == true ,'card-heading-unselected':mediumCardSelected == false}">Medium</ion-text>
+          </ion-card-header>
+          <ion-card-content class="card-content">
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-card-subtitle [ngClass]="{'card-subtitle-selected':mediumCardSelected == true ,'card-subtitle-unselected':mediumCardSelected == false}">
+                    Weekly Loss
+                  </ion-card-subtitle>
+                  <ion-card-title class="ion-padding-start card-title">
+                    2% (2.4 lb)
+                  </ion-card-title>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-card-subtitle [ngClass]="{'card-subtitle-selected':mediumCardSelected == true ,'card-subtitle-unselected':mediumCardSelected == false}">
+                    Get there by
+                  </ion-card-subtitle>
+                  <ion-card-title  class="ion-padding-start card-title">
+                    Oct 15, 2020
+                  </ion-card-title>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card #cardHard (click)="difficultySelected('hard')" [ngClass]="{'card-selected':hardCardSelected == true ,'card-unselected':hardCardSelected == false}">
+          <ion-card-header class="ion-text-center card-header">
+            <ion-text color="success" class="difficulty" [ngClass]="{'card-heading-selected':hardCardSelected == true ,'card-heading-unselected':hardCardSelected == false}">Hard</ion-text>
+          </ion-card-header>
+          <ion-card-content class="card-content">
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-card-subtitle [ngClass]="{'card-subtitle-selected':hardCardSelected == true ,'card-subtitle-unselected':hardCardSelected == false}">
+                    Weekly Loss
+                  </ion-card-subtitle>
+                  <ion-card-title  class="ion-padding-start card-title">
+                    5% (6 lb)
+                  </ion-card-title>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-card-subtitle [ngClass]="{'card-subtitle-selected':hardCardSelected == true ,'card-subtitle-unselected':hardCardSelected == false}">
+                    Get there by
+                  </ion-card-subtitle>
+                  <ion-card-title  class="ion-padding-start card-title">
+                    Oct 7, 2020
+                  </ion-card-title>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="8" offsetMd="2" size-lg="8" offsetLg="2">
+          <ion-button expand="block" color="success"  disabled="{{disabled}}" (click)="navigate()">
+            Save
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

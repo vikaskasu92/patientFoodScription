@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="primary">
+      <ion-button (click)="dismissModel()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+        <ion-list>
+            <ion-list-header>
+              <ion-label>Can you be more specific</ion-label>
+            </ion-list-header>
+        
+            <ion-item>
+              <ion-checkbox slot="start" (ionChange)="immuneSystemChange($event,'AIDS/HIV')"> </ion-checkbox>
+              <ion-label>AIDS/HIV</ion-label>
+            </ion-item>
+        
+            <ion-item>
+              <ion-checkbox slot="start" (ionChange)="immuneSystemChange($event,'Food allergies')"> </ion-checkbox>
+              <ion-label>Food allergies</ion-label>
+            </ion-item>
+        
+            <ion-item>
+              <ion-checkbox slot="start" (ionChange)="immuneSystemChange($event,'Allergies (Non-food)')"> </ion-checkbox>
+              <ion-label>Allergies (Non-food)</ion-label>
+            </ion-item>
+
+            <ion-item>
+              <ion-checkbox slot="start" (ionChange)="immuneSystemChange($event,'Sepsis/severe infection')"> </ion-checkbox>
+              <ion-label>Sepsis/severe infection</ion-label>
+            </ion-item>
+
+            <ion-item>
+              <ion-checkbox slot="start" (ionChange)="otherOptionChanged($event)"> </ion-checkbox>
+              <ion-label>Other Immune</ion-label>
+            </ion-item>
+        </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="8" offsetMd="2" size-lg="4" offsetLg="4">
+          <ion-button expand="block" color="primary"  (click)="dismissModel()">
+            Back
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

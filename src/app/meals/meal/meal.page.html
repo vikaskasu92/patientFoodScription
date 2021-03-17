@@ -1,0 +1,264 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="light" slot="start" defaultHref="/meals"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Meal</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-lg="6" size-md="10"  offset-lg="3"  offset-md="1">
+        <ion-card *ngFor="let mealElement of meal">
+          <img  id="mealImage{{mealElement.id}}" class="card-image" src="{{mealElement | mealElements:'image' }}" alt="{{mealElement | mealElements:'title' }}">
+            <input type="hidden" id="shareUrl{{mealElement.recipe.id}}" value="{{mealElement| mealElements:'share'}}"/>
+            <ion-row>
+              <ion-col size="4">
+                <ion-fab horizontal="start">
+                  <ion-fab-button color="secondary" class="default-fab">
+                    <ion-icon name="thumbs-up-outline"></ion-icon>
+                  </ion-fab-button>
+                  <ion-fab-list side="top">
+                    <div *ngIf="mealElement.recipe.rating === 5" class="same-line-div">
+                      <ion-fab-button id="ratedUp1{{mealElement.recipe.id}}" (click)="rated('up',mealElement.recipe.id,mealElement.recipe.rating)" class="push-right rate-selected"><ion-icon name="thumbs-up-outline" ></ion-icon></ion-fab-button>
+                      <ion-fab-button id="ratedDown1{{mealElement.recipe.id}}" (click)="rated('down',mealElement.recipe.id,mealElement.recipe.rating)" class="default-fab"><ion-icon name="thumbs-down-outline" ></ion-icon></ion-fab-button>
+                    </div>
+                    <div *ngIf="mealElement.recipe.rating === 1" class="same-line-div">
+                      <ion-fab-button id="ratedUp2{{mealElement.recipe.id}}" (click)="rated('up',mealElement.recipe.id,mealElement.recipe.rating)" class="push-right default-fab"><ion-icon name="thumbs-up-outline" ></ion-icon></ion-fab-button>
+                      <ion-fab-button id="ratedDown2{{mealElement.recipe.id}}" (click)="rated('down',mealElement.recipe.id,mealElement.recipe.rating)" class="rate-selected"><ion-icon name="thumbs-down-outline" ></ion-icon></ion-fab-button>
+                    </div>
+                    <div *ngIf="mealElement.recipe.rating === null" class="same-line-div">
+                      <ion-fab-button id="ratedUp3{{mealElement.recipe.id}}" (click)="rated('up',mealElement.recipe.id,mealElement.recipe.rating)" class="push-right default-fab"><ion-icon name="thumbs-up-outline" ></ion-icon></ion-fab-button>
+                      <ion-fab-button id="ratedDown3{{mealElement.recipe.id}}" (click)="rated('down',mealElement.recipe.id,mealElement.recipe.rating)" class="default-fab"><ion-icon name="thumbs-down-outline" ></ion-icon></ion-fab-button>
+                    </div>
+                    <div id="onLaunch{{mealElement.recipe.id}}">
+                      <div *ngIf="(mealElement | mealElements:'favorite') ">
+                        <ion-icon name="heart" class="heart-icon" (click)="favoriteMeal(mealElement.recipe.id,false)"></ion-icon>
+                      </div>
+                      <div *ngIf="!(mealElement | mealElements:'favorite')">
+                        <ion-icon name="heart-outline" class="heart-icon" (click)="favoriteMeal(mealElement.recipe.id,true)"></ion-icon>
+                      </div>
+                    </div>
+                    <div id="notOnLaunch{{mealElement.recipe.id}}" style="display: none;">
+                      <div id="notOnLaunchFill{{mealElement.recipe.id}}">
+                        <ion-icon name="heart" class="heart-icon" (click)="favoriteMeal(mealElement.recipe.id,false)"></ion-icon>
+                      </div>
+                      <div id="notOnLaunchNoFill{{mealElement.recipe.id}}">
+                        <ion-icon name="heart-outline" class="heart-icon" (click)="favoriteMeal(mealElement.recipe.id,true)"></ion-icon>
+                      </div>
+                    </div>
+                  </ion-fab-list>
+                </ion-fab>
+              </ion-col>
+              <ion-col size="6" class="remaining-icons">                       
+                <div *ngIf="mealElement.followed === false" class="same-line-div">
+                  <ion-row>
+                    <ion-col size="4" class="ion-no-padding">
+                      <ion-fab-button id="followed1{{mealElement.id}}" class="push-right default-fab-followed " (click)="followedPlan('yes',mealElement.id,mealElement.followed)"><ion-icon name="checkmark-outline"></ion-icon></ion-fab-button>
+                    </ion-col>
+                    <ion-col size="4" class="ion-no-padding track-text">
+                      <ion-text class="track-text-content">Track</ion-text>
+                    </ion-col>
+                    <ion-col size="4" class="ion-no-padding">
+                      <ion-fab-button class="default-fab-followed  followed-selected" id="didNotfollow1{{mealElement.id}}" (click)="followedPlan('no',mealElement.id,mealElement.followed)"><ion-icon name="close-outline" ></ion-icon></ion-fab-button>
+                    </ion-col>
+                  </ion-row>
+                </div>
+                <div *ngIf="mealElement.followed === true" class="same-line-div">
+                  <ion-row>
+                    <ion-col size="4" class="ion-no-padding">
+                      <ion-fab-button id="followed2{{mealElement.id}}" class="push-right default-fab-followed  followed-selected" (click)="followedPlan('yes',mealElement.id,mealElement.followed)"><ion-icon name="checkmark-outline"></ion-icon></ion-fab-button>
+                    </ion-col>
+                    <ion-col size="4" class="ion-no-padding track-text">
+                      <ion-text class="track-text-content">Track</ion-text>
+                    </ion-col>
+                    <ion-col size="4" class="ion-no-padding">
+                      <ion-fab-button class="default-fab-followed " id="didNotfollow2{{mealElement.id}}" (click)="followedPlan('no',mealElement.id,mealElement.followed)"><ion-icon name="close-outline" ></ion-icon></ion-fab-button>
+                    </ion-col>
+                  </ion-row>
+                </div>
+                <div *ngIf="mealElement.followed === null" class="same-line-div">
+                  <ion-row>
+                    <ion-col size="4" class="ion-no-padding">
+                      <ion-fab-button id="followed3{{mealElement.id}}" class="push-right default-fab-followed " (click)="followedPlan('yes',mealElement.id,mealElement.followed)"><ion-icon name="checkmark-outline"></ion-icon></ion-fab-button>
+                    </ion-col>
+                    <ion-col size="4" class="ion-no-padding track-text">
+                      <ion-text class="track-text-content">Track</ion-text>
+                    </ion-col>
+                    <ion-col size="4" class="ion-no-padding">
+                      <ion-fab-button class="default-fab-followed " id="didNotfollow3{{mealElement.id}}" (click)="followedPlan('no',mealElement.id,mealElement.followed)"><ion-icon name="close-outline" ></ion-icon></ion-fab-button>
+                    </ion-col>
+                  </ion-row>
+                </div>
+              </ion-col>
+              <ion-col size="2" class="camera-col">
+                <ion-fab-button class="default-fab-followed" id="camera{{mealElement.id}}" (click)="openCamera(mealElement.id)"  ><ion-icon name="camera-outline" ></ion-icon></ion-fab-button>
+              </ion-col>
+            </ion-row>
+          <ion-card-subtitle class="ion-padding padding-bottom meal-item-sub-title">
+            <ion-row>
+              <ion-col size="6" class="ion-text-left">
+                <ion-text class="capitalize-text">{{dishtype}}</ion-text>
+              </ion-col>
+              <ion-col size="6" class="ion-text-right">
+                <ion-text class="capitalize-text">Eat {{mealElement.userServings}} Servings</ion-text>
+              </ion-col>
+            </ion-row>
+          </ion-card-subtitle>
+         <ion-card-title class="ion-padding ion-text-left card-title remove-top-padding">{{mealElement | mealElements:'title' }}</ion-card-title>
+          <div #mealNutritients style="display: none;">
+            <ion-grid>
+              <ion-row>
+                <ion-col size="3" class="calories-in-meals-col">
+                  <ion-text class="calories-in-meals">{{mealElement | mealElements:'calories' | digits:0 }}</ion-text><br>
+                  <ion-text class="calories-in-meals">Cal</ion-text>
+                </ion-col>
+                <ion-col size="9">
+                    <ion-row>
+                      <ion-col size="12">
+                        <ion-grid>
+                          <ion-row>
+                            <ion-col size="6">
+                              <ion-row>
+                                <ion-col>
+                                  <ion-text class="nutrition-heading">Carbs</ion-text><br>
+                                  <span class="doughnut-index-1">&nbsp;</span><ion-text>{{mealElement | mealElements:'carbs'| digits:2 }}g</ion-text>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row>
+                                <ion-col>
+                                  <ion-text class="nutrition-heading">Protein</ion-text><br>
+                                  <span class="doughnut-index-2">&nbsp;</span><ion-text>{{mealElement | mealElements:'protein'| digits:2 }}g</ion-text>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row>
+                                <ion-col>
+                                  <ion-text>Fat</ion-text><br>
+                                  <span class="doughnut-index-3">&nbsp;</span><ion-text>{{mealElement | mealElements:'fat'| digits:2 }}g</ion-text>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row>
+                                <ion-col>
+                                  <ion-text class="more-info" (click)="moreInfo(mealElement)">More Info</ion-text>
+                                </ion-col>
+                              </ion-row>
+                            </ion-col>
+                            <ion-col size="6">
+                              <canvas id="nutritionInfo{{mealElement.id}}"></canvas>
+                            </ion-col>
+                          </ion-row>
+                        </ion-grid>
+                      </ion-col>
+                    </ion-row>
+                </ion-col>
+              </ion-row>
+          </ion-grid>
+          </div>
+          <hr>
+          <ion-card-content class="meals-card-content">
+            <ion-grid>
+              <ion-row>
+                <ion-col size="5" class="ion-text-left">
+                  <div #nutrientsShown>
+                    <ion-label color="primary" class="nutrients" (click)="nutrientsToggle('nutrients',mealNutritients,nutrientsShown,nutrientsHideShown,mealElement.id,mealElement)">Nutrients</ion-label>
+                  </div>
+                  <div #nutrientsHideShown style="display: none;">
+                    <ion-label color="primary" class="nutrients" (click)="nutrientsToggle('hide',mealNutritients,nutrientsShown,nutrientsHideShown,mealElement.id,mealElement)">Hide</ion-label>
+                  </div>
+                </ion-col>
+                <ion-col size="7" class="ion-text-right">
+                  <ion-text color="primary" class="ingredients-directions" (click)="toggleMealsData(mealElement.recipe.id)">Ingredients / Directions</ion-text>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+      
+            <div style="display: none; width: 100%;" id="toggleMealInfo{{mealElement.recipe.id}}">
+              <hr>
+              <div class="center-chips">
+                <ion-chip *ngFor="let keyword of mealElement | mealElements:'keywords' ">
+                  <ion-label>{{keyword}}</ion-label>
+                </ion-chip>
+              </div>
+              <hr>
+              <ion-grid>
+                <ion-row>
+                  <ion-col class="ion-text-left">
+                    <ion-text class="meal-servings">Serves {{mealElement.recipe.servings}}</ion-text>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col class="ion-text-left">
+                    <ion-text class="meal-servings">Total time {{mealElement.recipe.readyInMinutes}} mins</ion-text>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="5" class="ingredients-col-adjust">
+                    <ion-label class="ingredients-label">Ingredients</ion-label>
+                  </ion-col>
+                  <ion-col size="5" class="ion-text-right ingredients-cart">
+                    <ion-button class="ingredients-cart-button" size="small" (click)="addMealElementIngredientsToCart(mealElement)">
+                      <ion-icon name="cart" class="ingredients-cart-button-activated"></ion-icon>&nbsp;Add
+                    </ion-button>
+                  </ion-col>
+                  <ion-col size="2" class="ingredients-col-adjust ion-text-right">
+                    <div #showUpIngredients>
+                      <ion-icon name="chevron-up" class="chevron-directions" (click)="chevronToggle('up',showUpIngredients,showDownIngredients,ingredientInfo)"></ion-icon>
+                    </div>
+                    <div #showDownIngredients style="display: none;">
+                      <ion-icon name="chevron-down" class="chevron-directions" (click)="chevronToggle('down',showUpIngredients,showDownIngredients,ingredientInfo)"></ion-icon>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              <div #ingredientInfo>
+                <ion-item *ngFor="let mealIngredient of mealElement | mealElements:'ingredients'">
+                  <ion-grid class="remove-padding"> 
+                    <ion-row>
+                      <ion-col size="6" class="ion-text-left">
+                        <ion-text>{{ mealIngredient.ingredient  }}</ion-text><br>
+                      </ion-col>
+                      <ion-col size="6" class="ion-text-right">
+                        {{mealIngredient.amount | digits:3 | roundNumber:mealIngredient.unit}} {{mealIngredient.unit}}
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-item>
+              </div>
+              <ion-grid class="direction-above">
+                <ion-row>
+                  <ion-col size="10" class="directions-col-adjust ion-text-left">
+                    <ion-label class="directions-label">Directions</ion-label>
+                  </ion-col>
+                  <ion-col size="2" class="directions-col-adjust ion-text-right">
+                      <div #showUp>
+                        <ion-icon name="chevron-up" class="chevron-directions" (click)="chevronToggle('up',showUp,showDown,directionInfo)"></ion-icon>
+                      </div>
+                      <div #showDown style="display: none;">
+                        <ion-icon name="chevron-down" class="chevron-directions" (click)="chevronToggle('down',showUp,showDown,directionInfo)"></ion-icon>
+                      </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              <div #directionInfo>
+                <ion-item *ngFor="let mealDirection of mealElement | mealElements:'directions';let k = index; let m = count">
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col size="1" class="ion-text-left">
+                        <ion-text>{{mealDirection.name | stepnumber}}.</ion-text>
+                      </ion-col>
+                      <ion-col size="11" class="ion-text-left">
+                        {{ mealDirection.steps | mealElements:'directions-steps'}}
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-item>
+              </div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

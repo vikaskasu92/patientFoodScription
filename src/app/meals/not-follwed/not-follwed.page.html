@@ -1,0 +1,125 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Not Followed ?</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="closeModal()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-img src="{{mealImage}}" alt="meal image"></ion-img>
+    </ion-card-header>
+    <ion-card-content>
+      <div *ngIf="part1">
+        <ion-card-title class="card-title">It's fine!</ion-card-title>
+        <ion-list>
+          <ion-radio-group (ionChange)="changedRadio($event)">
+            <ion-list-header>
+              <ion-label class="adjust-top">What did you do differently?</ion-label>
+            </ion-list-header>
+            <ion-item>
+              <ion-text>I had something else</ion-text>
+              <ion-radio slot="start" value="somethingElse"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-text>I took a different portion</ion-text>
+              <ion-radio slot="start" value="differentPortion"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </ion-list>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-button color="primary" (click)="nextPart(1)">
+                Next
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+      <div *ngIf="part2a">
+        <ion-card-title class="card-title">It's fine!</ion-card-title>
+        <ion-list>
+          <ion-radio-group (ionChange)="changedRadio2a($event)">
+            <ion-list-header>
+              <ion-text class="adjust-top">I had something else</ion-text>
+            </ion-list-header>
+            <ion-item>
+              <ion-text>repeated previous meal</ion-text>
+              <ion-radio slot="start" value="leftOversRepeatedRecipe"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-text>skipped meal</ion-text>
+              <ion-radio slot="start" value="skipMeal"></ion-radio>
+            </ion-item>
+            <ion-item class="text-area-class" *ngIf="skipReason">
+              <ion-label position="floating">Reason</ion-label>
+              <ion-textarea id="skipReason" maxlength="50"></ion-textarea>
+            </ion-item>
+            <ion-item>
+              <ion-text>didn't like recommendation</ion-text>
+              <ion-radio slot="start" value="notAGoodChoice"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-text>couldn't prepare meal</ion-text>
+              <ion-radio slot="start" value="goodChoiceCouldNotPrepare"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-text>problem with recipe</ion-text>
+              <ion-radio slot="start" value="problemWithRecipe"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-text>Other</ion-text>
+              <ion-radio slot="start" value="Other"></ion-radio>
+            </ion-item>
+            <ion-item class="text-area-class" *ngIf="otherReason">
+              <ion-label position="floating">Reason</ion-label>
+              <ion-textarea id="otherReason" maxlength="50"></ion-textarea>
+            </ion-item>
+          </ion-radio-group>
+        </ion-list>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-button color="primary" (click)="nextPart(2)">
+                Finish
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+      <div *ngIf="part2b">
+        <ion-card-title class="card-title">It's fine!</ion-card-title>
+        <ion-list>
+          <ion-radio-group (ionChange)="changedRadio2b($event)">
+            <ion-list-header>
+              <ion-text class="adjust-top">I took a Different Portion</ion-text>
+            </ion-list-header>
+            <ion-item>
+              <ion-text>I had a smaller portion size</ion-text>
+              <ion-radio slot="start" value="smallerPortion"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-text>I had a larger portion size</ion-text>
+              <ion-radio slot="start" value="LargerPortion"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </ion-list>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-button color="primary" (click)="nextPart(2)">
+                Finish
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

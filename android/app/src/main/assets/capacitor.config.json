@@ -1,12 +1,15 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "patientFoodScription",
+  "appId": "com.phrql.foodscription",
+  "appName": "FoodScription",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
   "plugins": {
     "SplashScreen": {
       "launchShowDuration": 0
+    },
+    "PushNotifications": {
+      "presentationOptions": ["badge", "sound", "alert"]
     }
   },
   "cordova": {}

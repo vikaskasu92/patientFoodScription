@@ -1,0 +1,32 @@
+<ion-card class="card">
+<ion-card-content>
+  <ion-grid>
+    <ion-row (click)="navigate('favorites')">
+      <ion-col size="2">
+        <ion-icon class="icon-size heart" name="heart"></ion-icon>
+      </ion-col>
+      <ion-col size="10">
+        <ion-text class="text-size">Favorites</ion-text>
+      </ion-col>
+    </ion-row>
+    <hr/>
+    <ion-row (click)="navigate('food-preferences')" class="row-adjust">
+      <ion-col size="2" class="thumbs-col">
+        <ion-icon  class="icon-size thumbs-up-down" name="thumbs-down"></ion-icon><ion-icon  class="icon-size thumbs-up-down" name="thumbs-up"></ion-icon>
+      </ion-col>
+      <ion-col size="10">
+        <ion-text class="text-size">Food preferences</ion-text>
+      </ion-col>
+    </ion-row>
+    <hr/>
+    <ion-row (click)="navigate('settings')">
+      <ion-col size="2">
+        <ion-icon  class="icon-size cog" name="cog"></ion-icon>
+      </ion-col>
+      <ion-col size="10">
+        <ion-text class="text-size">Settings</ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card-content>
+</ion-card>

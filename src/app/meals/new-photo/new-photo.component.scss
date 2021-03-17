@@ -1,0 +1,40 @@
+.picker {
+    width: 30rem;
+    max-width: 80%;
+    height: 20rem;
+    max-height: 30vh;
+    border: 1px solid var(--ion-color-primary);
+    margin: 2rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  input[type='file'] {
+    display: none;
+  }
+
+  .form-data{
+      text-align: end;
+  }
+
+  .clear-image{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-right: 2.1rem;
+    margin-top: -1.8rem;
+  }
+  
+  .save-get-images{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem;
+  }

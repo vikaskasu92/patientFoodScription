@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button color="light" slot="start" defaultHref="/on-boarding/new-info/routine"></ion-back-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col size-lg="6" offset-lg="3">
+        <ion-item lines="none">
+          <ion-text color="primary" class="ion-padding-top">
+            <h2 class="custom-text-primary">Your goal is to...</h2>
+          </ion-text>
+        </ion-item>
+        <ion-grid>
+          <ion-row class="margin-top-1">
+            <ion-col size="4" class="ion-margin-right ion-text-center">
+              <ion-icon class="icon-border" name="trending-down-outline" [ngClass]="{'loseWeight-clicked':loseWeightIconClicked == true,'loseWeight-unclicked':loseWeightIconClicked == false}" (click)="iconClicked('loseWeight')"></ion-icon>
+              <div class="ion-text-center ion-padding-top">
+                <ion-text>Lose weight</ion-text>
+              </div>
+            </ion-col>
+            <ion-col size="4" class="ion-margin-right ion-text-center">
+              <ion-icon class="icon-border" name="body-outline" [ngClass]="{'keepIt-clicked':keepItIconClicked == true,'keepIt-unclicked':keepItIconClicked == false}"  (click)="iconClicked('keepIt')"></ion-icon>
+              <div class="ion-text-center ion-padding-top">
+                <ion-text>Keep it</ion-text>
+              </div>
+            </ion-col>
+            <ion-col size="4" class="ion-text-center">
+              <ion-icon class="icon-border" name="fast-food-outline" [ngClass]="{'gainWeight-clicked':gainWeightIconClicked == true,'gainWeight-unclicked':gainWeightIconClicked == false}"  (click)="iconClicked('gainWeight')"></ion-icon>
+              <div class="ion-text-center ion-padding-top">
+                <ion-text >Gain Weight</ion-text>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="8" offsetMd="2" size-lg="4" offsetLg="4">
+          <ion-button expand="block" color="primary"  disabled="{{disabled}}" (click)="navigate()">
+            Next
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
+

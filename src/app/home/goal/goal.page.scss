@@ -1,0 +1,30 @@
+hr{
+    background: #999999;
+    width: 96%;
+    margin: 0;
+}
+
+.goal-setting-icons{
+    font-size: 1.5rem;
+}
+
+.adjust-goal-setting-row{
+    padding: .8rem;
+}
+
+.goal-setting-text{
+    font-size: .9rem;
+    color: currentcolor;
+    font-weight: bold;
+}
+
+ion-modal {
+    .modal-wrapper {
+        height: 70%;
+        width: 60%;
+    }
+}
+
+.col-adjust{
+    padding-top: 0;
+}

@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="primary">
+      <ion-button (click)="dismissModel()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+        <ion-list>
+            <ion-list-header>
+              <ion-label>Can you be more specific</ion-label>
+            </ion-list-header>
+        
+            <ion-item>
+              <ion-checkbox slot="start" (ionChange)="cardioVascularChange($event,'Cardiovascular disease')"> </ion-checkbox>
+              <ion-label>Cardiovascular disease</ion-label>
+            </ion-item>
+        
+            <ion-item>
+              <ion-checkbox slot="start" (ionChange)="cardioVascularChange($event,'Congestive heart failure')"> </ion-checkbox>
+              <ion-label>Congestive heart failure</ion-label>
+            </ion-item>
+        
+            <ion-item>
+              <ion-checkbox slot="start" (ionChange)="cardioVascularChange($event,'Hyperlipidemia')"> </ion-checkbox>
+              <ion-label>Hyperlipidemia</ion-label>
+            </ion-item>
+
+            <ion-item>
+              <ion-checkbox slot="start" (ionChange)="cardioVascularChange($event,'Hypertension')"> </ion-checkbox>
+              <ion-label>Hypertension</ion-label>
+            </ion-item>
+
+            <ion-item>
+              <ion-checkbox slot="start" (ionChange)="cardioVascularChange($event,'Stroke')"> </ion-checkbox>
+              <ion-label>Stroke</ion-label>
+            </ion-item>
+
+            <ion-item>
+              <ion-checkbox slot="start" (ionChange)="otherOptionChanged($event)"> </ion-checkbox>
+              <ion-label>Other Cardiovascular</ion-label>
+            </ion-item>
+        </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="8" offsetMd="2" size-lg="4" offsetLg="4">
+          <ion-button expand="block" color="primary"  (click)="dismissModel()">
+            Back
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

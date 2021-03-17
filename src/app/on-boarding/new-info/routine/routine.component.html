@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button color="light" slot="start" defaultHref="/on-boarding/new-info/dob"></ion-back-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col size-lg="6" offset-lg="3">
+        <ion-item lines="none">
+          <ion-text color="primary" class="ion-padding-top">
+            <h2 class="custom-text-primary">In a typical week, you are</h2>
+          </ion-text>
+        </ion-item>
+        <ion-grid>
+          <ion-row class="margin-top-1">
+            <ion-col size="6" class="ion-text-center">
+                <ion-icon class="icon-border" name="man-outline" [ngClass]="{'sedentary-clicked':sedentaryIconClicked == true,'sedentary-unclicked':sedentaryIconClicked == false}" (click)="iconClicked('Sedentary')"></ion-icon>
+                <div class="ion-text-center ion-padding-top">
+                  <ion-text>Sedentary</ion-text><br>
+                  <ion-text class="small-margin">0-1 day</ion-text>
+                </div>
+              </ion-col>
+            <ion-col size="6" class="ion-text-center">
+                <ion-icon class="icon-border" name="walk-outline" [ngClass]="{'light-clicked':lightIconClicked == true,'light-unclicked':lightIconClicked == false}"  (click)="iconClicked('Low active')"></ion-icon>
+                <div class="ion-text-center ion-padding-top">
+                  <ion-text>Less Active</ion-text><br>
+                  <ion-text class="small-margin">1-3 days</ion-text>
+                </div>
+              </ion-col>
+          </ion-row>
+          <ion-row class="margin-top-2">
+            <ion-col size="4" class="ion-margin-right ion-text-center">
+              <ion-icon class="icon-border" name="bicycle-outline" [ngClass]="{'moderate-clicked':moderateIconClicked == true,'moderate-unclicked':moderateIconClicked == false}" (click)="iconClicked('Active')"></ion-icon>
+              <div class="ion-text-center ion-padding-top">
+                <ion-text>Active</ion-text><br>
+                <ion-text class="small-margin">3-5 days</ion-text>
+              </div>
+            </ion-col>
+            <ion-col size="4" class="ion-margin-right ion-text-center">
+              <ion-icon class="icon-border" name="fitness-outline" [ngClass]="{'active-clicked':activeIconClicked == true,'active-unclicked':activeIconClicked == false}"  (click)="iconClicked('Very active')"></ion-icon>
+              <div class="ion-text-center ion-padding-top">
+                <ion-text>Very Active</ion-text><br>
+                <ion-text class="small-margin">6-7 days</ion-text>
+              </div>
+            </ion-col>
+            <ion-col size="4" class="ion-text-center">
+              <ion-icon class="icon-border" name="flame-outline" [ngClass]="{'extraHard-clicked':extraHardIconClicked == true,'extraHard-unclicked':extraHardIconClicked == false}"  (click)="iconClicked('Extra active')"></ion-icon>
+              <div class="ion-text-center ion-padding-top">
+                <ion-text >Extra Active</ion-text>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid *ngIf="!onComputer">
+          <ion-row>
+            <ion-col size="1">
+              <ion-checkbox checked="{{checkBoxCheked}}" (ionChange)="checkBoxAltered()"></ion-checkbox>
+            </ion-col>
+            <ion-col size="11" class="ion-padding-start">
+              <ion-text>Recommend using your HealthKit for more personalized meals</ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="8" offsetMd="2" size-lg="4" offsetLg="4">
+          <ion-button expand="block" color="primary"  disabled="{{disabled}}" (click)="navigate()">
+            Next
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
+

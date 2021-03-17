@@ -1,0 +1,111 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="light" slot="start" defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+      <ion-buttons>
+          <ion-item lines="none" class="adjust-title">
+            <ion-icon class="icon-size" name="heart"></ion-icon>
+            <ion-label><ion-text class="text-size">Favorites</ion-text></ion-label>
+          </ion-item>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-lg="6" size-md="10"  offset-lg="3"  offset-md="1">
+        <div *ngIf="favoritesAvailable;else noFavorites">
+          <div *ngFor="let meal of meals">
+            <ion-card>
+              <img class="card-image" src="{{meal.image}}" alt="{{meal.title}}">
+              
+              <ion-icon name="heart" class="heart-icon" (click)="removeFavorite(meal.id)"></ion-icon>
+              <!--<ion-card-subtitle class="ion-padding padding-bottom">{{meal.}}</ion-card-subtitle>-->
+              <ion-card-title class="ion-padding card-title">{{meal.title}}</ion-card-title>
+              <div #mealNutritients style="display: none;">
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="3" class="calories-in-meals-col">
+                      <ion-text class="calories-in-meals">{{meal.calories | digits:0}}</ion-text><br>
+                      <ion-text class="calories-in-meals">Cal</ion-text>
+                    </ion-col>
+                    <ion-col size="9">
+                        <ion-row>
+                          <ion-col size="12">
+                            <ion-grid>
+                              <ion-row>
+                                <ion-col size="4">
+                                  <ion-text>Carbs</ion-text><br>
+                                  <ion-text>{{meal.carbs| digits:2 }}g</ion-text>
+                                </ion-col>
+                                <ion-col size="8">
+                                  <ion-row>
+                                   <ion-col size="12" class="meal-nutrition-progress">
+                                      <ion-progress-bar class="progress-meals-nutrients-1" value="{{((meal.carbs| digits:2) / ((meal.calories | digits:0) /4 ))}}"></ion-progress-bar>
+                                    </ion-col>
+                                  </ion-row>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row>
+                                <ion-col size="4">
+                                  <ion-text>Protein</ion-text><br>
+                                  <ion-text>{{meal.protein | digits:2 }}g</ion-text>
+                                </ion-col>
+                                <ion-col size="8">
+                                  <ion-row>
+                                   <ion-col size="12" class="meal-nutrition-progress">
+                                      <ion-progress-bar class="progress-meals-nutrients-2" value="{{((meal.protein | digits:2) / ((meal.calories | digits:0) /4 ))}}"></ion-progress-bar>
+                                    </ion-col>
+                                  </ion-row>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row>
+                                <ion-col size="4">
+                                  <ion-text>Fat</ion-text><br>
+                                  <ion-text>{{meal.fat| digits:2 }}g</ion-text>
+                                </ion-col>
+                                <ion-col size="8">
+                                  <ion-row>
+                                    <ion-col size="12" class="meal-nutrition-progress">
+                                      <ion-progress-bar class="progress-meals-nutrients-3" value="{{((meal.fat  | digits:2) / ((meal.calories | digits:0) /9 ))}}"></ion-progress-bar>
+                                    </ion-col>
+                                  </ion-row>
+                                </ion-col>
+                              </ion-row>
+                            </ion-grid>
+                          </ion-col>
+                        </ion-row>
+                    </ion-col>
+                  </ion-row>
+              </ion-grid>
+              </div>
+              <hr>
+              <ion-card-content>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="12" class="ion-text-left">
+                      <div #nutrientsShown>
+                        <ion-label color="primary" class="nutrients" (click)="nutrientsToggle('nutrients',mealNutritients,nutrientsShown,nutrientsHideShown)">Nutrients</ion-label>
+                      </div>
+                      <div #nutrientsHideShown style="display: none;">
+                        <ion-label color="primary" class="nutrients" (click)="nutrientsToggle('hide',mealNutritients,nutrientsShown,nutrientsHideShown)">Hide</ion-label>
+                      </div>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-card-content>
+            </ion-card>
+          </div>
+        </div>
+       <ng-template #noFavorites>
+          <div class="ion-padding">
+            <ion-card-subtitle class="no-favorites">You have no Favorite Meals.</ion-card-subtitle>
+          </div>
+       </ng-template>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+ 

@@ -1,0 +1,43 @@
+.message-card{
+    width: 80%;
+}
+
+.message-content-fromMe{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: .5rem;
+    flex-flow: column;
+}
+
+.message-content-notFromMe{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: .5rem;
+    flex-flow: column;
+}
+
+.fromMe{
+    margin-left: 4rem;
+    --background: #9fb8ad;
+    color: black;
+    font-weight: 400;
+}
+
+.notFromMe{
+    margin-left: 1rem;
+    --background: #c5d7bd;
+    color: black;
+    font-weight: 400;
+}
+
+.timestamp{
+    align-self: flex-end;
+    color: white;
+    font-size: .8rem;
+}
+
+.message{
+    align-self: flex-start;
+}

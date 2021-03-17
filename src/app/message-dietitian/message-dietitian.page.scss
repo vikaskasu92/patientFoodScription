@@ -1,0 +1,165 @@
+ion-icon {
+    --ionicon-stroke-width: 16px;
+}
+
+ion-card{
+    width:98%
+}
+
+.icon{
+
+    &-size{
+        color: #FF9900;
+        font-size: 2rem;
+    }
+    
+}
+
+.text-size{
+    font-size: 1.3rem;
+    padding-left: 4px;
+    color: #FF9900;
+}
+
+.toolbar-background{
+    --background:#FFF6D6;
+}
+
+hr{
+    width: 95%;
+    background: #999999;
+}
+
+.message-box-hr{
+    width: 100%;
+    background: #999999;
+}
+
+.data-card{
+    margin: 0;
+    width: 100%;
+    margin-left: 0;
+    --background:#FFF6D6;
+
+    &-title{
+        font-size: 1.3rem;
+    }
+}
+
+.avatar{
+    font-size: 2.5rem;
+    padding: 6px;
+    border-radius: 50%;
+    background: white;
+    border: 1px solid black;
+    margin-right: 0.9rem;
+}
+
+.col-adjust{
+    padding-top: 0;
+}
+
+.segment-buttons{
+    --background:#FFF6D6;
+}
+
+.footer{
+    bottom: 0;
+    overflow-y: hidden;
+    transition: 0.2s;
+    margin-bottom: 0;
+}
+
+.pull-up{
+    color:#CCCCCC;
+    width: 12%;
+    height: .3rem;
+    border-radius: 2rem;
+
+    &-header{
+        padding-top: .5rem;
+        padding-bottom: 0;
+    }
+}
+
+.adjust-font-size{
+    font-size: 1.5rem;
+}
+
+.chevron-down{
+    font-size: 1.4rem;
+}
+
+.template{
+    display: inline;
+}
+
+.discard-btn{
+    --background:#B7B7B7;
+}
+
+.ask-question-card{
+    bottom: 0;
+    position: fixed;
+    width: 90%;
+    margin-left: .5rem;
+}
+
+
+/* ----------- Non-Retina Screens ----------- */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+
+    .avatar-for-lg{
+        text-align: center;
+        padding-top: 1.2rem;
+    }
+
+    .ask-question-card{
+        bottom: 0;
+        position: fixed;
+        width: 48%;
+    }
+
+    .slides-lg{
+        height: 50vh;
+        overflow-y: auto;
+        top: .2rem;
+    }
+
+    .about-card-lg{
+        position: absolute;
+        top: 0;
+
+        &-slide{
+            position: relative;
+        }
+    }
+    
+}
+
+.chat-col{
+    display: flex;
+    justify-content: flex-end;
+    font-size: 2rem;
+}
+
+.fab-button{
+    margin-top: -1.2rem;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.footer{
+    min-height: 3rem;
+}
+
+/* ----------- Retina Screens ----------- */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (min-resolution: 192dpi) { 
+}
+

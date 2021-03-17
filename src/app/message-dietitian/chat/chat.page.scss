@@ -1,0 +1,23 @@
+.send-message{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: row wrap;
+    &-button{
+        width: 90%;
+    }
+    &-icon{
+        align-self: center;
+        padding-left: .4rem;
+    }
+}
+
+.chat-view{
+    --background: #f6f5f5;
+}
+
+.convo-heading{
+    display: flex;
+    justify-content: center;
+    margin-left: -3rem;
+}

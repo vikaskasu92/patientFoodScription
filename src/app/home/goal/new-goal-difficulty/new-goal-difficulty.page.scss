@@ -1,0 +1,50 @@
+ion-card{
+    margin-top: .3rem;
+    margin-bottom: 0;
+}
+
+.difficulty{
+    font-size: 2rem;
+}
+
+.card-selected{
+    --background:#66CC65;
+}
+
+.card-heading-selected{
+    color:white
+}
+
+.card-heading-unselected{
+    color:#66CC65;
+}
+
+.card-subtitle-selected{
+    color:black;
+}
+
+.card-subtitle-unselected{
+    color:#656565;
+}
+
+.card-deselected{
+    --background:white;
+}
+
+.back-button{
+    color: black;
+    font-size: 1.3rem;
+}
+
+.card-header{
+    padding-top: .4rem;
+    padding-bottom: .4rem;
+}
+
+.card-content{
+    padding-bottom: .3rem;
+}
+
+.card-title{
+    font-size: 1.4rem;
+}

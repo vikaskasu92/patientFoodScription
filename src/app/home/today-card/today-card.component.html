@@ -1,0 +1,51 @@
+<ion-card class="card big-screen">
+  <ion-item lines="none">
+    <ion-text slot="start"><h2>Today</h2></ion-text>
+  </ion-item>
+  <hr/>
+  
+<ion-card-content class="card-content">
+  <div *ngIf="!noMealsAvailableToday">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4" class="ion-text-center">
+            <ion-text class="calories-text">{{totalCalories | digits:2}} Cal</ion-text>
+        </ion-col>
+        <ion-col size="8" class="ion-text-center">
+          <div class="wrapper">
+            <div style="background-color: #EB3454;" #breakfast><span style="color: white;" >B</span></div>
+            <div style="background-color: #65C879;" #lunch><span style="color: white;" >L</span></div>
+            <div style="background-color: #E9A94C;" #snack><span style="color: white;" >S</span></div>
+            <div style="background-color: #3079F6" #dinner> <span style="color: white;" >D</span></div>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="adjust-col">
+        <ion-col size="5">
+          <div>
+            <canvas id="donoughtGraph" class="graph-display card-body-chart-canvas-doughnut"></canvas>
+          </div>
+        </ion-col>
+        <ion-col size="7">
+          <ion-row class="adjust-row adjust-data">
+            <ion-col size="12" class="ion-text-left">
+              <span class="doughnut-index-1">&nbsp;</span><span class="doughnut-text">Carbs: {{totalCarbs | digits:2}} g</span>
+            </ion-col>
+            <ion-col size="12" class="ion-text-left">
+              <span class="doughnut-index-2">&nbsp;</span><span class="doughnut-text">Protein:  {{totalProtein| digits:2}} g</span>
+            </ion-col>
+            <ion-col size="12" class="ion-text-left">
+              <span class="doughnut-index-3">&nbsp;</span><span class="doughnut-text">Fat: {{totalFat | digits:2}} g</span>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div *ngIf="noMealsAvailableToday">
+    <ion-card-subtitle class="no-meals">
+      <ion-text>You have no meals on {{dateNotAvailable}}, Please contact your dietitian.</ion-text>
+    </ion-card-subtitle>
+  </div>
+</ion-card-content>
+</ion-card>

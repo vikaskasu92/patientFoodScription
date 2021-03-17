@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar class="toolbar-background">
+    <ion-buttons slot="start">
+      <ion-back-button color="light" slot="start" defaultHref="/convos"></ion-back-button>
+    </ion-buttons>
+    <div class="convo-heading">
+      <ion-text class="text-size">{{toUser}}</ion-text>
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="chat-view" id="msgContainer">
+  <div #scrollMe >
+    <app-chat-card *ngFor="let conversationMessage of conversationMessages; last as isLast" [isLast]="isLast"
+     [conversationMessage]="conversationMessage" (lastMessageAdded)="lastMessageAdded($event)"></app-chat-card>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="8" offsetMd="2" size-lg="4" offsetLg="4">
+          <div class="send-message" [formGroup]="messageForm">
+            <ion-item class="send-message-button">
+              <ion-textarea autofocus="true" onblur="this.focus()" id="messageInput" placeholder="Type a message..." formControlName="currentMessage" wrap="soft" (keydown)="enterPressed($event)"></ion-textarea>
+            </ion-item>
+            <label for="messageInput"><ion-icon class="send-message-icon" (click)="sendMessage($event)" name="send-outline"></ion-icon></label>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

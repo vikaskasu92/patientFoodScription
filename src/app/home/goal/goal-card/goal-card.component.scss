@@ -1,0 +1,60 @@
+hr{
+    background: #999999;
+    width: 90%;
+}
+
+.goal{
+
+    &-type{
+        font-size: 0.9rem;
+    }
+
+    &-value{
+        font-size: .9rem;
+        color: currentcolor;
+        font-weight: bold;
+    }
+}
+
+ion-card-content{
+    padding: 0;
+}
+
+
+@media screen 
+  and (min-device-width: 1200px)  { 
+
+    .goal-card-content{
+        padding-bottom: .7rem;
+    }
+
+    .grid-adjust{
+        padding-bottom: 0;
+        padding-top: 0;
+    }
+
+    .col-adjust{
+        padding-top: 0;
+    }
+
+    .big-screen{
+        margin: 1rem;
+    }
+}
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+    .grid-adjust{
+        padding-bottom: 0;
+        padding-top: 0;
+    }
+
+    .col-adjust{
+        padding-top: 0;
+    }
+
+    .big-screen{
+        margin: 1rem;
+    }
+}

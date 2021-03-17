@@ -1,0 +1,124 @@
+ion-icon {
+    --ionicon-stroke-width: 16px;
+}
+
+.icon{
+
+    &-size{
+        color: #FD6091;
+        font-size: 2rem;
+    }
+    
+}
+
+.adjust-title{
+    padding-left: 10%;
+}
+
+hr{
+    background: #999999;
+    width: 100%;
+}
+
+.card-title{
+    font-size: 1.4rem !important;
+    padding-left: .8rem;
+}
+
+.text-size{
+    font-size: 1.5rem;
+    padding-left: 4px;
+}
+
+.padding-bottom{
+    padding-bottom: 0;
+}
+
+ion-card-content{
+    padding: 0.5rem 0;
+}
+
+.heart-icon{
+    position: absolute;
+    top: 11rem;
+    left: 5%;
+    font-size: 3rem;
+    color: red;
+}
+
+.card-image{
+    height: 16rem;
+    width: 100%;
+    min-height: 16rem;
+}
+
+.nutrients{
+    font-size: 1.3rem;
+}
+
+.calories-in-meals{
+    color:#01CCAD;
+    font-size: 2rem;
+
+    &-col{
+        padding-top: 2.5rem;
+    }
+}
+
+.progress-meals-nutrients{
+
+    &-1{
+        --buffer-background:#E6E6E6;
+        --progress-background:#9A9AFF;
+    }
+
+    &-2{
+        --buffer-background:#E6E6E6;
+        --progress-background:#FF7761;
+    }
+
+    &-3{
+        --buffer-background:#E6E6E6;
+        --progress-background:#FCBE5B;
+    }
+   
+}
+
+.meal-nutrition-progress{
+    padding-top: 0.7rem;
+}
+
+.no-favorites{
+    text-align: center;
+}
+
+/* ----------- Non-Retina Screens ----------- */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+
+    .adjust-title{
+        padding-left: 0;
+    }
+
+    .calories-in-meals{
+
+        &-col{
+            padding-left: 2rem;
+        }
+    }
+
+    .no-favorites{
+        font-size: 1.5rem;
+    }
+}
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+
+    .no-favorites{
+        font-size: 1.5rem;
+    }
+
+}

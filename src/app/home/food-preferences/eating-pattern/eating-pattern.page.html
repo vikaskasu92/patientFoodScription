@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+        <ion-button >
+          <ion-icon name="close" color="light" slot="icon-only" size="large" ></ion-icon>
+        </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col size-lg="6"  offset-lg="3">
+        <ion-item lines="none">
+          <ion-text class="ion-padding-top black-text">
+            <h2 class="custom-text-primary">Select an eating pattern (optional)</h2>
+          </ion-text>
+        </ion-item>
+      
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6" class="ion-no-padding">
+              <ion-card [ngClass]="{'general-clicked':generalClicked == true,'general-unclicked':generalClicked == false}" (click)="cardClicked('general')">
+                <ion-card-header class="ion-text-left">
+                  <ion-text class="eating-patterns-type">General Healthy</ion-text>
+                </ion-card-header>
+                <ion-card-content class="ion-text-left">
+                  <ion-text class="eating-patterns-value">Typical American types and portions in nutrient dense forms</ion-text>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+            <ion-col size="6" class="ion-no-padding">
+              <ion-card [ngClass]="{'mediterranean-clicked':mediterraneanClicked == true,'mediterranean-unclicked':mediterraneanClicked == false}" (click)="cardClicked('mediterranean')">
+                <ion-card-header class="ion-text-left">
+                  <ion-text class="eating-patterns-type">Mediterranean</ion-text>
+                </ion-card-header>
+                <ion-card-content class="ion-text-left">
+                  <ion-text class="eating-patterns-value">High in fruits and seafood, lower in dairy</ion-text>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6" class="ion-no-padding">
+              <ion-card [ngClass]="{'vegetarian-clicked':vegetarianClicked == true,'vegetarian-unclicked':vegetarianClicked == false}" (click)="cardClicked('vegetarian')">
+                <ion-card-header class="ion-text-left">
+                  <ion-text class="eating-patterns-type">Vegetarian</ion-text>
+                </ion-card-header>
+                <ion-card-content class="ion-text-left">
+                  <ion-text class="eating-patterns-value">High in legumes, soy products, nuts, seeds and whole grains. No meats or poultry</ion-text>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="8" offsetMd="2" size-lg="4" offsetLg="4">
+          <ion-button expand="block" color="primary" (click)="navigate()">
+            Next
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

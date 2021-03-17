@@ -1,0 +1,70 @@
+.create-icon{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 1.5rem;
+    padding: .5rem;
+    &-top{
+        margin-left: -2rem;
+        font-size: 1.5rem;
+    }
+}
+
+.input-element{
+    opacity:0.8;
+    border-radius: 3px;
+}
+
+.quit-btn{
+    color: black;
+    font-size: 1rem;
+    padding-left: 1rem;
+}
+
+.new-convo{
+    margin-left: .5rem;
+    width: 96%;
+    &-box{
+        padding: .5rem;
+    }
+}
+
+.convo-heading{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -4rem;
+}
+
+.new-messages-double{
+    border: 1px solid black;
+    border-radius: 10rem;
+    background: #ff0065;
+    color: white;
+    width: 2rem;
+    height: 2rem;
+    padding-left: .3rem;
+    padding-top: .3rem;
+}
+
+.new-messages-single{
+    border: 1px solid black;
+    border-radius: 10rem;
+    background: #ff0065;
+    color: white;
+    padding-left: 0.3rem;
+    padding-top: 0.2rem;
+    padding-right: .3rem;
+    padding-bottom: .2rem;
+}
+
+.new-messages-tripple{
+    border: 1px solid black;
+    border-radius: 10rem;
+    background: #ff0065;
+    color: white;
+    width: 3rem;
+    height: 2rem;
+    padding-left: 0.5rem;
+    padding-top: 0.3rem;
+}

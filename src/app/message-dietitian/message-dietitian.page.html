@@ -1,0 +1,129 @@
+<app-header></app-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-lg="6"  offset-lg="3">
+        <ion-card class="data-card" >
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="3" class="avatar-for-lg">
+                  <ion-icon class="avatar" name="person"></ion-icon>
+                </ion-col>
+                <ion-col size="9">
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col size="12">
+                        <ion-card-subtitle>your RD</ion-card-subtitle>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="12" class="col-adjust">
+                        <ion-card-title>Anna Roccuzzo</ion-card-title>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            <div>
+              <ion-segment scrollable value="about" class="segment-buttons" pager="false"  (ionChange)="segmentChanged($event)">
+                <ion-segment-button value="about">
+                  <ion-text>About</ion-text>
+                </ion-segment-button>
+                <ion-segment-button value="specialties">
+                  <ion-text>Specialties</ion-text>
+                </ion-segment-button>
+                <ion-segment-button value="location">
+                  <ion-text>Location</ion-text>
+                </ion-segment-button>
+              </ion-segment>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      
+        <div>
+          <ion-slides pager="false" [options]="slideOpts" #slides class="slides-lg">
+            <ion-slide class="about-card-slide">
+              <ion-card class="about-card-lg">
+                <ion-card-header>
+                  <ion-card-title class="ion-text-left data-card-title">Motto</ion-card-title>
+                </ion-card-header>
+                <ion-card-content class="ion-text-left">
+                  <ion-text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi tenetur sed debitis ullam veniam libero, totam dicta deleniti eligendi consectetur doloremque cumque explicabo, asperiores quis. Accusamus maiores inventore voluptatem at!</ion-text>
+                </ion-card-content>
+                <hr>
+                <ion-card-header>
+                  <ion-card-title class="ion-text-left data-card-title">Qualifications</ion-card-title>
+                </ion-card-header>
+                <ion-card-content class="ion-text-left">
+                  <ion-label><ion-text>Years in Practise : &nbsp;&lt;&nbsp;2 years</ion-text></ion-label><br>
+                  <ion-label><ion-text>School : Columbia University Teachers College</ion-text></ion-label><br>
+                </ion-card-content>
+              </ion-card>
+            </ion-slide>
+            <ion-slide class="about-card-slide">
+              <ion-card class="about-card-lg">
+                <ion-card-header>
+                  <ion-card-title class="ion-text-left data-card-title">Specialties</ion-card-title>
+                </ion-card-header>
+                <ion-card-content class="ion-text-left">
+                  <ion-label><ion-text>Diabetes</ion-text></ion-label><br>
+                  <ion-label><ion-text>Weight Management</ion-text></ion-label><br>
+                  <ion-label><ion-text>Beaviour Modification</ion-text></ion-label><br>
+                  <ion-label><ion-text>Cholestrol</ion-text></ion-label><br>
+                  <ion-label><ion-text>High Blood Pressure</ion-text></ion-label><br>
+                </ion-card-content>
+                <hr>
+                <ion-card-header>
+                  <ion-card-title class="ion-text-left data-card-title">Treatment</ion-card-title>
+                </ion-card-header>
+                <ion-card-content class="ion-text-left">
+                  <ion-label><ion-text>Menu Planning</ion-text></ion-label><br>
+                  <ion-label><ion-text>Mindful Eating</ion-text></ion-label><br>
+                  <ion-label><ion-text>Non-Diet Approach</ion-text></ion-label><br>
+                  <ion-label><ion-text>Nutrition Coaching</ion-text></ion-label><br>
+                </ion-card-content>
+              </ion-card>
+            </ion-slide>
+            <ion-slide class="about-card-slide">
+              <ion-card class="about-card-lg">
+                <ion-card-header>
+                  <ion-card-title class="ion-text-left data-card-title">Address</ion-card-title>
+                </ion-card-header>
+                <ion-card-content class="ion-text-left">
+                  <ion-label><ion-text>12345 Food Way St.</ion-text></ion-label><br>
+                  <ion-label><ion-text>Detroit</ion-text></ion-label><br>
+                  <ion-label><ion-text>Mi - 48567</ion-text></ion-label><br>
+                </ion-card-content>
+                <hr>
+                <ion-card-header>
+                  <ion-card-title class="ion-text-left data-card-title">Phone</ion-card-title>
+                </ion-card-header>
+                <ion-card-content class="ion-text-left">
+                  <ion-label><ion-text>123-345-3456</ion-text></ion-label><br>
+                </ion-card-content>
+              </ion-card>
+            </ion-slide>
+          </ion-slides>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer class="footer">
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="8" offsetMd="2" size-lg="4" offsetLg="4" class="chat-col">
+          <ion-fab >
+            <ion-fab-button class="fab-button" (click)="chatWithDietitian()">
+              <ion-icon class="chat-icon" name="chatbubbles-outline"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

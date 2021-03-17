@@ -1,0 +1,672 @@
+.background-color{
+    --background: #E8E9EA;
+    padding: .5rem 0;
+}
+
+.smaller-image{
+    width: 70%;
+    margin-left: 10%;
+}
+
+ion-icon {
+    --ionicon-stroke-width: 16px;
+}
+
+.long-press-button{
+    --background:transparent;
+    --background-activated:transparent;
+}
+
+.icon{
+
+    &-menu{
+        font-size:2.5rem;
+
+        & > *{
+            padding-right: 0;
+        }
+    }
+
+    &-search{
+        font-size:1.5rem;
+        margin-right: 1.5rem;
+        margin-left: .5rem;
+    }
+
+    &-cart{
+        font-size:1.5rem;
+        margin-right: 2rem;
+    }
+    
+}
+
+.text-format{
+    margin-top: 1rem;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.meal-inner-fab{
+    padding-bottom: 1rem;
+
+    &-col{
+        margin-left: 1rem;
+    }
+}
+
+.meal-item-sub-title{
+    padding:.5rem;
+}
+
+.thumbs-up-icon{
+    font-size: 1.5rem;
+}
+
+.heart-icon{
+    color: red;
+    margin: 3px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 1.5rem;
+}
+
+.remaining-icons{
+    display: flex;
+    margin-left: -1.5rem;
+}
+
+.same-line-div{
+    display: inline;
+}
+
+.camera-col{
+    margin-left: 0.8rem;
+}
+
+.capitalize-text{
+    text-transform: capitalize;
+}
+
+.card-image{
+    max-height: 17rem;
+    min-height: 17rem;
+    width: 100%;
+}
+
+.long-press-card{
+    position: absolute;
+    bottom: 0%;
+    width: 44%;
+}
+
+.thumb-icon-div{
+    display: flex;
+    align-items: flex-start;
+    padding-left: 1.5rem;
+}
+
+.long-press-content{
+    padding: 0;
+}
+
+.nutrients{
+    font-size: 1.1rem;
+}
+
+.slide-width{
+
+    &-start{
+        width:95% !important;
+    }
+
+    &-other{
+        width:100% !important;
+    }
+    
+}
+
+.calories-in-meals{
+    color:#01CCAD;
+    font-size: 2rem;
+
+    &-col{
+        padding-top: 2.5rem;
+    }
+}
+
+.direction-above{
+    padding-top:1rem;
+}
+
+hr{
+    background: #999999;
+    width: 100%;
+    
+    &-bottom-ingredients{
+        margin-top: 1rem;
+    }
+
+    &.carbs{
+        height: .3rem;
+        border-radius: 1rem;
+        background: #9A9AFF;
+    }
+
+    &.protein{
+        height: .3rem;
+        border-radius: 1rem;
+        background: #FF7761;
+    }
+
+    &.fat{
+        height: .3rem;
+        border-radius: 1rem;
+        background: #FFCC01;
+    }
+
+    &.other{
+        height: .3rem;
+        border-radius: 1rem;
+        background: #E6E6E6;
+    }
+}
+
+.progress-meals-nutrients{
+
+    &-1{
+        --buffer-background:#E6E6E6;
+        --progress-background:#9A9AFF;
+    }
+
+    &-2{
+        --buffer-background:#E6E6E6;
+        --progress-background:#FF7761;
+    }
+
+    &-3{
+        --buffer-background:#E6E6E6;
+        --progress-background:#FCBE5B;
+    }
+   
+}
+
+.scrolling-wrapper {
+    overflow-x: scroll;
+    -webkit-overflow-scrolling-x: touch;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding-bottom: 1.5rem;
+    scroll-behavior: smooth;
+
+    & > :first-child{
+        margin-left: .5rem;
+    }
+}
+
+.grid-adjust-date{
+    padding-top: .8rem;
+    padding-left: 1rem;
+}
+
+.custom-label{
+    padding-left:.2rem;
+    font-weight: bold;
+    font-size: 1rem;
+    display: inline-block;
+    padding-top: .4rem;
+}
+
+.no-meals{
+    padding: 1rem;
+}
+
+.date-view-month{
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding-left: .2rem;
+}
+.weekly-follow-text{
+    margin-right: .9rem;
+    margin-top: -1.3rem;
+    font-weight: 600;
+}
+
+.meals-top-card{
+    margin-top:0;
+}
+
+.highlevel-meals-info{
+    padding: .5rem;
+    padding-bottom: 0rem;
+}
+
+.fab-buttons{
+    display:inline-block;
+    margin: .2rem;
+}
+
+.meal-nutrition-progress{
+    padding-top: 0.7rem;
+}
+
+.today-nutrition-value{
+    font-size: .8rem;
+}
+
+.calories-text{
+    font-size: 1.6rem;
+    color: #53DBC5;
+}
+
+.calories-text-col{
+    padding-bottom: .5rem;
+}
+
+.meals-card-content{
+    padding: .5rem 0;
+}
+
+.ingredients-label,.directions-label{
+    color: black;
+    font-weight: bold;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: flex-start;
+}
+
+.ingredients-col-adjust,.directions-col-adjust{
+    padding-top: 1rem;
+}
+
+.chevron-ingredients,.chevron-directions{
+    font-size: 2rem;
+}
+
+.ingredients-note{
+    font-size: .9rem;
+    color: #999999;
+}
+
+.selected-fabbutton{
+    --background:#FF9900;
+    --background-activated:#e08700;
+}
+
+.ingredients-cart{
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    &-button{
+        --background:#FF9900;
+        --background-activated:#e08700;
+    }   
+}
+
+.nutrient{
+    &-text{
+        display: flex;
+        align-items: center;
+    }
+    &-hide-grid{
+        padding: 0;
+        padding-left: .5rem;
+    }
+}
+
+.remove-top-padding{
+    padding-top: 0;
+}
+
+.remove-padding{
+    padding: 0;
+}
+
+.rating-info{
+    margin-top: 2rem;
+    margin-left: 1rem;
+    width:100%;
+
+    &-text{
+        font-size: 1rem;
+        font-weight: bold;
+    }
+}
+
+.push-right{
+    margin-right: 9rem;
+}
+
+.facebook{
+    --background:white;
+    --background-activated:white;
+
+    &-icon{
+        font-size: 4.6rem;
+        color : #1877F2;
+    }
+}
+
+.twitter{
+    --background:#01A7E7;
+    --background-activated:#01A7E7;
+}
+
+.instagram{
+    &-icon{
+        --background: linear-gradient(#e66465, #9198e5);
+    }
+}
+
+.track-text{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &-content{
+        font-size: 1rem;
+        font-weight: bolder;
+    }
+}
+
+.default-fab{
+    --background:#ffffff;
+    --background-activated:#ffffff;
+    margin: 3px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    display: inline-block;
+}
+
+.default-fab-followed{
+    --background:#999999;
+    --background-activated:#999999;
+    margin: 3px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    display: inline-block;
+}
+
+.followed-selected{
+    --background:#01CCAD;
+    --background-activated:#01CCAD;
+    margin: 3px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    display: inline-block;
+}
+
+.rate-selected{
+    --background:#FF0166;
+    --background-activated:#FF0166;
+    margin: 3px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    display: inline-block;
+}
+
+.center-chips{
+    text-align: center;
+}
+
+.total-nutrition{
+    margin-bottom: 1rem;
+}
+
+.meal-servings{
+    font-weight: bolder;
+}
+
+ion-slides{
+    padding-bottom: .3rem;
+}
+
+.card-title{
+    font-size: 1.4rem !important;
+    padding-left: .8rem;
+}
+
+.more-info{
+    text-decoration: underline;
+    color: black;
+}
+.ingredients-directions{
+    font-size: 1.1rem;
+}
+
+.ion-slide-width{
+    width: 95% !important;
+
+    &-full{
+        width: 100% !important;
+    }
+}
+
+.nutrition-canvas{
+    margin-top: 2rem;
+    transform: scale(2);
+}
+
+.nutrition-heading{
+    padding-left: 0.5rem;
+}
+
+.overall-pie-chart-placement{
+    margin-top: 1rem;
+}
+
+.meal-bottom-slide{
+    margin-bottom:1.5rem;
+}
+
+.doughnut-index{
+    &-1{
+        background-color: #A977C0;
+        padding: 0rem .2rem;
+        margin-right: .5rem;
+    }
+
+    &-2{
+        padding: 0rem .2rem;
+        margin-right: .5rem;
+        background-color: #FF7760;
+    }
+
+    &-3{
+        padding: 0rem .2rem;
+        margin-right: .5rem;
+        background-color: #FCBE5B;
+    }
+}
+.dail{
+    margin-top: -1rem;
+    margin-left: 0.4rem;
+    margin-bottom: -1rem;
+}
+
+.captalize-text{
+    text-transform: capitalize;
+}
+
+.no-padding{
+    padding-top: 0;
+}
+
+.wrapper {
+    display: table;
+    background: transparent;
+    transform: scale(0.5);
+  }
+  
+  .wrapper-header {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.74);
+    margin: 30px 0 15px;
+    font-weight: normal;
+  }
+  
+  .heart {
+    margin: 0 8px;
+    display: inline-block;
+    animation: simplePulse ease-in-out 1.1s infinite;
+  }
+  
+  .gauge {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #e7e7e7;
+    box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.09), 0 0 35px 5px rgba(255, 255, 255, 0.29);
+    width: 200px;
+    height: 100px;
+    border-radius: 100px 100px 0 0;
+    position: relative;
+    overflow: hidden;
+    /* safari fix */
+    -webkit-transform-style: flat;
+    -webkit-transform: translateZ(0px);
+  }
+  .gauge.min-scaled {
+    transform: scale(0.5);
+  }
+  
+  .gauge-center {
+    content: '';
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    color: #fff;
+    width: 60%;
+    height: 60%;
+    background: #15222E;
+    border-radius: 100px 100px 0 0;
+    position: absolute;
+    box-shadow: 0 -13px 15px -10px rgba(0, 0, 0, 0.28);
+    right: 21%;
+    bottom: 0;
+    color: #fff;
+  }
+  .gauge-center::before {
+    content: '';
+    font-size: 1.5em;
+    width: 100%;
+    padding: 10px 0 0 0;
+    text-align: center;
+    float: left;
+    -webkit-font-smoothing: antialiased;
+  }
+  .gauge-center::after {
+    content: '';
+    width: 100%;
+    float: left;
+    opacitY: .6;
+    text-align: center;
+  }
+  
+  .needle {
+    width: 78px;
+    height: 7px;
+    background: #15222E;
+    border-bottom-left-radius: 100%;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 100%;
+    border-top-right-radius: 5px;
+    position: absolute;
+    bottom: 4px;
+    left: 20px;
+    transform-origin: 100% 4px;
+    box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.38);
+  }
+  
+  .slice-colors .st {
+    position: absolute;
+    bottom: 0;
+    width: 60px;
+    height: 0;
+    border-bottom: 80px solid #000;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+  }
+  .slice-colors .st.slice-item:nth-child(1) {
+    border-bottom-color:#E84C3D;
+    left: -2px;
+  }
+  .slice-colors .st.slice-item:nth-child(2) {
+    border-bottom-color:#e67e22;
+    transform: rotate(135deg);
+    transform-origin: right;
+    top: 21px;
+    left: -37px;
+  }
+  .slice-colors .st.slice-item:nth-child(3) {
+    border-bottom-color: #f1c40f;
+    transform: rotate(179deg);
+    transform-origin: right;
+    top: -3px;
+    left: -43px;
+    border-bottom-width: 90px;
+    border-left-width: 45px;
+    border-right-width: 45px;
+    width: 18px;
+  }
+  .slice-colors .st.slice-item:nth-child(4) {
+    border-bottom-color:   #9baa1e;
+    transform: rotate(219deg);
+    transform-origin: right;
+    top: -7px;
+    left: 50px;
+  }
+  .slice-colors .st.slice-item:nth-child(5) {
+    border-bottom-color:  #1eaa59;
+    transform: rotate(240deg);
+    transform-origin: right;
+    right: 52px;
+  }
+
+/* ----------- Non-Retina Screens ----------- */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+
+    ion-slides{
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+    
+    ion-slide{
+        width: 100%;
+    }
+
+    .nutrition-canvas{
+        margin-top: 2rem;
+        transform: scale(2);
+    }
+
+    .scrolling-wrapper {
+        overflow-y: hidden;
+        white-space: nowrap;
+        padding-bottom: 1.5rem;
+    
+        & > :first-child{
+            margin-left: .5rem;
+        }
+        text-align: center;
+    }
+
+    .calories-in-meals{
+
+        &-col{
+            padding-left: 2rem;
+        }
+    }
+    
+}
+
+/* ----------- Retina Screens ----------- */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (min-resolution: 192dpi) { 
+}

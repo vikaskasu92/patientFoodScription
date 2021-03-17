@@ -1,0 +1,17 @@
+<ion-header>
+    <ion-toolbar class="background larger-window-header">
+        <ion-buttons slot="start" class="larger-header-left">
+            <ion-menu-button class="icon-menu" color="light" contentId="main"></ion-menu-button>
+            <!--<ion-icon name="search" color="light" slot="primary" class="ion-margin-left icon-search" (click)="navigateToSearch()"></ion-icon>-->
+        </ion-buttons>
+        <ion-buttons class="larger-header-middle">
+            <ion-img class="smaller-image larger-window-image" [src]="'../../assets/images/logo2.png'"></ion-img>
+        </ion-buttons>
+        <ion-buttons slot="primary" class="cart-button larger-header-right">
+            <ion-button (click)="naviagateToGroceryList()">
+            <ion-icon name="cart" class="ion-padding-right icon-cart" slot="start" color="light"></ion-icon>
+            <ion-badge color="primary">{{totalItems}}</ion-badge>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>

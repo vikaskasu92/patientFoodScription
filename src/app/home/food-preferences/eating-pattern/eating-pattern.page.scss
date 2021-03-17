@@ -1,0 +1,132 @@
+.custom-text{
+
+    &-primary{
+        font-size: 2rem;
+        line-height: 3rem;
+    }
+}
+
+ion-icon {
+    --ionicon-stroke-width: 16px;
+}
+
+.black-text{
+    color: black;
+    font-weight: bold;
+}
+
+.eating-patterns{
+
+    &-value{
+        font-size: 1rem;
+    }
+
+    &-type{
+        font-size: 1rem;
+        color: black;
+    }
+    
+}
+
+ion-card{
+    margin: 0.3rem;
+    min-height: 26vh;
+}
+
+.general{
+
+    &-clicked{
+        --background: #FF0666;
+        color: white;
+
+        & > :first-child{
+
+            & > :first-child{
+                color: white;
+                font-weight: bold;
+            }
+
+        }
+    }
+    
+
+    &-unclicked{
+        --background: white;
+        color: black;
+
+        & > :first-child{
+
+            & > :first-child{
+                color: black;
+                font-weight: bold;
+            }
+
+        }
+    }
+}
+
+.mediterranean{
+
+    &-clicked{
+        --background: #FF0666;
+        color: white;
+
+        & > :first-child{
+
+            & > :first-child{
+                color: white;
+                font-weight: bold;
+            }
+
+        }
+    }
+    
+
+    &-unclicked{
+       --background: white;
+        color: black;
+
+
+        & > :first-child{
+
+            & > :first-child{
+                color: black;
+                font-weight: bold;
+            }
+
+        }
+    }
+}
+
+.vegetarian{
+
+    &-clicked{
+        --background: #FF0666;
+        color: white;
+
+        & > :first-child{
+
+            & > :first-child{
+                color: white;
+                font-weight: bold;
+            }
+
+        }
+    }
+    
+
+    &-unclicked{
+        --background: white;
+        color: black;
+
+
+        & > :first-child{
+
+            & > :first-child{
+                color: black;
+                font-weight: bold;
+            }
+
+        }
+    }
+}

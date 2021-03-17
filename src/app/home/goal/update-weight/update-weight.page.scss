@@ -1,0 +1,36 @@
+
+.metric{
+
+    &-clicked{
+        color: #FF0666;
+    }
+    
+
+    &-unclicked{
+        color: black;
+    }
+}
+
+
+.imperial{
+
+    &-clicked{
+        color: #FF0666;
+    }
+    
+
+    &-unclicked{
+        color: black;
+    }
+}
+
+.margin-top{
+    margin-top: 5%;
+}
+
+ion-modal {
+    .modal-wrapper {
+        height: 70%;
+        width: 60%;
+    }
+}

@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="primary">
+      <ion-button (click)="dismissModel()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+        <ion-list>
+          <ion-radio-group>
+            <ion-list-header>
+              <ion-label>Can you be more specific</ion-label>
+            </ion-list-header>
+        
+            <ion-item>
+              <ion-checkbox slot="start" (ionChange)="diabeticsChange($event,'Pre-Diabetes')"> </ion-checkbox>
+              <ion-label>Pre Diabetes</ion-label>
+            </ion-item>
+        
+            <ion-item>
+              <ion-checkbox slot="start" (ionChange)="diabeticsChange($event,'Diabetes (Type 1)')"> </ion-checkbox>
+              <ion-label>Diabetics (Type-1)</ion-label>
+            </ion-item>
+        
+            <ion-item>
+              <ion-checkbox slot="start" (ionChange)="diabeticsChange($event,'Diabetes (Type 2)')"> </ion-checkbox>
+              <ion-label>Diabetics (Type-2)</ion-label>
+            </ion-item>
+
+            <ion-item>
+              <ion-checkbox slot="start" (ionChange)="diabeticsChange($event,'Diabetes (Gestational)')"> </ion-checkbox>
+              <ion-label>Diabetics (Gestational)</ion-label>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Diabetics (Other)</ion-label>
+              <ion-radio slot="start" value="diabeticsOther" (ionChange)="otherOptionChanged()"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="8" offsetMd="2" size-lg="4" offsetLg="4">
+          <ion-button expand="block" color="primary"  (click)="dismissModel()">
+            Back
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

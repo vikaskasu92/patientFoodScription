@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button color="light" slot="start" defaultHref="/on-boarding/new-info/gender"></ion-back-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col size-lg="6" offset-lg="3">
+        <ion-item lines="none">
+          <ion-text color="primary" class="ion-padding-top">
+            <h2 class="custom-text-primary">Your height is...</h2>
+          </ion-text>
+        </ion-item>
+        <ion-grid>
+          <ion-row *ngIf="imperial" class="margin-top">
+            <ion-col size="6">
+              <ion-item lines="none">
+                <ion-range min="3" max="8" pin="true" color="secondary" (ionChange)="feetOnChange($event)">
+                  <ion-label slot="end">Ft</ion-label>
+                </ion-range>
+              </ion-item>
+              <div *ngIf="showFeet" class="ion-text-center ion-margin-top">
+                  {{feetHeight}} &nbsp; Feet
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <ion-item lines="none">
+                <ion-range min="0" max="11" pin="true" color="secondary"  (ionChange)="inchesOnChange($event)">
+                  <ion-label slot="end">In</ion-label>
+                </ion-range>
+              </ion-item>
+              <div *ngIf="showInches" class="ion-text-center ion-margin-top">
+                {{inchesHeight}} &nbsp; Inches
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="metric" class="margin-top">
+            <ion-col size="8" offset="2">
+              <ion-item lines="none">
+                <ion-range min="90" max="245" pin="true" color="secondary"  (ionChange)="cmsOnChange($event)">
+                  <ion-label slot="end">Cms</ion-label>
+                </ion-range>
+              </ion-item>
+              <div *ngIf="cmsChange" class="ion-text-center ion-margin-top">
+                {{cmsHeight}} &nbsp; Centimeters
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="ion-text-end ion-padding-top ion-margin-top">
+                <ion-text (click)="imperialClicked()"  [ngClass]="{'imperial-clicked':imperial == true,'imperial-unclicked':imperial == false}">Imperial</ion-text>  
+                | 
+                <ion-text (click)="metricClicked()" [ngClass]="{'metric-clicked':metric == true,'metric-unclicked':metric == false}">Metric</ion-text>  
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="8" offsetMd="2" size-lg="4" offsetLg="4">
+          <ion-button expand="block" color="primary"  disabled="{{disabled}}" (click)="navigate()">
+            Next
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
+

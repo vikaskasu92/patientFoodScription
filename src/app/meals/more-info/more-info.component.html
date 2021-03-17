@@ -1,0 +1,43 @@
+<ion-content>
+  <ion-list>
+    <ion-item>
+      Calcium: {{mealElement.recipe.calcium  * mealElement.userServings | nullCheck | digits:2}}
+    </ion-item>
+    <ion-item>
+      Cholesterol: {{mealElement.recipe.cholesterol   * mealElement.userServings | nullCheck | digits:2}}
+    </ion-item>
+    <ion-item>
+      Saturated Fat: {{mealElement.recipe.satFat   * mealElement.userServings | nullCheck | digits:2}}
+    </ion-item>
+    <ion-item>
+      Mono Unsaturated Fat: {{mealElement.recipe.monoUnsatFat   * mealElement.userServings | nullCheck | digits:2}}
+    </ion-item>
+    <ion-item>
+      Poly Unsaturated Fat: {{mealElement.recipe.polyUnsatFat   * mealElement.userServings | nullCheck | digits:2}}
+    </ion-item>
+    <ion-item>
+      TransFat: {{mealElement.recipe.transFat   * mealElement.userServings | nullCheck | digits:2}}
+    </ion-item>
+    <ion-item>
+      Sodium: {{mealElement.recipe.sodium   * mealElement.userServings | nullCheck | digits:2}}
+    </ion-item>
+    <ion-item>
+      Potassium: {{mealElement.recipe.potassium   * mealElement.userServings | nullCheck | digits:2}}
+    </ion-item>
+    <ion-item>
+      Phosphorus: {{mealElement.recipe.phosphorus   * mealElement.userServings | nullCheck | digits:2}}
+    </ion-item>
+    <ion-item>
+      Vitamin D: {{mealElement.recipe.vitaminD   * mealElement.userServings | nullCheck | digits:2}}
+    </ion-item>
+    <ion-item>
+      Sugar: {{mealElement.recipe.sugar   * mealElement.userServings | nullCheck | digits:2}}
+    </ion-item>
+    <ion-item>
+      Iron: {{mealElement.recipe.iron   * mealElement.userServings | nullCheck | digits:2}}
+    </ion-item>
+    <ion-item>
+      Fiber: {{mealElement.recipe.fiber   * mealElement.userServings | nullCheck | digits:2}}
+    </ion-item>
+  </ion-list>
+</ion-content>

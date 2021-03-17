@@ -1,0 +1,6 @@
+<ion-card class="message-card" [ngClass]="{'fromMe':conversationMessage.fromMe === true,'notFromMe':conversationMessage.fromMe === false}">
+  <ion-card-content [ngClass]="{'message-content-fromMe':conversationMessage.fromMe === true,'message-content-notFromMe':conversationMessage.fromMe === false}">
+    <div class="message">{{conversationMessage.message}}</div>
+    <div class="timestamp">{{conversationMessage.timestamp | timestamp}}</div>
+  </ion-card-content>
+</ion-card>

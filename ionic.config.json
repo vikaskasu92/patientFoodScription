@@ -1,7 +1,8 @@
 {
-  "name": "patientFoodScription",
+  "name": "FoodScription",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }

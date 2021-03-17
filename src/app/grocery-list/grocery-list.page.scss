@@ -1,0 +1,203 @@
+.background-color{
+    --background: #E8E9EA;
+    padding: .5rem 0;
+}
+
+.smaller-image{
+    width: 70%;
+    margin-left: 10%;
+}
+
+ion-icon {
+    --ionicon-stroke-width: 16px;
+}
+
+.icon{
+
+    &-menu{
+        font-size:2.5rem;
+
+        & > *{
+            padding-right: 0;
+        }
+    }
+
+    &-search{
+        font-size:1.5rem;
+        margin-right: 1.5rem;
+        margin-left: .5rem;
+    }
+
+    &-cart{
+        font-size:1.5rem;
+        margin-right: 2rem;
+    }
+    
+}
+
+.selected-fabbutton{
+    --background:#FF9900;
+}
+
+.fab-buttons{
+    display:inline-block;
+    margin: .2rem;
+}
+
+.scrolling-wrapper-gl {
+    overflow-x: scroll;
+    -webkit-overflow-scrolling-x: touch;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding-bottom: 1.5rem;
+    scroll-behavior: smooth;
+
+    & > :first-child{
+        margin-left: .5rem;
+    }
+}
+
+.date-view-month{
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.no-meals{
+    padding: 1rem;
+}
+
+.ingredients{
+    display: flex;
+    align-items: center;
+    &-label{
+        color: black;
+        font-weight: bold;
+        font-size: 1rem;
+    }
+    &-name{
+        padding-left: .5rem;
+        padding-top: .7rem;
+    }
+    &-value{
+        color:#767676;
+    }
+    &-chekbox{
+        padding-left: 0;
+    }
+    &-quantity-col{
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    &-col-adjust{
+        padding-top: 1rem;
+    }
+}
+
+.ios.button-add-sub{
+    border:1px solid silver;
+}
+
+.button-add-sub{
+    --background: white;
+    color: red;
+    border-radius: .5rem;
+    --background-activated:gray;
+}
+
+hr{
+    background: #999999;
+    width: 100%;
+}
+
+.toggle-text{
+    padding-top: .7rem;
+    font-size: 1rem;
+    color:#949494;
+}
+
+.toggle-row{
+    margin-top: .8rem;
+}
+
+.share-icon{
+    color:#949494;
+    font-size:1.5rem;
+}
+
+.share-icon-col{
+    padding-top: 0.5rem;
+    padding-right: .9rem;
+}
+
+.chevron-directions{
+    font-size: 2rem;
+}
+
+.textStrikerTrue{
+    text-decoration: line-through;
+}
+
+.textStrikerFalse{
+    text-decoration: none;
+}
+
+.unit-value{
+    margin: 0;
+    margin-left: 0.8rem;
+    text-align: center;
+}
+
+.bold-content{
+    font-weight:bold;
+}
+
+.bold-heading{
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: black;
+}
+
+.title-div{
+    padding-left:1rem;
+}
+
+.title-div-with-no-padding-bottom{
+    padding-left:1rem;
+    padding-top: 1.5rem;
+    padding-bottom:0;
+}
+
+.share-button{
+    --background:#FF9900;
+}
+
+.remove-padding{
+    padding-left: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+/* ----------- Non-Retina Screens ----------- */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+
+    .scrolling-wrapper-gl {
+        overflow-y: hidden;
+        white-space: nowrap;
+        padding-bottom: 1.5rem;
+    
+        & > :first-child{
+            margin-left: .5rem;
+        }
+        text-align: center;
+    }
+    
+}
+
+/* ----------- Retina Screens ----------- */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (min-resolution: 192dpi) { 
+}

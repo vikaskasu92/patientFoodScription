@@ -1,0 +1,23 @@
+<ion-card>
+  <ion-card-content style="position: relative;">
+    <div class="following-text">
+      <ion-text>How you've been eating this week?</ion-text>
+    </div>
+    <section class="content">
+          
+          <div class="box gauge--3">
+            <div class="mask">
+              <div class="semi-circle"></div>
+              <div class="semi-circle--mask" #semiCircle></div>
+              
+            </div>
+          </div>
+    </section>
+    <div class="gauge-value">
+      <span>{{gaugeValue}}</span>
+    </div>
+    <div class="gauge-condition">
+      <span>{{condition}}</span>
+    </div>
+  </ion-card-content>
+</ion-card>

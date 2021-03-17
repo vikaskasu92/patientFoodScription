@@ -1,0 +1,58 @@
+hr{
+    background: #999999;
+    width: 100%;
+}
+
+.icon-size{
+    font-size: 1.2rem;
+}
+
+.text-size{
+    font-size: 1.4rem;
+}
+
+.heart{
+    color: #FD6091;
+    font-size: 2rem;
+}
+
+.thumbs-up-down{
+    color: #66A8FC;
+}
+
+.cog{
+    color: #8482F5;
+    font-size: 2rem;
+}
+
+.row-adjust{
+    margin: .7rem auto;
+}
+
+.thumbs-col{
+    padding-top: .7rem;
+}
+
+.card{
+    margin: 0;
+    margin-top: 1rem;
+}
+
+
+/* ----------- Non-Retina Screens ----------- */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+
+    .card{ 
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+}
+
+/* ----------- Retina Screens ----------- */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (min-resolution: 192dpi) { 
+}
