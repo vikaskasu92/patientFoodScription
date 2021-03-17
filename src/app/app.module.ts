@@ -5,6 +5,7 @@ import { RouteReuseStrategy } from '@angular/router';
 
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { Health } from '@ionic-native/health/ngx';
+import { KeychainTouchId } from '@ionic-native/keychain-touch-id/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { Push } from '@ionic-native/push/ngx';
 
@@ -35,8 +36,8 @@ import { HttpReqResInterceptor } from './http-interceptor.service';
     SplashScreen,
     Health,
     SocialSharing,
-    Push
-
+    Push,
+    KeychainTouchId
   ],
   bootstrap: [AppComponent]
 })

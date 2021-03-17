@@ -1,0 +1,53 @@
+.small-image{
+    margin: 0 auto;
+    width: 100%;
+    transform: scale(0.5);
+}
+
+.forgot-password{
+    font-size: 20px;
+
+}
+
+.input-element{
+    opacity:0.8;
+    border-radius: 3px;
+}
+
+ion-content {
+    display: none;
+  --background: none;
+  background-image: url('../../../assets/images/main-backdrop.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.validation-errors{
+    padding: .5rem;
+    color: white;
+}
+
+.validation-icon{
+    color: white;
+}ß
+
+.space-right{
+    margin-right:.5rem;
+}
+
+/* ----------- Non-Retina Screens ----------- */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+
+    .small-image{
+        transform: scale(0.5);
+        width: 38%;
+        margin-left: 24rem;  
+    }
+
+    .adjust-fields{
+        padding-left: 6rem;
+    }
+}

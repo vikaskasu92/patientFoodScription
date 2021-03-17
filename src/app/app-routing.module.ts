@@ -3,10 +3,6 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
-  },
-  {
     path: 'shoppingcart',
     loadChildren: () => import('./shoppingcart/shoppingcart.module').then( m => m.ShoppingcartPageModule)
   },
@@ -21,6 +17,11 @@ const routes: Routes = [
   {
     path: 'grocery-list',
     loadChildren: () => import('./grocery-list/grocery-list.module').then( m => m.GroceryListPageModule)
+  },
+  {
+    path: '',
+    redirectTo: '/auth',
+    pathMatch: 'full'
   }
 ];
 @NgModule({

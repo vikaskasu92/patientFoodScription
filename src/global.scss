@@ -24,3 +24,12 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+.slides-ios,.slides-md{
+    --bullet-background:red !important;
+    --bullet-background-active:#ff0065 !important;
+}
+
+.google-visualization-tooltip{
+    display: none !important;
+}

@@ -1,9 +1,18 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>auth</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content>
-
-</ion-content>
+  <ion-header>
+    <ion-toolbar>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content *ngIf="showContent">
+    <ion-grid>
+      <ion-row >
+        <ion-col>
+          <div class="ion-text-center padding-top">
+            <ion-text>
+              <h2>Checking Authentication..</h2>
+            </ion-text>
+          </div>
+        </ion-col>
+      </ion-row >
+    </ion-grid>
+  </ion-content>
