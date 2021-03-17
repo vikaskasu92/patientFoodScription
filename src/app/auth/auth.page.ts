@@ -33,8 +33,6 @@ export class AuthPage implements OnInit {
 
   login(){
     if(this.authService.appPlatform === "web"){
-      debugger;
-      debugger;
       this.checkCookie();
       return;
     }else{

@@ -19,7 +19,7 @@ export class AppComponent {
   initializeApp(){
     if(Capacitor.getPlatform() === 'web'){
       this.authService.appPlatform = 'web';
-      //this.authService.appPlatform = 'ios';
+    // this.authService.appPlatform = 'ios';
     }else if(Capacitor.getPlatform() === 'ios'){
       this.authService.appPlatform = 'ios';
       this._cordavaCommands();
