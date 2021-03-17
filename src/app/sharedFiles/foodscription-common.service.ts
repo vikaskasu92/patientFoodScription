@@ -253,6 +253,22 @@ export class FoodscriptionCommonService {
     });
   }
 
+  getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
   private _increaseQuantity(currentWholeValue:any,id:number,weekArray:any,currentFabButton:number,fromGroceryList:boolean,shoppingCart:any,cat:boolean){
     let currentValueArray = currentWholeValue.value.trim().split(" ");
     let currentValue = this._alterQuantityUp(currentValueArray,currentWholeValue,id,weekArray,currentFabButton,fromGroceryList,shoppingCart);

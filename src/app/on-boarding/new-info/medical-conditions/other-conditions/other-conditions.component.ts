@@ -47,7 +47,7 @@ export class OtherConditionsComponent implements OnInit {
   
   searchMedicalCondition(event:any){
     if(event.detail.value.length > 0){
-      this.dataService.searchMedialConditions(event.detail.value).subscribe( searchResults => {
+      this.dataService.searchMedialConditions(event.detail.value).subscribe( (searchResults:any) => {
         if(searchResults.length > 0){
           this.searchResults = searchResults;
           this.resultsAvailable = true;

@@ -59,12 +59,10 @@ stopWebSocket(){
 }
 
 getMeals(fromDate:string,toDate:string,limit:string){
+  let userToken = this.authService.accessToken;
   return new Promise<any>((resolve,reject)=>{
-    this.http.get<any>(environment.mealDayApi,{
-      headers: new HttpHeaders().set("accept","application/json"),
-      withCredentials:true,
-      params: new HttpParams().set("fromDate",fromDate)
-      .set("toDate",toDate).set("ordering","recipe").set("limit",limit).set("offset","0")}).subscribe( meals =>{
+    this.http.get<any>(environment.mealDayApi,this.authService.getHeadersObject(new HttpParams().set("fromDate",fromDate)
+    .set("toDate",toDate).set("ordering","recipe").set("limit",limit).set("offset","0"))).subscribe( meals =>{
         resolve(meals);
       },err=>{
         reject();
@@ -74,8 +72,7 @@ getMeals(fromDate:string,toDate:string,limit:string){
 
 getFavorites(){
   return new Promise<any>((resolve,reject)=>{
-        this.http.get<any>(environment.userFavorites,{
-          headers: new HttpHeaders().set("accept","application/json"),withCredentials:true}).subscribe( favorites => {
+        this.http.get<any>(environment.userFavorites,this.authService.getHeadersObject(undefined)).subscribe( favorites => {
             resolve(favorites);
           },err=>{
             reject();
@@ -86,8 +83,7 @@ getFavorites(){
 getNextInfiniteMeals(nextUrl:string){
     let httpUrlArray = nextUrl.split("http");
     return new Promise<any>((resolve,reject)=>{
-          this.http.get<any>("https"+httpUrlArray[1],{
-            headers: new HttpHeaders().set("accept","application/json"),withCredentials:true}).subscribe( meals => {
+          this.http.get<any>("https"+httpUrlArray[1],this.authService.getHeadersObject(undefined)).subscribe( meals => {
               resolve(meals);
           },err=>{
             reject();
@@ -97,8 +93,7 @@ getNextInfiniteMeals(nextUrl:string){
 
 getIngredientCategories(ingredientIds:any){
   return new Promise<any>((resolve,reject)=>{
-        this.http.post<any>(environment.ingredientsCategory,ingredientIds,{
-          headers: new HttpHeaders().set("accept","application/json"),withCredentials:true}).subscribe( ingredients => {
+        this.http.post<any>(environment.ingredientsCategory,ingredientIds,this.authService.getHeadersObject(undefined)).subscribe( ingredients => {
             resolve(ingredients);
         },err=>{
           reject();
@@ -118,7 +113,7 @@ saveMealsNotFollowed(mealElementId:number,followed:boolean,followedReason1:strin
         this.http.put<any>("https://fs-api.phrqltest.com/api/meal-element/"+mealElementId+"/followed/",{
           "followed":followed,
           "followedReason":followedReason
-        },{headers: new HttpHeaders().set("accept","application/json"),withCredentials:true}).subscribe( mealsFollowed => {
+        },this.authService.getHeadersObject(undefined)).subscribe( mealsFollowed => {
           resolve(mealsFollowed);
         },err =>{
           reject();
@@ -127,10 +122,7 @@ saveMealsNotFollowed(mealElementId:number,followed:boolean,followedReason1:strin
 }
 
 searchMedialConditions(searchText:string){
-  return this.http.get<any>(environment.searchDisease,{
-    params:new HttpParams().set("condition",searchText),
-    headers: new HttpHeaders().set("accept","application/json"),withCredentials:true
-  })
+  return this.http.get<any>(environment.searchDisease,this.authService.getHeadersObject(new HttpParams().set("condition",searchText)))
 }
 
 saveUserInfo(userInfo:any):Promise<any>{
@@ -140,16 +132,12 @@ saveUserInfo(userInfo:any):Promise<any>{
     if(userPreferenceId === undefined){
       Storage.get({key:'fsUserPreferenceId'}).then( storage => {
         userPreferenceId = JSON.parse(storage.value).preferencesId;
-        this.http.patch<any>(environment.saveUserInfo+userPreferenceId+"/",userInfo,{
-          headers: new HttpHeaders().set("accept","application/json"),withCredentials:true
-        }).subscribe( () => {
+        this.http.patch<any>(environment.saveUserInfo+userPreferenceId+"/",userInfo,this.authService.getHeadersObject(undefined)).subscribe( () => {
           resolve();
         });
       })
     }else{
-      this.http.patch<any>(environment.saveUserInfo+userPreferenceId+"/",userInfo,{
-        headers: new HttpHeaders().set("accept","application/json"),withCredentials:true
-      }).subscribe( () => {
+      this.http.patch<any>(environment.saveUserInfo+userPreferenceId+"/",userInfo,this.authService.getHeadersObject(undefined)).subscribe( () => {
         resolve();
       });
     }
@@ -157,10 +145,7 @@ saveUserInfo(userInfo:any):Promise<any>{
 }
 
 getUserWeights(period:string){
-  return this.http.get<any>(environment.getUserWeights,{
-    params: new HttpParams().set("range",period),
-    headers: new HttpHeaders().set("accept","application/json"),withCredentials:true
-  });
+  return this.http.get<any>(environment.getUserWeights,this.authService.getHeadersObject(new HttpParams().set("range",period)));
 }
 
 getWeekArray(){

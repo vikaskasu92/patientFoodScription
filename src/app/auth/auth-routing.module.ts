@@ -9,10 +9,6 @@ const routes: Routes = [
     component: AuthPage
   },
   {
-    path: 'cognito-login',
-    loadChildren: () => import('./cognito-login/cognito-login.module').then( m => m.CognitoLoginPageModule)
-  },
-  {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   }

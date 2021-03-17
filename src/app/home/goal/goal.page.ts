@@ -55,7 +55,7 @@ export class GoalPage implements OnInit {
   }
 
   getCurrentWeekWeights(){
-    this.dataService.getUserWeights('week').subscribe( userWeights => {
+    this.dataService.getUserWeights('week').subscribe( (userWeights:any) => {
       this.bmi = userWeights.bmi.toFixed(2);
       this.currentGoal = userWeights.currentGoal.toFixed(2);
       this.weeklyGainLoss = userWeights.weeklyGainLoss.toFixed(2);
@@ -67,7 +67,7 @@ export class GoalPage implements OnInit {
   }
 
   getCurrentMonthWeights(){
-    this.dataService.getUserWeights('month').subscribe( userWeights => {
+    this.dataService.getUserWeights('month').subscribe( (userWeights:any) => {
       this.bmi = userWeights.bmi.toFixed(2);
       this.currentGoal = userWeights.currentGoal.toFixed(2);
       this.weeklyGainLoss = userWeights.weeklyGainLoss.toFixed(2);
@@ -79,7 +79,7 @@ export class GoalPage implements OnInit {
   }
 
   getAllWeights(){
-    this.dataService.getUserWeights('all').subscribe( userWeights => {
+    this.dataService.getUserWeights('all').subscribe( (userWeights:any) => {
       this.bmi = userWeights.bmi.toFixed(2);
       this.currentGoal = userWeights.currentGoal.toFixed(2);
       this.weeklyGainLoss = userWeights.weeklyGainLoss.toFixed(2);

@@ -19,6 +19,10 @@ const routes: Routes = [
     loadChildren: () => import('./grocery-list/grocery-list.module').then( m => m.GroceryListPageModule)
   },
   {
+    path: 'tabs',
+    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
+  },
+  {
     path: '',
     redirectTo: '/auth',
     pathMatch: 'full'

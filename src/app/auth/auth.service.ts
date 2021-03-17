@@ -60,24 +60,41 @@ export class AuthService {
   }
 
   autoLoginAWS(){
-    //this.isAuthenticated.next(true);
     return Auth.currentAuthenticatedUser();
   }
 
   getCurrentUserDetails(){
-   // if(this.appPlatform === "web"){
-    //  return this.http.get<any>("https://accounts.phrqltest.com/api/me/profile/",{
-      //  headers :  new HttpHeaders().set('accept', 'application/json'),withCredentials:true
-    //  });
-   // }else{
-     debugger;
-     debugger;
-      let userToken = this.accessToken;
-      return this.http.get<any>("https://accounts.phrqltest.com/api/me/profile/",{
-        headers :  new HttpHeaders().set('accept', 'application/json').set('Authorization',`Bearer ${userToken}`)
-      });
-   // }
-    
+      return this.http.get<any>("https://accounts.phrqltest.com/api/me/profile/",this.getHeadersObject(undefined));
+  }
+
+  getHeadersObject(params:any){
+    let headers = null;
+    if(this.appPlatform === "web"){
+      if(params !== undefined){
+        headers = {
+          headers :  new HttpHeaders().set('Content-Type', 'application/json'),
+          withCredentials:true
+        }
+      }else{
+        headers = {
+          headers :  new HttpHeaders().set('Content-Type', 'application/json'),
+          withCredentials:true,
+          params : params
+        }
+      }
+    }else{
+      if(params !== undefined){
+        headers = {
+          headers :  new HttpHeaders().set('Content-Type', 'application/json').set('Authorization',`Bearer ${this.accessToken}`)
+        }
+      }else{
+        headers = {
+          headers :  new HttpHeaders().set('Content-Type', 'application/json').set('Authorization',`Bearer ${this.accessToken}`),
+          params : params
+        }
+      }
+    }
+    return headers;
   }
 
 }

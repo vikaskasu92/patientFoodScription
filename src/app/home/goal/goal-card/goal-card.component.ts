@@ -47,7 +47,7 @@ export class GoalCardComponent implements OnInit {
   }
 
   getCurrentWeekWeights(){
-    this.dataService.getUserWeights('week').subscribe( userWeights => {
+    this.dataService.getUserWeights('week').subscribe( (userWeights:any) => {
       this.bmi = userWeights.bmi.toFixed(2);
       this.currentGoal = userWeights.currentGoal.toFixed(2);
       userWeights.weights.length > 1 ? this.noWeightGraph = false : this.noWeightGraph = true;

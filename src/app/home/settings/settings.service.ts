@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -16,8 +16,7 @@ export class SettingsService {
 
   checkUserOwnInfo(){
     return new Promise<any>((resolve,reject)=>{
-          this.http.get(environment.userOwnInfo,{
-            headers:  new HttpHeaders().set("accept","application/json"),withCredentials:true}).subscribe( userOwninfo => {
+          this.http.get(environment.userOwnInfo,this.authService.getHeadersObject(undefined)).subscribe( userOwninfo => {
               resolve(userOwninfo);
           },err=>{
             reject();
@@ -27,8 +26,7 @@ export class SettingsService {
 
 fetchUserPreferences(){
   return new Promise<any>((resolve,reject)=>{
-        this.http.get<any>(environment.userSettings,{
-          headers:  new HttpHeaders().set("accept","application/json"),withCredentials:true}).subscribe( userSettings => {
+        this.http.get<any>(environment.userSettings,this.authService.getHeadersObject(undefined)).subscribe( userSettings => {
             resolve(userSettings);
         },err=>{
           reject();
@@ -48,8 +46,7 @@ storeNewUserPreferences(){
           "value": "true",
           "valueType": "string",
           "deviceType": "0_all"
-        }],{
-          headers:  new HttpHeaders().set("accept","application/json"),withCredentials:true}).subscribe( newUserPreferences => {
+        }],this.authService.getHeadersObject(undefined)).subscribe( newUserPreferences => {
             resolve(newUserPreferences);
         },err=>{
           reject();
@@ -80,8 +77,7 @@ storeNewUserPreferences(){
           "value": value.toString(),
           "valueType": "string",
           "deviceType": "0_all"
-        },{
-          headers: new HttpHeaders().set("accept","application/json"),withCredentials:true}).subscribe( updateUserGoal => {
+        },this.authService.getHeadersObject(undefined)).subscribe( updateUserGoal => {
               resolve(updateUserGoal);
           },err=>{
             reject();

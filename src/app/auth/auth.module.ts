@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { AuthPageRoutingModule } from './auth-routing.module';
 
 import { AuthPage } from './auth.page';
-import { CognitoLoginPage } from './cognito-login/cognito-login.page';
 
 @NgModule({
   imports: [
@@ -16,7 +15,6 @@ import { CognitoLoginPage } from './cognito-login/cognito-login.page';
     IonicModule,
     AuthPageRoutingModule
   ],
-  declarations: [AuthPage,
-    CognitoLoginPage]
+  declarations: [AuthPage]
 })
 export class AuthPageModule {}
