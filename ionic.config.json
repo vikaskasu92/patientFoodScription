@@ -1,0 +1,7 @@
+{
+  "name": "patientFoodScription",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
