@@ -20,7 +20,7 @@ export class FpService {
 
     updateMealFavorite(id:number,favorite:boolean){
       return new Promise<any>((resolve,reject)=>{
-            this.http.patch<any>("https://fs-api.phrqltest.com/api/recipe/"+id+"/favorite-rating/",{ "favorite":favorite},this.authService.getHeadersObject(undefined)).subscribe( favoriteUpdate => {
+            this.http.patch<any>("https://fs-api.phrqltest.com/api/recipe/"+id+"/favorite-rating/",{ "favorite":favorite},this.authService.getHeadersObject()).subscribe( favoriteUpdate => {
                 resolve(favoriteUpdate);
             },err=>{
               reject();
@@ -33,7 +33,7 @@ export class FpService {
             this.http.patch<any>("https://fs-api.phrqltest.com/api/user-food-preference/1",{
               "cuisineLikes":this.foodPreferencesLikes,
               "cuisineDislikes":this.foodPreferencesDisLikes
-          },this.authService.getHeadersObject(undefined)).subscribe( addFavorites => {
+          },this.authService.getHeadersObject()).subscribe( addFavorites => {
                resolve(addFavorites);
             },err=>{
               reject();
@@ -44,7 +44,7 @@ export class FpService {
     updateMealRating(rating:number,id:number){
       return new Promise<any>((resolve,reject)=>{
             this.http.patch<any>("https://fs-api.phrqltest.com/api/recipe/"+id+"/favorite-rating/",{"rating":rating},
-            this.authService.getHeadersObject(undefined)).subscribe( addRating => {
+            this.authService.getHeadersObject()).subscribe( addRating => {
                 resolve(addRating);
             },err=>{
               reject();

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Auth } from 'aws-amplify';
 import { Plugins } from '@capacitor/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 const { Storage } = Plugins;
 
@@ -64,35 +64,20 @@ export class AuthService {
   }
 
   getCurrentUserDetails(){
-      return this.http.get<any>("https://accounts.phrqltest.com/api/me/profile/",this.getHeadersObject(undefined));
+      return this.http.get<any>("https://accounts.phrqltest.com/api/me/profile/",this.getHeadersObject());
   }
 
-  getHeadersObject(params:any){
+  getHeadersObject(){
     let headers = null;
     if(this.appPlatform === "web"){
-      if(params !== undefined){
         headers = {
           headers :  new HttpHeaders().set('Content-Type', 'application/json'),
           withCredentials:true
         }
-      }else{
-        headers = {
-          headers :  new HttpHeaders().set('Content-Type', 'application/json'),
-          withCredentials:true,
-          params : params
-        }
-      }
     }else{
-      if(params !== undefined){
         headers = {
           headers :  new HttpHeaders().set('Content-Type', 'application/json').set('Authorization',`Bearer ${this.accessToken}`)
         }
-      }else{
-        headers = {
-          headers :  new HttpHeaders().set('Content-Type', 'application/json').set('Authorization',`Bearer ${this.accessToken}`),
-          params : params
-        }
-      }
     }
     return headers;
   }

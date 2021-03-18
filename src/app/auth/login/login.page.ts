@@ -7,8 +7,6 @@ import { Capacitor, Plugins } from '@capacitor/core';
 import { DataService } from 'src/app/sharedFiles/data.service';
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id/ngx';
 import { SettingsService } from 'src/app/home/settings/settings.service';
-import { BehaviorSubject } from 'rxjs';
-import { User } from '../user.model';
 const { Storage } = Plugins;
 
 @Component({
@@ -24,8 +22,7 @@ export class LoginPage implements OnInit {
               private keychainTouchId: KeychainTouchId,
               private settingsService: SettingsService,
               private dataService:DataService) { }
-
-  private _user = new BehaviorSubject<User>(null);
+              
   loginForm:FormGroup;
   validation_messages:any;
   blank_fields:boolean = false;

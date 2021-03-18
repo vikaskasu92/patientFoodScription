@@ -8,6 +8,8 @@ import { Health } from '@ionic-native/health/ngx';
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { Push } from '@ionic-native/push/ngx';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { SafariViewController } from '@ionic-native/safari-view-controller/ngx';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
@@ -37,7 +39,9 @@ import { HttpReqResInterceptor } from './http-interceptor.service';
     Health,
     SocialSharing,
     Push,
-    KeychainTouchId
+    KeychainTouchId,
+    InAppBrowser,
+    SafariViewController
   ],
   bootstrap: [AppComponent]
 })

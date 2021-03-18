@@ -23,6 +23,10 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
   },
   {
+    path: 'userpool/callback',
+    loadChildren: () => import('./auth/auth.module').then( m => m.AuthPageModule)
+  },
+  {
     path: '',
     redirectTo: '/auth',
     pathMatch: 'full'

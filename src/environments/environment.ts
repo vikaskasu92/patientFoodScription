@@ -16,6 +16,8 @@ export const environment = {
   searchDisease:'https://fs-api.phrqltest.com/api/disease/search',
   saveUserInfo:'https://fs-api.phrqltest.com/api/user-food-preference/',
   getUserWeights:'https://fs-api.phrqltest.com/api/user-goals/weight',
+  cookieAuth:'https://accounts.phrqltest.com/userpool/login/?origin=https://local.phrqltest.com:4200',
+  redirectURI: 'https://local.phrqltest.com:4200/userpool/callback/',
   environment:"PRODUCTION"
 };
 
