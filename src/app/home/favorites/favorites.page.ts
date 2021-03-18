@@ -30,7 +30,7 @@ export class FavoritesPage implements OnInit {
     });
   }
 
-  nutrientsToggle(textShown:string,nutrientsDiv:ElementRef,nutrientsTextEl:ElementRef,hideTextEl:ElementRef){
+  nutrientsToggle(textShown:string,nutrientsDiv:ElementRef<any>,nutrientsTextEl:ElementRef<any>,hideTextEl:ElementRef<any>){
     if(textShown === "nutrients"){
       this.render.setStyle(nutrientsDiv,'display','block');
       this.render.setStyle(nutrientsTextEl,'display','none');

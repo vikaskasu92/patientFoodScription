@@ -186,7 +186,7 @@ export class GroceryListPage implements OnInit {
     });
   }
 
-  chevronToggle(chevClicked:string,chevUp:ElementRef,chevDown:ElementRef,directionInfo:ElementRef){
+  chevronToggle(chevClicked:string,chevUp:ElementRef<any>,chevDown:ElementRef<any>,directionInfo:ElementRef<any>){
     if(chevClicked === 'up'){
       this.renderer.setStyle(chevUp,'display','none');
       this.renderer.setStyle(chevDown,'display','block');

@@ -67,7 +67,7 @@ export class MealPage implements OnInit {
     }  
   }
 
-  chevronToggle(chevClicked:string,chevUp:ElementRef,chevDown:ElementRef,directionInfo:ElementRef){
+  chevronToggle(chevClicked:string,chevUp:ElementRef<any>,chevDown:ElementRef<any>,directionInfo:ElementRef<any>){
     if(chevClicked === 'up'){
       this.render.setStyle(chevUp,'display','none');
       this.render.setStyle(chevDown,'display','block');
@@ -80,7 +80,7 @@ export class MealPage implements OnInit {
     
   }
 
-  nutrientsToggle(textShown:string,nutrientsDiv:ElementRef,nutrientsTextEl:ElementRef,hideTextEl:ElementRef,mealElementId:number,currentMealElement:any){
+  nutrientsToggle(textShown:string,nutrientsDiv:ElementRef<any>,nutrientsTextEl:ElementRef<any>,hideTextEl:ElementRef<any>,mealElementId:number,currentMealElement:any){
     if(textShown === "nutrients"){
       this.render.setStyle(nutrientsDiv,'display','block');
       this.render.setStyle(nutrientsTextEl,'display','none');

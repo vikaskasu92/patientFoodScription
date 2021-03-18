@@ -48,7 +48,7 @@ export class MealsPage implements OnInit, AfterViewInit {
   minToDate:string;
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   @ViewChild('slides', { read: IonSlides }) ionSlides: IonSlides; 
-  @ViewChild('mealFollowMeter',{static:false}) mealFollowMeter: ElementRef;
+  @ViewChild('mealFollowMeter',{static:false}) mealFollowMeter: ElementRef<any>;
 
   slideOpts = {
     initialSlide: 0,
@@ -258,7 +258,7 @@ export class MealsPage implements OnInit, AfterViewInit {
     this._fetchNextInfiniteMeals(event);
   }
 
-  nutrientsToggle(textShown:string,nutrientsDiv:ElementRef,nutrientsTextEl:ElementRef,hideTextEl:ElementRef,mealElementId:number,currentMealElement:any){
+  nutrientsToggle(textShown:string,nutrientsDiv:ElementRef<any>,nutrientsTextEl:ElementRef<any>,hideTextEl:ElementRef<any>,mealElementId:number,currentMealElement:any){
     if(textShown === "nutrients"){
       this.render.setStyle(nutrientsDiv,'display','block');
       this.render.setStyle(nutrientsTextEl,'display','none');
@@ -290,7 +290,7 @@ export class MealsPage implements OnInit, AfterViewInit {
     this.router.navigateByUrl("/meals/meal/"+mealId+"/"+date);
   }
 
-  chevronToggle(chevClicked:string,chevUp:ElementRef,chevDown:ElementRef,directionInfo:ElementRef){
+  chevronToggle(chevClicked:string,chevUp:ElementRef<any>,chevDown:ElementRef<any>,directionInfo:ElementRef<any>){
     if(chevClicked === 'up'){
       this.render.setStyle(chevUp,'display','none');
       this.render.setStyle(chevDown,'display','block');
