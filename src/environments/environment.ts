@@ -17,8 +17,9 @@ export const environment = {
   saveUserInfo:'https://fs-api.phrqltest.com/api/user-food-preference/',
   getUserWeights:'https://fs-api.phrqltest.com/api/user-goals/weight',
   cookieAuth:'https://accounts.phrqltest.com/userpool/login/?origin=https://local.phrqltest.com:4200',
-  redirectURI: 'https://d25755zwunck2t.cloudfront.net/userpool/callback/',
-  environment:"PRODUCTION"
+  redirectURI: 'https://local.phrqltest.com:4200/userpool/callback/',
+  environment:"PRODUCTION",
+  appClientId:"753e4kpfehvqs6jc95qm3lf5pe"
 };
 
 /*

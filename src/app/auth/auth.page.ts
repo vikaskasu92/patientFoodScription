@@ -22,7 +22,7 @@ export class AuthPage implements OnInit {
   showContent:boolean;
   domain:string = "accounts-phrqltest";
   region:string = "us-west-2";
-  appClientId:string = "753e4kpfehvqs6jc95qm3lf5pe";
+  appClientId:string = environment.appClientId;
   userPoolId:string = "us-west-2_chPPnHOzM";
   redirectURI:string = environment.redirectURI;
   tokens:any;
