@@ -67,7 +67,7 @@ export class NewPhotoComponent implements OnInit {
         "username":this.authService.username,
         "imageName":this.imageName
       }
-      this.http.post<any>("https://nclo0gjuy4.execute-api.us-east-1.amazonaws.com/Prod/uploadimagetos3",imageData,{
+      this.http.post<any>("https://fpb8ilwrr9.execute-api.us-west-2.amazonaws.com/prod/foodscription-photo-upload",imageData,{
         headers:  new HttpHeaders().set("accept","application/json"),withCredentials:true
       }).subscribe( data => {
         console.log("data saved to s3 "+data);
@@ -78,7 +78,7 @@ export class NewPhotoComponent implements OnInit {
   getDataFromS3(){
     if(!this.recipePictureForm.invalid){
       let key = this.authService.username+"/"+this.imageName+".jpg";
-      this.http.get<any>("https://nclo0gjuy4.execute-api.us-east-1.amazonaws.com/Prod/downloadimagefroms3?key="+key,{
+      this.http.get<any>("https://fpb8ilwrr9.execute-api.us-west-2.amazonaws.com/prod/foodscription-photo-download?key="+key,{
         headers: new HttpHeaders().set("accept","application/json"),withCredentials:true
       }).subscribe( data => {
         console.log("data saved to s3 "+data);

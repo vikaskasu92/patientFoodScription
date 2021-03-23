@@ -103,7 +103,7 @@ export class ShoppingcartPage implements OnInit {
         "ingredients":instacartIngredients,
         "quantities":instacartQuantities
       }
-      this.http.post<any>("https://nclo0gjuy4.execute-api.us-east-1.amazonaws.com/Prod/navigatetoinstacart",instacartObject,{
+      this.http.post<any>("https://fpb8ilwrr9.execute-api.us-west-2.amazonaws.com/prod/foodscription-shopping-cart",instacartObject,{
         headers: new HttpHeaders().set("Content-Type","application/json")
       }).subscribe( res =>{
         location.href = res.url;

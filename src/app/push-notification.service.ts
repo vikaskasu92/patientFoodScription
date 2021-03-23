@@ -53,7 +53,7 @@ export class PushNotificationService {
           "appType": Capacitor.platform,
           "environment":environment.environment
         }
-        this.http.post<any>("https://nclo0gjuy4.execute-api.us-east-1.amazonaws.com/Prod/createPushNotifications",JSON.stringify(createSnsArnRequest),{
+        this.http.post<any>("https://fpb8ilwrr9.execute-api.us-west-2.amazonaws.com/prod/foodscription-push-notification-registration",JSON.stringify(createSnsArnRequest),{
           headers: new HttpHeaders().set("Content-Type","application/json")
         }).subscribe(data =>{
           console.log("Successfully stored token to SNS ARN");
