@@ -22,9 +22,9 @@ export class AuthPage implements OnInit {
   showContent:boolean;
   domain:string = "accounts-phrqltest";
   region:string = "us-west-2";
-  appClientId:string = environment.appClientId;
+  appClientId:string = "753e4kpfehvqs6jc95qm3lf5pe";
   userPoolId:string = "us-west-2_chPPnHOzM";
-  redirectURI:string = environment.redirectURI;
+  redirectURI:string = "foodscription://userpool/callback/";
   tokens:any;
   myHeaders = new Headers().set('Cache-Control', 'no-store');
   urlParams = new URLSearchParams(window.location.search);
@@ -45,9 +45,9 @@ export class AuthPage implements OnInit {
   }
 
   login(){
-    let code = this.urlParams.get('code');
+    alert("in login")
+    console.log("*************************************in login**********************************")
     if(this.authService.appPlatform === "web"){
-      console.log("code is "+code);
       this.checkCookie();
       return;
     }else{
@@ -56,17 +56,10 @@ export class AuthPage implements OnInit {
   }
 
   checkCookie() {
+    alert('in check cookie')
     let token= this.fpCommon.getCookie("csrftoken");
     if (token != "") {
-      this.safariViewController.isAvailable().then((available: boolean) => {
-        if (available) {
-          var app = "foodscription"; 
-          var data = document.cookie;
-          window.location.href = app + '://tabs?data=' + encodeURIComponent(data); 
-        }
-      });
-     
-      this.router.navigateByUrl("/tabs");
+      this.router.navigateByUrl("/tabs")
     } else {
       window.location.href=environment.cookieAuth;
     }
@@ -79,32 +72,12 @@ export class AuthPage implements OnInit {
     return binaryStringItems.reduce((acc, item) => `${acc}${item}`, '');
   }
 
+  
   async loginUserWithOauth(){
     let code = this.urlParams.get('code');
     let state = this.getRandomString();
     if(code == null){
-      this.safariViewController.isAvailable().then((available: boolean) => {
-      if (available) {
-        this.safariViewController.show({
-          url: environment.cookieAuth,
-          hidden: true,
-          animated: false,
-          transition: 'curl',
-          enterReaderModeIfAvailable: false,
-          tintColor: '#ff0000'
-        })
-        .subscribe((result: any) => {
-            if(result.event === 'opened') console.log('Opened');
-            else if(result.event === 'loaded') console.log('Loaded');
-            else if(result.event === 'closed') console.log('Closed');
-          },
-          (error: any) => console.error(error)
-        );
-      } else {
-        const browser = this.iab.create(environment.cookieAuth);
-        //browser.close();
-      }
-    });
+      window.location.href = "https://"+this.domain+".auth."+this.region+".amazoncognito.com/oauth2/authorize?response_type=code&state="+state+"&client_id="+this.appClientId+"&redirect_uri="+this.redirectURI+"&scope=openid";
     }else{
       await fetch("https://"+this.domain+".auth."+this.region+".amazoncognito.com/oauth2/token?grant_type=authorization_code&code="+code+"&client_id="+this.appClientId+"&redirect_uri="+this.redirectURI,{
       method: 'post',
