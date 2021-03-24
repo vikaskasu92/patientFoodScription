@@ -61,6 +61,7 @@ export class MobileAuthPage implements OnInit {
   }
 
   async loginUserWithOauth(){
+    alert("came to call the service now")
     let code = this.urlParams.get('code');
     await fetch("https://"+this.domain+".auth."+this.region+".amazoncognito.com/oauth2/token?grant_type=authorization_code&code="+code+"&client_id="+this.appClientId+"&redirect_uri="+this.redirectURI,{
       method: 'post',
@@ -77,11 +78,7 @@ export class MobileAuthPage implements OnInit {
       console.log("closing safari view controller");
       this.safariViewController.hide();
       console.log("closed safari view controller");
-      this.authService.getCurrentUserDetails().subscribe( (profile:any) => {
-        console.log(profile);
-        this.authService.username = profile.firstName+" "+profile.lastName;
-        this.router.navigateByUrl("/tabs");
-      });
+      
     });
   }
 
