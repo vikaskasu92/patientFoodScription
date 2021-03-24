@@ -45,7 +45,9 @@ export class AuthPage implements OnInit {
   }
 
   login(){
+    let code = this.urlParams.get('code');
     if(this.authService.appPlatform === "web"){
+      console.log("code is "+code);
       this.checkCookie();
       return;
     }else{
@@ -56,7 +58,15 @@ export class AuthPage implements OnInit {
   checkCookie() {
     let token= this.fpCommon.getCookie("csrftoken");
     if (token != "") {
-      this.router.navigateByUrl("/tabs")
+      this.safariViewController.isAvailable().then((available: boolean) => {
+        if (available) {
+          var app = "foodscription"; 
+          var data = document.cookie;
+          window.location.href = app + '://tabs?data=' + encodeURIComponent(data); 
+        }
+      });
+     
+      this.router.navigateByUrl("/tabs");
     } else {
       window.location.href=environment.cookieAuth;
     }
@@ -76,8 +86,8 @@ export class AuthPage implements OnInit {
       this.safariViewController.isAvailable().then((available: boolean) => {
       if (available) {
         this.safariViewController.show({
-          url: "https://"+this.domain+".auth."+this.region+".amazoncognito.com/oauth2/authorize?response_type=code&state="+state+"&client_id="+this.appClientId+"&redirect_uri="+this.redirectURI+"&scope=openid",
-          hidden: false,
+          url: environment.cookieAuth,
+          hidden: true,
           animated: false,
           transition: 'curl',
           enterReaderModeIfAvailable: false,
@@ -91,7 +101,7 @@ export class AuthPage implements OnInit {
           (error: any) => console.error(error)
         );
       } else {
-        const browser = this.iab.create("https://"+this.domain+".auth."+this.region+".amazoncognito.com/oauth2/authorize?response_type=code&state="+state+"&client_id="+this.appClientId+"&redirect_uri="+this.redirectURI+"&scope=openid");
+        const browser = this.iab.create(environment.cookieAuth);
         //browser.close();
       }
     });
