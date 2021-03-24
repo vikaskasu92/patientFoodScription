@@ -45,14 +45,12 @@ export class AuthPage implements OnInit {
   }
 
   login(){
-    this.safariViewController.isAvailable().then((available: boolean) => {
-      if (available) {
-        this.loginUserWithOauth();
-      }
-    }).catch(error => {
+    if(this.authService.appPlatform === "web"){
       this.checkCookie();
       return;
-    });
+    }else{
+      this.loginUserWithOauth();
+    }
   }
 
   checkCookie() {
@@ -107,23 +105,13 @@ export class AuthPage implements OnInit {
         return response.json();
       })
       .then((data) => {
-        console.log("Came into the is available scope")
         this.tokens=data;
         this.authService.accessToken = data.access_token;
         this.authService.refreshToken = data.refresh_token;
-        this.safariViewController.isAvailable().then((available: boolean) => {
-          console.log("Came into the is available scope")
-          if (available) {
-            console.log("Came into the available scope")
-            window.location.href = "foodscription://tabs";
-            this.safariViewController.hide();
-          }
-        }).catch(error =>{
-          this.authService.getCurrentUserDetails().subscribe( (profile:any) => {
-            console.log(profile);
-            this.authService.username = profile.firstName+" "+profile.lastName;
-            this.router.navigateByUrl("/tabs");
-          });
+        this.authService.getCurrentUserDetails().subscribe( (profile:any) => {
+          console.log(profile);
+          this.authService.username = profile.firstName+" "+profile.lastName;
+          this.router.navigateByUrl("/tabs");
         });
       });
     }
