@@ -24,7 +24,7 @@ const routes: Routes = [
   },
   {
     path: 'userpool/callback',
-    loadChildren: () => import('./auth/mobile/mobile-auth/mobile-auth.module').then( m => m.MobileAuthPageModule)
+    loadChildren: () => import('./auth/auth.module').then( m => m.AuthPageModule)
   },
   {
     path: '',

@@ -37,7 +37,7 @@ export class AuthPage implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      console.log("params are "+ params);
+      console.log("params are "+ params.get("code"));
     })
    this.login();
   }
@@ -51,8 +51,6 @@ export class AuthPage implements OnInit {
   }
 
   login(){
-    alert("in login")
-    console.log("*************************************in login**********************************")
     if(this.authService.appPlatform === "web"){
       this.checkCookie();
       return;
