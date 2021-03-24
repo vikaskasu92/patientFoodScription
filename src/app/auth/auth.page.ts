@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
 import { SafariViewController } from '@ionic-native/safari-view-controller/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FoodscriptionCommonService } from '../sharedFiles/foodscription-common.service';
 import { environment } from '../../environments/environment';
+import {Platform} from '@ionic/angular';
 
 @Component({
   selector: 'app-auth',
@@ -15,9 +16,11 @@ export class AuthPage implements OnInit {
 
   constructor(private authService:AuthService,
               private router:Router,
+              private route:ActivatedRoute,
               private fpCommon:FoodscriptionCommonService,
               private safariViewController:SafariViewController,
-              private iab: InAppBrowser){}
+              private iab: InAppBrowser,
+              private platform:Platform){}
 
   showContent:boolean;
   domain:string = "accounts-phrqltest";
@@ -33,6 +36,9 @@ export class AuthPage implements OnInit {
   key_index:any;
 
   ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      console.log("params are "+ params);
+    })
    this.login();
   }
 
@@ -78,6 +84,7 @@ export class AuthPage implements OnInit {
     let state = this.getRandomString();
     if(code == null){
       window.location.href = "https://"+this.domain+".auth."+this.region+".amazoncognito.com/oauth2/authorize?response_type=code&state="+state+"&client_id="+this.appClientId+"&redirect_uri="+this.redirectURI+"&scope=openid";
+      this.platform.
     }else{
       await fetch("https://"+this.domain+".auth."+this.region+".amazoncognito.com/oauth2/token?grant_type=authorization_code&code="+code+"&client_id="+this.appClientId+"&redirect_uri="+this.redirectURI,{
       method: 'post',
