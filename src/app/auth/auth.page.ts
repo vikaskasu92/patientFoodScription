@@ -36,8 +36,9 @@ export class AuthPage implements OnInit {
   key_index:any;
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParamMap.subscribe(params => {
       console.log("params are "+ params.get("code"));
+      this.login();
     })
    this.login();
   }
