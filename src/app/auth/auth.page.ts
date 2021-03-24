@@ -45,12 +45,14 @@ export class AuthPage implements OnInit {
   }
 
   login(){
-    if(this.authService.appPlatform === "web"){
+    this.safariViewController.isAvailable().then((available: boolean) => {
+      if (available) {
+        this.loginUserWithOauth();
+      }
+    }).catch(error => {
       this.checkCookie();
       return;
-    }else{
-      this.loginUserWithOauth();
-    }
+    });
   }
 
   checkCookie() {
@@ -105,11 +107,14 @@ export class AuthPage implements OnInit {
         return response.json();
       })
       .then((data) => {
+        console.log("Came into the is available scope")
         this.tokens=data;
         this.authService.accessToken = data.access_token;
         this.authService.refreshToken = data.refresh_token;
         this.safariViewController.isAvailable().then((available: boolean) => {
+          console.log("Came into the is available scope")
           if (available) {
+            console.log("Came into the available scope")
             window.location.href = "foodscription://tabs";
             this.safariViewController.hide();
           }
