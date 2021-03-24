@@ -108,16 +108,17 @@ export class AuthPage implements OnInit {
         this.tokens=data;
         this.authService.accessToken = data.access_token;
         this.authService.refreshToken = data.refresh_token;
-        window.location.href = "foodscription://tabs";
-          this.safariViewController.hide();
-        if(this.authService.appPlatform === "ios"){
-          window.location.href = "foodscription://tabs";
-          this.safariViewController.hide();
-        }
-        this.authService.getCurrentUserDetails().subscribe( (profile:any) => {
-          console.log(profile);
-          this.authService.username = profile.firstName+" "+profile.lastName;
-          this.router.navigateByUrl("/tabs");
+        this.safariViewController.isAvailable().then((available: boolean) => {
+          if (available) {
+            window.location.href = "foodscription://tabs";
+            this.safariViewController.hide();
+          }
+        }).catch(error =>{
+          this.authService.getCurrentUserDetails().subscribe( (profile:any) => {
+            console.log(profile);
+            this.authService.username = profile.firstName+" "+profile.lastName;
+            this.router.navigateByUrl("/tabs");
+          });
         });
       });
     }
