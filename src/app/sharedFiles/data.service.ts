@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
 import { of, Subject } from 'rxjs';
 import {webSocket, WebSocketSubject} from 'rxjs/webSocket';
@@ -42,7 +42,7 @@ connectToChatServer(email:string){
 }
 
 startWebSocket(email:string){
-  this.myWebSocket = webSocket('wss://gfdkv495x9.execute-api.us-east-1.amazonaws.com/Prod');
+  this.myWebSocket = webSocket('wss://i8qhtkpjy5.execute-api.us-west-2.amazonaws.com/Prod');
     this.myWebSocket.pipe(catchError(val => of(`I caught: ${val}`))).subscribe(dataFromServer => {
       if(dataFromServer.Type === "USER_MESSAGE_RECIEVED"){
         if(!this.inChatPage && !this.inConversationPage){
@@ -61,7 +61,7 @@ stopWebSocket(){
 getMeals(fromDate:string,toDate:string,limit:string){
   let userToken = this.authService.accessToken;
   return new Promise<any>((resolve,reject)=>{
-    this.http.get<any>(environment.mealDayApi+"?toDate="+toDate+"&ordering=recipe&limit="+limit+"&offset=0",this.authService.getHeadersObject()).subscribe( meals =>{
+    this.http.get<any>(environment.mealDayApi+"?fromDate="+fromDate+"&toDate="+toDate+"&ordering=recipe&limit="+limit+"&offset=0",this.authService.getHeadersObject()).subscribe( meals =>{
         resolve(meals);
       },err=>{
         reject();
