@@ -109,6 +109,7 @@ export class AuthPage implements OnInit {
         this.authService.accessToken = data.access_token;
         this.authService.refreshToken = data.refresh_token;
         if(this.authService.appPlatform === "ios"){
+          window.location.href = "foodscription://tabs";
           this.safariViewController.hide();
         }
         this.authService.getCurrentUserDetails().subscribe( (profile:any) => {
