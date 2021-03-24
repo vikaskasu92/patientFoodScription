@@ -108,6 +108,9 @@ export class AuthPage implements OnInit {
         this.tokens=data;
         this.authService.accessToken = data.access_token;
         this.authService.refreshToken = data.refresh_token;
+        if(this.authService.appPlatform === "ios"){
+          this.safariViewController.hide();
+        }
         this.authService.getCurrentUserDetails().subscribe( (profile:any) => {
           console.log(profile);
           this.authService.username = profile.firstName+" "+profile.lastName;
