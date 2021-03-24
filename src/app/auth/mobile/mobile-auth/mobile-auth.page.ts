@@ -61,31 +61,7 @@ export class MobileAuthPage implements OnInit {
   }
 
   async loginUserWithOauth(){
-  let code = this.urlParams.get('code');
-  let state = this.getRandomString();
-  if(code == null){
-    this.safariViewController.isAvailable().then((available: boolean) => {
-      if (available) {
-      this.safariViewController.show({
-      url: "https://"+this.domain+".auth."+this.region+".amazoncognito.com/oauth2/authorize?response_type=code&state="+state+"&client_id="+this.appClientId+"&redirect_uri="+this.redirectURI+"&scope=openid",
-      hidden: false,
-      animated: false,
-      transition: 'curl',
-      enterReaderModeIfAvailable: false,
-      tintColor: '#ff0000'
-      })
-      .subscribe((result: any) => {
-        if(result.event === 'opened') console.log('Opened');
-        else if(result.event === 'loaded') console.log('Loaded');
-        else if(result.event === 'closed') console.log('Closed');
-      },
-      (error: any) => console.error(error));
-      } else {
-      const browser = this.iab.create("https://"+this.domain+".auth."+this.region+".amazoncognito.com/oauth2/authorize?response_type=code&state="+state+"&client_id="+this.appClientId+"&redirect_uri="+this.redirectURI+"&scope=openid");
-      //browser.close();
-      }
-    });
-  }else{
+    let code = this.urlParams.get('code');
     await fetch("https://"+this.domain+".auth."+this.region+".amazoncognito.com/oauth2/token?grant_type=authorization_code&code="+code+"&client_id="+this.appClientId+"&redirect_uri="+this.redirectURI,{
       method: 'post',
       headers: {
@@ -98,14 +74,15 @@ export class MobileAuthPage implements OnInit {
       this.tokens=data;
       this.authService.accessToken = data.access_token;
       this.authService.refreshToken = data.refresh_token;
+      console.log("closing safari view controller");
+      this.safariViewController.hide();
+      console.log("closed safari view controller");
       this.authService.getCurrentUserDetails().subscribe( (profile:any) => {
         console.log(profile);
         this.authService.username = profile.firstName+" "+profile.lastName;
         this.router.navigateByUrl("/tabs");
       });
     });
-  }
-
   }
 
 }
