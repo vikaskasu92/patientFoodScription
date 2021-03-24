@@ -27,7 +27,7 @@ export class AuthPage implements OnInit {
   region:string = "us-west-2";
   appClientId:string = "753e4kpfehvqs6jc95qm3lf5pe";
   userPoolId:string = "us-west-2_chPPnHOzM";
-  redirectURI:string = "foodscription://userpool/callback/";
+  redirectURI:string = "foodscription://userpool/callback/?fromaws=true";
   tokens:any;
   myHeaders = new Headers().set('Cache-Control', 'no-store');
   urlParams = new URLSearchParams(window.location.search);
