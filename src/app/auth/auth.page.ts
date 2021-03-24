@@ -108,6 +108,8 @@ export class AuthPage implements OnInit {
         this.tokens=data;
         this.authService.accessToken = data.access_token;
         this.authService.refreshToken = data.refresh_token;
+        window.location.href = "foodscription://tabs";
+          this.safariViewController.hide();
         if(this.authService.appPlatform === "ios"){
           window.location.href = "foodscription://tabs";
           this.safariViewController.hide();
