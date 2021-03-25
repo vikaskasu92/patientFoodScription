@@ -36,11 +36,14 @@ export class AuthPage implements OnInit {
   key_index:any;
 
   ngOnInit() {
-    this.route.queryParamMap.subscribe(params => {
-      console.log("params are "+ params.get("code"));
-      this.login();
-    })
    this.login();
+   this.platform.pause.subscribe(() => {
+    console.log("app paused ************************")
+   });
+   this.platform.resume.subscribe(() => {
+     console.log("app resumed *****************")
+    this.login();
+  });
   }
 
   ionViewWillEnter(){
