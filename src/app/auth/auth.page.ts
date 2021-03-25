@@ -25,9 +25,11 @@ export class AuthPage implements OnInit {
   showContent:boolean;
   domain:string = "accounts-phrqltest";
   region:string = "us-west-2";
-  appClientId:string = "753e4kpfehvqs6jc95qm3lf5pe";
+  appClientIdMobile:string = "753e4kpfehvqs6jc95qm3lf5pe";
+  appClientIdBrowser:string = "6ft9a1rrj34mmcmrrqd9ec7sdo";
   userPoolId:string = "us-west-2_chPPnHOzM";
-  redirectURI:string = "foodscription://userpool/callback/?fromaws=true";
+  redirectURIMobile:string = "https://patient.phrqltest.com/userpool/callback?fromMobile=true";
+  redirectURIBrowser:string = "https://patient.phrqltest.com/userpool/callback/"
   tokens:any;
   myHeaders = new Headers().set('Cache-Control', 'no-store');
   urlParams = new URLSearchParams(window.location.search);
@@ -36,6 +38,12 @@ export class AuthPage implements OnInit {
   key_index:any;
 
   ngOnInit() {
+   this.route.paramMap.subscribe(params => {
+      if(params.get("fromMobile") == "true"){
+        this.loginUserWithOauth();
+        return;
+      }
+   });
    this.login();
    this.platform.pause.subscribe(() => {
     console.log("app paused ************************")
@@ -88,33 +96,9 @@ export class AuthPage implements OnInit {
     console.log("code is "+code);
     let state = this.getRandomString();
     if(code == null){
-      this.safariViewController.isAvailable()
-      .then((available: boolean) => {
-          if (available) {
-
-            this.safariViewController.show({
-              url: "https://"+this.domain+".auth."+this.region+".amazoncognito.com/oauth2/authorize?response_type=code&state="+state+"&client_id="+this.appClientId+"&redirect_uri="+this.redirectURI+"&scope=openid",
-              hidden: false,
-              animated: false,
-              transition: 'curl',
-              enterReaderModeIfAvailable: true,
-              tintColor: '#ff0000'
-            })
-            .subscribe((result: any) => {
-                if(result.event === 'opened') console.log('Opened');
-                else if(result.event === 'loaded') console.log('Loaded');
-                else if(result.event === 'closed') console.log('Closed');
-              },
-              (error: any) => console.error(error)
-            );
-
-          } else {
-            // use fallback browser, example InAppBrowser
-          }
-        }
-      );
+      window.location.href = "https://"+this.domain+".auth."+this.region+".amazoncognito.com/oauth2/authorize?response_type=code&state="+state+"&client_id="+this.appClientIdMobile+"&redirect_uri="+this.redirectURIMobile+"&scope=openid";
     }else{
-      await fetch("https://"+this.domain+".auth."+this.region+".amazoncognito.com/oauth2/token?grant_type=authorization_code&code="+code+"&client_id="+this.appClientId+"&redirect_uri="+this.redirectURI,{
+      await fetch("https://"+this.domain+".auth."+this.region+".amazoncognito.com/oauth2/token?grant_type=authorization_code&code="+code+"&client_id="+this.appClientIdMobile+"&redirect_uri="+this.redirectURIMobile,{
       method: 'post',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
@@ -129,7 +113,8 @@ export class AuthPage implements OnInit {
         this.authService.getCurrentUserDetails().subscribe( (profile:any) => {
           console.log(profile);
           this.authService.username = profile.firstName+" "+profile.lastName;
-          this.router.navigateByUrl("/tabs");
+          //this.router.navigateByUrl("/tabs");
+          window.location.href = "foodscription://"
         });
       });
     }
