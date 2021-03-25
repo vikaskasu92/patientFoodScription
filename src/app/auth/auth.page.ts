@@ -111,7 +111,7 @@ export class AuthPage implements OnInit {
             if (available) {
               this.safariViewController.show({
                 url: "https://"+this.domain+".auth."+this.region+".amazoncognito.com/oauth2/authorize?response_type=code&state="+state+"&client_id="+this.appClientIdMobile+"&redirect_uri="+this.redirectURIMobile+"&scope=openid",
-                hidden: false,
+                hidden: true,
                 animated: false,
                 transition: 'curl',
                 enterReaderModeIfAvailable: true,
@@ -161,16 +161,22 @@ export class AuthPage implements OnInit {
         this.authService.getCurrentUserDetails().subscribe( (profile:any) => {
           console.log(profile);
           this.authService.username = profile.firstName+" "+profile.lastName;
-          Storage.set({
-            key:'foodScriptionLoginDetails',
-            value:JSON.stringify({"email":profile.email,"accessToken":data.access_token,"refreshToken":data.refresh_token})
-          }).then(stored => {
-            alert("Auth is done now");
-            this.router.navigateByUrl("/authdone");
-          });
+          var app = "foodscription"; // Your Custom URL Scheme
+          var data = {"email":profile.email,"accessToken":data.access_token,"refreshToken":data.refresh_token}; // Change to be whatever data you want to read
+          window.location.href = app + '://?data=' + encodeURIComponent(data);
         });
       });
     }
     
   }
+
+  handleOpenURL(url:any) {
+    setTimeout(function() {
+      this.safariViewController.hide();
+      var data = decodeURIComponent(url.substr(url.indexOf('=')+1));
+      console.log('Browser data received: ' + data);
+    }, 0);
+  }
 }
+
+
