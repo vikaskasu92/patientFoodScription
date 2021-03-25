@@ -59,6 +59,7 @@ export class AuthPage implements OnInit {
       this.checkCookie();
       return;
     }else{
+      console.log("calling login with oauth")
       this.loginUserWithOauth();
     }
   }
@@ -82,7 +83,9 @@ export class AuthPage implements OnInit {
 
   
   async loginUserWithOauth(){
+    console.log("came to check login with oauth");
     let code = this.urlParams.get('code');
+    console.log("code is "+code);
     let state = this.getRandomString();
     if(code == null){
       window.location.href = "https://"+this.domain+".auth."+this.region+".amazoncognito.com/oauth2/authorize?response_type=code&state="+state+"&client_id="+this.appClientId+"&redirect_uri="+this.redirectURI+"&scope=openid";
