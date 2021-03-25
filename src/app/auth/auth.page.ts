@@ -38,11 +38,11 @@ export class AuthPage implements OnInit {
   key_index:any;
 
   ngOnInit() {
-   this.route.paramMap.subscribe(params => {
+   this.route.queryParams.subscribe(params => {
      alert("params are "+params);
-     alert("params for code is "+params.get("code"))
-     alert("params for fromMobile is "+params.get("fromMobile"))
-      if(params.get("fromMobile") == "true"){
+     alert("params for code is "+params["code"])
+     alert("params for fromMobile is "+params["fromMobile"])
+      if(params["fromMobile"] == "true"){
         this.loginUserWithOauth();
         return;
       }else{
