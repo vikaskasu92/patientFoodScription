@@ -26,7 +26,7 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>foodscription</string>
-				<string>$URL_SCHEME</string>
+				<string>URL_SCHEME</string>
 			</array>
 		</dict>
 	</array>
