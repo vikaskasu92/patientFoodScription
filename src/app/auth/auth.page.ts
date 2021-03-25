@@ -3,9 +3,11 @@ import { AuthService } from './auth.service';
 import { SafariViewController } from '@ionic-native/safari-view-controller/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Capacitor, Plugins } from '@capacitor/core';
 import { FoodscriptionCommonService } from '../sharedFiles/foodscription-common.service';
 import { environment } from '../../environments/environment';
 import {Platform} from '@ionic/angular';
+const { Storage } = Plugins;
 
 @Component({
   selector: 'app-auth',
@@ -105,7 +107,42 @@ export class AuthPage implements OnInit {
     console.log("code is "+code);
     let state = this.getRandomString();
     if(code == null){
-      window.location.href = "https://"+this.domain+".auth."+this.region+".amazoncognito.com/oauth2/authorize?response_type=code&state="+state+"&client_id="+this.appClientIdMobile+"&redirect_uri="+this.redirectURIMobile+"&scope=openid";
+      this.safariViewController.isAvailable().then((available: boolean) => {
+            if (available) {
+              this.safariViewController.show({
+                url: "https://"+this.domain+".auth."+this.region+".amazoncognito.com/oauth2/authorize?response_type=code&state="+state+"&client_id="+this.appClientIdMobile+"&redirect_uri="+this.redirectURIMobile+"&scope=openid",
+                hidden: false,
+                animated: false,
+                transition: 'curl',
+                enterReaderModeIfAvailable: true,
+                tintColor: '#ff0000'
+              })
+              .subscribe((result: any) => {
+                  if(result.event === 'opened') console.log('Opened');
+                  else if(result.event === 'loaded') console.log('Loaded');
+                  else if(result.event === 'closed'){
+                    Storage.get({key:'foodScriptionLoginDetails'}).then( storage => {
+                      if(JSON.parse(storage.value) !== null){
+                        console.log("storage data is "+JSON.parse(storage.value));
+                        let loginDetails = JSON.parse(storage.value);
+                        this.authService.accessToken = loginDetails.accessToken;
+                        this.authService.username = loginDetails.email;
+                        this.authService.refreshToken = loginDetails.refreshToken;
+                        this.router.navigateByUrl("/tabs");
+                      }else{
+                        console.log("No Storage Items");
+                      }
+                    });
+                  }
+                },
+                (error: any) => console.error(error)
+              );
+
+            } else {
+              // use fallback browser, example InAppBrowser
+            }
+          }
+        );
     }else{
       await fetch("https://"+this.domain+".auth."+this.region+".amazoncognito.com/oauth2/token?grant_type=authorization_code&code="+code+"&client_id="+this.appClientIdMobile+"&redirect_uri="+this.redirectURIMobile,{
       method: 'post',
@@ -122,9 +159,12 @@ export class AuthPage implements OnInit {
         this.authService.getCurrentUserDetails().subscribe( (profile:any) => {
           console.log(profile);
           this.authService.username = profile.firstName+" "+profile.lastName;
-          this.authService.saveTokenToDB(profile.email,data.access_token,data.refresh_token).subscribe( savedToDb =>{
-            window.location.href = "foodscription://?email=profile.email"
-          })
+          Storage.set({
+            key:'foodScriptionLoginDetails',
+            value:JSON.stringify({"email":profile.email,"accessToken":data.access_token,"refreshToken":data.refresh_token})
+          }).then(stored => {
+            this.router.navigateByUrl("/authdone");
+          });
         });
       });
     }
