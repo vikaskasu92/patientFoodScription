@@ -39,12 +39,16 @@ export class AuthPage implements OnInit {
 
   ngOnInit() {
    this.route.paramMap.subscribe(params => {
+     alert("params are "+params);
+     alert("params for code is "+params.get("code"))
+     alert("params for fromMobile is "+params.get("fromMobile"))
       if(params.get("fromMobile") == "true"){
         this.loginUserWithOauth();
         return;
+      }else{
+        this.login();
       }
    });
-   this.login();
    this.platform.pause.subscribe(() => {
     console.log("app paused ************************")
    });
