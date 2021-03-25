@@ -88,7 +88,31 @@ export class AuthPage implements OnInit {
     console.log("code is "+code);
     let state = this.getRandomString();
     if(code == null){
-      window.location.href = "https://"+this.domain+".auth."+this.region+".amazoncognito.com/oauth2/authorize?response_type=code&state="+state+"&client_id="+this.appClientId+"&redirect_uri="+this.redirectURI+"&scope=openid";
+      this.safariViewController.isAvailable()
+      .then((available: boolean) => {
+          if (available) {
+
+            this.safariViewController.show({
+              url: "https://"+this.domain+".auth."+this.region+".amazoncognito.com/oauth2/authorize?response_type=code&state="+state+"&client_id="+this.appClientId+"&redirect_uri="+this.redirectURI+"&scope=openid",
+              hidden: false,
+              animated: false,
+              transition: 'curl',
+              enterReaderModeIfAvailable: true,
+              tintColor: '#ff0000'
+            })
+            .subscribe((result: any) => {
+                if(result.event === 'opened') console.log('Opened');
+                else if(result.event === 'loaded') console.log('Loaded');
+                else if(result.event === 'closed') console.log('Closed');
+              },
+              (error: any) => console.error(error)
+            );
+
+          } else {
+            // use fallback browser, example InAppBrowser
+          }
+        }
+      );
     }else{
       await fetch("https://"+this.domain+".auth."+this.region+".amazoncognito.com/oauth2/token?grant_type=authorization_code&code="+code+"&client_id="+this.appClientId+"&redirect_uri="+this.redirectURI,{
       method: 'post',
