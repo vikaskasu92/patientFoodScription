@@ -144,6 +144,7 @@ export class AuthPage implements OnInit {
           }
         );
     }else{
+      alert("code not null so fetching token");
       await fetch("https://"+this.domain+".auth."+this.region+".amazoncognito.com/oauth2/token?grant_type=authorization_code&code="+code+"&client_id="+this.appClientIdMobile+"&redirect_uri="+this.redirectURIMobile,{
       method: 'post',
       headers: {
@@ -153,6 +154,7 @@ export class AuthPage implements OnInit {
         return response.json();
       })
       .then((data) => {
+        alert("token recieved now "+data.access_token);
         this.tokens=data;
         this.authService.accessToken = data.access_token;
         this.authService.refreshToken = data.refresh_token;
@@ -163,6 +165,7 @@ export class AuthPage implements OnInit {
             key:'foodScriptionLoginDetails',
             value:JSON.stringify({"email":profile.email,"accessToken":data.access_token,"refreshToken":data.refresh_token})
           }).then(stored => {
+            alert("Auth is done now");
             this.router.navigateByUrl("/authdone");
           });
         });
