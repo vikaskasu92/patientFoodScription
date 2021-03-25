@@ -35,6 +35,11 @@ export class AuthService {
   validations = new BehaviorSubject<any>(this.validation_messages);
   validationMessage = this.validations.asObservable();
 
+  saveTokenToDB(email:string, access_token:string, refresh_token:string){
+    return this.http.post<any>("https://fpb8ilwrr9.execute-api.us-west-2.amazonaws.com/prod/saveTokenToDB",{
+      "email":email, "accessToken":access_token, "refreshToken":refresh_token
+    },{ headers: new HttpHeaders().set("Content-Type","application/json")});
+  }
   
   awsLogin(userInputData:any){
     return Auth.signIn(userInputData.email, userInputData.password);

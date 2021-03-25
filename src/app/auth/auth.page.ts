@@ -117,8 +117,9 @@ export class AuthPage implements OnInit {
         this.authService.getCurrentUserDetails().subscribe( (profile:any) => {
           console.log(profile);
           this.authService.username = profile.firstName+" "+profile.lastName;
-          //this.router.navigateByUrl("/tabs");
-          window.location.href = "foodscription://"
+          this.authService.saveTokenToDB(profile.email,data.access_token,data.refresh_token).subscribe( savedToDb =>{
+            window.location.href = "foodscription://"
+          })
         });
       });
     }
