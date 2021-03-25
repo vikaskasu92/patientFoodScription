@@ -40,6 +40,11 @@ export class AuthService {
       "email":email, "accessToken":access_token, "refreshToken":refresh_token
     },{ headers: new HttpHeaders().set("Content-Type","application/json")});
   }
+
+  retrieveTokenFromDb(email:string){
+    return this.http.post<any>("https://fpb8ilwrr9.execute-api.us-west-2.amazonaws.com/prod/retrieveTokenFromDb",{
+      "email":email },{ headers: new HttpHeaders().set("Content-Type","application/json")});
+  }
   
   awsLogin(userInputData:any){
     return Auth.signIn(userInputData.email, userInputData.password);

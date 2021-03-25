@@ -53,8 +53,13 @@ export class AuthPage implements OnInit {
     console.log("app paused ************************")
    });
    this.platform.resume.subscribe(() => {
-     console.log("app resumed *****************")
-    this.login();
+     console.log("app resumed *****************");
+     let email = this.route.snapshot.queryParams.get("email");
+    this.authService.retrieveTokenFromDb(email).subscribe( retrievedToken => {
+      console.log("retrievedToken ********************************** "+retrievedToken);
+      this.router.navigateByUrl("/tabs");
+    })
+    
   });
   }
 
@@ -118,7 +123,7 @@ export class AuthPage implements OnInit {
           console.log(profile);
           this.authService.username = profile.firstName+" "+profile.lastName;
           this.authService.saveTokenToDB(profile.email,data.access_token,data.refresh_token).subscribe( savedToDb =>{
-            window.location.href = "foodscription://"
+            window.location.href = "foodscription://?email=profile.email"
           })
         });
       });
