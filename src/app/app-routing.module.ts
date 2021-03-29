@@ -27,10 +27,6 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then( m => m.AuthPageModule)
   },
   {
-    path: 'authdone',
-    loadChildren: () => import('./auth/mobile/mobile-auth/mobile-auth.module').then( m => m.MobileAuthPageModule)
-  },
-  {
     path: '',
     redirectTo: '/auth',
     pathMatch: 'full'

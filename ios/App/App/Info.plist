@@ -25,7 +25,6 @@
 			<string>com.getcapacitor.capacitor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>foodscription</string>
 				<string>URL_SCHEME</string>
 			</array>
 		</dict>

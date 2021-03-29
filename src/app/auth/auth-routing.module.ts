@@ -11,10 +11,6 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
-  },
-  {
-    path: 'mobile-auth',
-    loadChildren: () => import('./mobile/mobile-auth/mobile-auth.module').then( m => m.MobileAuthPageModule)
   }
 ];
 

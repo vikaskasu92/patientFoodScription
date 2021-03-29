@@ -27,12 +27,5 @@
   <feature name="PushNotification">
     <param name="ios-package" value="PushPlugin"/>
   </feature>
-
-  <feature name="Custom URL scheme">
-    <param name="id" value="cordova-plugin-customurlscheme" />
-    <param name="url" value="https://github.com/EddyVerbruggen/Custom-URL-scheme.git" />
-    <variable name="URL_SCHEME" value="foodscription" />
-  </feature>
-
   
 </widget>
