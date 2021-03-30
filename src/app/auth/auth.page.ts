@@ -45,7 +45,10 @@ export class AuthPage implements OnInit {
   checkCookie() {
     let token= this.fpCommon.getCookie("csrftoken");
     if (token != "") {
-      this.router.navigateByUrl("/tabs");
+      this.authService.getCurrentUserDetails().subscribe((userDetails:any) => {
+        this.authService.userPreferenceId = userDetails.id;
+        this.router.navigateByUrl("/tabs");
+      });
     } else {
       window.location.href=environment.cookieAuth;
     }

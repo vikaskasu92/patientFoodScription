@@ -141,8 +141,8 @@ export class LoginPage implements OnInit {
           this.dataService.getMeals("02/02/2021","03/03/2021","7").then(data =>{
             console.log(data);
           })
-          this.authService.getCurrentUserDetails().subscribe(profile => {
-            debugger;
+          this.authService.getCurrentUserDetails().subscribe((profile:any) => {
+            this.authService.userPreferenceId = profile.id;
             console.log("profile is ",profile)
           });
         }).catch(error =>{

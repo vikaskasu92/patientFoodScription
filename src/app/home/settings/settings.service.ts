@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { FoodscriptionCommonService } from 'src/app/sharedFiles/foodscription-common.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,8 @@ import { environment } from '../../../environments/environment';
 export class SettingsService {
 
   constructor(private authService: AuthService,
-              private http: HttpClient) { }
+              private http: HttpClient,
+              private fpCommon:FoodscriptionCommonService) { }
 
   showGoal:boolean = null;
   showToday:boolean = null;
@@ -35,23 +37,49 @@ fetchUserPreferences(){
 }
 
 storeNewUserPreferences(){
-  return new Promise<any>((resolve,reject)=>{
-        this.http.post<any>(environment.userBulkSettings,[{
-          "key": "showGoal",
-          "value": "true",
-          "valueType": "string",
-          "deviceType": "0_all"
-        },{
-          "key": "showToday",
-          "value": "true",
-          "valueType": "string",
-          "deviceType": "0_all"
-        }],this.authService.getHeadersObject()).subscribe( newUserPreferences => {
-            resolve(newUserPreferences);
-        },err=>{
-          reject();
-        });
-  });
+  if(this.authService.appPlatform === "web"){
+    return new Promise<any>((resolve,reject)=>{
+      this.http.post<any>(environment.userBulkSettings,[{
+        "key": "showGoal",
+        "value": "true",
+        "valueType": "string",
+        "deviceType": "0_all"
+      },{
+        "key": "showToday",
+        "value": "true",
+        "valueType": "string",
+        "deviceType": "0_all"
+      }], {
+        headers :  new HttpHeaders().set('Content-Type', 'application/json').set('X-CSRFToken',this.fpCommon.getCookie("csrftoken")),
+        withCredentials:true
+      }).subscribe( newUserPreferences => {
+          resolve(newUserPreferences);
+      },err=>{
+        reject();
+      });
+    });   
+  }else{
+    return new Promise<any>((resolve,reject)=>{
+      this.http.post<any>(environment.userBulkSettings,[{
+        "key": "showGoal",
+        "value": "true",
+        "valueType": "string",
+        "deviceType": "0_all"
+      },{
+        "key": "showToday",
+        "value": "true",
+        "valueType": "string",
+        "deviceType": "0_all"
+      }],this.authService.getHeadersObject()).subscribe( newUserPreferences => {
+          resolve(newUserPreferences);
+      },err=>{
+        reject();
+      });
+    });
+  }
+
+
+  
   }
 
   createOrUpdatePreferences(preferences:any){
@@ -71,17 +99,36 @@ storeNewUserPreferences(){
   }
 
   updateUserSettings(preferencesId:number,value:boolean,preferenceType:string){
-    return new Promise<any>((resolve,reject)=>{
-          this.http.patch<any>("https://fs-api.phrqltest.com/api/user-settings/"+preferencesId+"/",{
-          "key": preferenceType,
-          "value": value.toString(),
-          "valueType": "string",
-          "deviceType": "0_all"
-        },this.authService.getHeadersObject()).subscribe( updateUserGoal => {
-              resolve(updateUserGoal);
-          },err=>{
-            reject();
-          });
-    });
+    if(this.authService.appPlatform === "web"){
+      return new Promise<any>((resolve,reject)=>{
+        this.http.patch<any>("https://fs-api.phrqltest.com/api/user-settings/"+preferencesId+"/",{
+        "key": preferenceType,
+        "value": value.toString(),
+        "valueType": "string",
+        "deviceType": "0_all"
+      },{
+        headers :  new HttpHeaders().set('Content-Type', 'application/json').set('X-CSRFToken',this.fpCommon.getCookie("csrftoken")),
+        withCredentials:true
+      }).subscribe( updateUserGoal => {
+            resolve(updateUserGoal);
+        },err=>{
+          reject();
+        });
+      });
+    }else{
+      return new Promise<any>((resolve,reject)=>{
+        this.http.patch<any>("https://fs-api.phrqltest.com/api/user-settings/"+preferencesId+"/",{
+        "key": preferenceType,
+        "value": value.toString(),
+        "valueType": "string",
+        "deviceType": "0_all"
+      },this.authService.getHeadersObject()).subscribe( updateUserGoal => {
+            resolve(updateUserGoal);
+        },err=>{
+          reject();
+        });
+      });
+    }
+    
   }
 }

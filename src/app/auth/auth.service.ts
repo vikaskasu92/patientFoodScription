@@ -15,6 +15,7 @@ export class AuthService {
 
   appPlatform:string;
   username:string;
+  userPreferenceId:number;
   accessToken:string;
   refreshToken:string;
   validation_messages = {

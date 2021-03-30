@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
 import { of, Subject } from 'rxjs';
 import {webSocket, WebSocketSubject} from 'rxjs/webSocket';
 import { environment } from '../../environments/environment'; 
 import { Plugins } from '@capacitor/core';
 import { catchError } from 'rxjs/operators';
+import { FoodscriptionCommonService } from './foodscription-common.service';
 
 const { Storage } = Plugins;
 
@@ -15,7 +16,8 @@ const { Storage } = Plugins;
 export class DataService {
 
   constructor(private http:HttpClient,
-            private authService:AuthService) {
+            private authService:AuthService,
+            private fpCommon:FoodscriptionCommonService) {
                 this.weekAray = this.getWeekArray();
              }
 
@@ -91,13 +93,27 @@ getNextInfiniteMeals(nextUrl:string){
 }
 
 getIngredientCategories(ingredientIds:any){
-  return new Promise<any>((resolve,reject)=>{
-        this.http.post<any>(environment.ingredientsCategory,ingredientIds,this.authService.getHeadersObject()).subscribe( ingredients => {
-            resolve(ingredients);
-        },err=>{
-          reject();
-        });
-  });
+  if(this.authService.appPlatform === "web"){
+    return new Promise<any>((resolve,reject)=>{
+      this.http.post<any>(environment.ingredientsCategory,ingredientIds,{
+        headers :  new HttpHeaders().set('Content-Type', 'application/json').set('X-CSRFToken',this.fpCommon.getCookie("csrftoken")),
+        withCredentials:true
+      }).subscribe( ingredients => {
+          resolve(ingredients);
+      },err=>{
+        reject();
+      });
+    });   
+  }else{
+    return new Promise<any>((resolve,reject)=>{
+      this.http.post<any>(environment.ingredientsCategory,ingredientIds,this.authService.getHeadersObject()).subscribe( ingredients => {
+          resolve(ingredients);
+      },err=>{
+        reject();
+      });
+    });
+  }
+  
 }
 
 saveMealsNotFollowed(mealElementId:number,followed:boolean,followedReason1:string,followedReason2:string){
@@ -108,16 +124,34 @@ saveMealsNotFollowed(mealElementId:number,followed:boolean,followedReason1:strin
     followedReason.push(followedReason1);
     followedReason.push(followedReason2);
   }
-  return new Promise<any>((resolve,reject)=>{
-        this.http.put<any>("https://fs-api.phrqltest.com/api/meal-element/"+mealElementId+"/followed/",{
-          "followed":followed,
-          "followedReason":followedReason
-        },this.authService.getHeadersObject()).subscribe( mealsFollowed => {
-          resolve(mealsFollowed);
-        },err =>{
-          reject();
-        });
-  });
+  if(this.authService.appPlatform === "web"){
+    return new Promise<any>((resolve,reject)=>{
+      this.http.put<any>("https://fs-api.phrqltest.com/api/meal-element/"+mealElementId+"/followed/",{
+        "followed":followed,
+        "followedReason":followedReason
+      },{
+        headers :  new HttpHeaders().set('Content-Type', 'application/json').set('X-CSRFToken',this.fpCommon.getCookie("csrftoken")),
+        withCredentials:true
+      }).subscribe( mealsFollowed => {
+        resolve(mealsFollowed);
+      },err =>{
+        reject();
+      });
+    });
+  }else{
+    return new Promise<any>((resolve,reject)=>{
+      this.http.put<any>("https://fs-api.phrqltest.com/api/meal-element/"+mealElementId+"/followed/",{
+        "followed":followed,
+        "followedReason":followedReason
+      },this.authService.getHeadersObject()).subscribe( mealsFollowed => {
+        resolve(mealsFollowed);
+      },err =>{
+        reject();
+      });
+    });
+  }
+
+  
 }
 
 searchMedialConditions(searchText:string){
@@ -131,14 +165,32 @@ saveUserInfo(userInfo:any):Promise<any>{
     if(userPreferenceId === undefined){
       Storage.get({key:'fsUserPreferenceId'}).then( storage => {
         userPreferenceId = JSON.parse(storage.value).preferencesId;
+        if(this.authService.appPlatform === "web"){
+          this.http.patch<any>(environment.saveUserInfo+userPreferenceId+"/",userInfo,{
+            headers :  new HttpHeaders().set('Content-Type', 'application/json').set('X-CSRFToken',this.fpCommon.getCookie("csrftoken")),
+            withCredentials:true
+          }).subscribe( () => {
+            resolve();
+          });
+        }else{
+          this.http.patch<any>(environment.saveUserInfo+userPreferenceId+"/",userInfo,this.authService.getHeadersObject()).subscribe( () => {
+            resolve();
+          });
+        }
+      })
+    }else{
+      if(this.authService.appPlatform === "web"){
+        this.http.patch<any>(environment.saveUserInfo+userPreferenceId+"/",userInfo,{
+          headers :  new HttpHeaders().set('Content-Type', 'application/json').set('X-CSRFToken',this.fpCommon.getCookie("csrftoken")),
+          withCredentials:true
+        }).subscribe( () => {
+          resolve();
+        });
+      }else{
         this.http.patch<any>(environment.saveUserInfo+userPreferenceId+"/",userInfo,this.authService.getHeadersObject()).subscribe( () => {
           resolve();
         });
-      })
-    }else{
-      this.http.patch<any>(environment.saveUserInfo+userPreferenceId+"/",userInfo,this.authService.getHeadersObject()).subscribe( () => {
-        resolve();
-      });
+      }
     }
   });
 }
