@@ -3,6 +3,7 @@ import { Capacitor } from '@capacitor/core';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { Platform } from '@ionic/angular';
 import { AuthService } from './auth/auth.service';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,8 @@ import { AuthService } from './auth/auth.service';
 export class AppComponent {
   constructor( private platform: Platform,
                 private splashScreen: SplashScreen,
-                private authService:AuthService) {
+                private authService:AuthService,
+                private statusBar: StatusBar) {
     this.initializeApp();
   }
 
@@ -31,9 +33,9 @@ export class AppComponent {
 
   private _cordavaCommands(){
     this.platform.ready().then(() => {
-      //this.statusBar.overlaysWebView(true);
-     // this.statusBar.backgroundColorByHexString("#000000");
-     // this.statusBar.styleDefault();
+      this.statusBar.overlaysWebView(true);
+      this.statusBar.backgroundColorByHexString("#000000");
+      this.statusBar.styleDefault();
       this.splashScreen.hide();
       //this.pushNotificationService.initPush();
     });

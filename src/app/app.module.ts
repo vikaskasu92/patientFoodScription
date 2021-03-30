@@ -7,6 +7,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { Health } from '@ionic-native/health/ngx';
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Push } from '@ionic-native/push/ngx';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -37,7 +38,8 @@ import { HttpReqResInterceptor } from './http-interceptor.service';
     Health,
     SocialSharing,
     Push,
-    KeychainTouchId
+    KeychainTouchId,
+    StatusBar
   ],
   bootstrap: [AppComponent]
 })
