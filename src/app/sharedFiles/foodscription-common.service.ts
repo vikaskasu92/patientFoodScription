@@ -12,8 +12,7 @@ import { Subject } from 'rxjs';
 })
 export class FoodscriptionCommonService {
 
-  constructor(private authService:AuthService,
-              private popoverController:PopoverController,
+  constructor(private popoverController:PopoverController,
               private modalCtrl:ModalController,
               private toastCtrl:ToastController,
               private dataService: DataService) { }

@@ -16,8 +16,7 @@ const { Storage } = Plugins;
 export class DataService {
 
   constructor(private http:HttpClient,
-            private authService:AuthService,
-            private fsCommon:FoodscriptionCommonService) {
+            private authService:AuthService) {
                 this.weekAray = this.getWeekArray();
              }
 
