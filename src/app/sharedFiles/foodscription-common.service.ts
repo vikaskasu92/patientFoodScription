@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
 import { Plugins } from '@capacitor/core';
 const { Storage } = Plugins;
 import * as Chart from 'chart.js';
