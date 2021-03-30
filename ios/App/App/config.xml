@@ -27,5 +27,6 @@
   <feature name="PushNotification">
     <param name="ios-package" value="PushPlugin"/>
   </feature>
+
   
 </widget>
