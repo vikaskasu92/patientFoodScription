@@ -14,12 +14,12 @@ export class CancelPreferencePage implements OnInit {
   }
 
   navigate(){
-    this.navCtrl.navigateBack('/home/food-preferences');
+    this.navCtrl.navigateBack('/tabs/home/food-preferences');
   }
 
   quitQuiz(event:any){
     event.preventDefault();
-    this.navCtrl.navigateBack('/home');
+    this.navCtrl.navigateBack('/tabs/home');
   }
 
 }

@@ -61,7 +61,7 @@ stopWebSocket(){
 getMeals(fromDate:string,toDate:string,limit:string){
   let userToken = this.authService.accessToken;
   return new Promise<any>((resolve,reject)=>{
-    this.http.get<any>(environment.mealDayApi+"?fromDate="+fromDate+"&toDate="+toDate+"&ordering=recipe&limit="+limit+"&offset=0",this.authService.getHeadersObject()).subscribe( meals =>{
+    this.http.get<any>(environment.mealDayApi+"?fromDate="+fromDate+"&toDate="+toDate+"&ordering=recipe&limit="+limit+"&offset=0",this.authService.getHeadersObject(false)).subscribe( meals =>{
         resolve(meals);
       },err=>{
         reject();
@@ -71,7 +71,7 @@ getMeals(fromDate:string,toDate:string,limit:string){
 
 getFavorites(){
   return new Promise<any>((resolve,reject)=>{
-        this.http.get<any>(environment.userFavorites,this.authService.getHeadersObject()).subscribe( favorites => {
+        this.http.get<any>(environment.userFavorites,this.authService.getHeadersObject(false)).subscribe( favorites => {
             resolve(favorites);
           },err=>{
             reject();
@@ -82,7 +82,7 @@ getFavorites(){
 getNextInfiniteMeals(nextUrl:string){
     let httpUrlArray = nextUrl.split("http");
     return new Promise<any>((resolve,reject)=>{
-          this.http.get<any>("https"+httpUrlArray[1],this.authService.getHeadersObject()).subscribe( meals => {
+          this.http.get<any>("https"+httpUrlArray[1],this.authService.getHeadersObject(false)).subscribe( meals => {
               resolve(meals);
           },err=>{
             reject();
@@ -92,7 +92,7 @@ getNextInfiniteMeals(nextUrl:string){
 
 getIngredientCategories(ingredientIds:any){
   return new Promise<any>((resolve,reject)=>{
-        this.http.post<any>(environment.ingredientsCategory,ingredientIds,this.authService.getHeadersObject()).subscribe( ingredients => {
+        this.http.post<any>(environment.ingredientsCategory,ingredientIds,this.authService.getHeadersObject(true)).subscribe( ingredients => {
             resolve(ingredients);
         },err=>{
           reject();
@@ -112,7 +112,7 @@ saveMealsNotFollowed(mealElementId:number,followed:boolean,followedReason1:strin
         this.http.put<any>("https://fs-api.phrqltest.com/api/meal-element/"+mealElementId+"/followed/",{
           "followed":followed,
           "followedReason":followedReason
-        },this.authService.getHeadersObject()).subscribe( mealsFollowed => {
+        },this.authService.getHeadersObject(true)).subscribe( mealsFollowed => {
           resolve(mealsFollowed);
         },err =>{
           reject();
@@ -121,7 +121,7 @@ saveMealsNotFollowed(mealElementId:number,followed:boolean,followedReason1:strin
 }
 
 searchMedialConditions(searchText:string){
-  return this.http.get<any>(environment.searchDisease+"?condition="+searchText,this.authService.getHeadersObject())
+  return this.http.get<any>(environment.searchDisease+"?condition="+searchText,this.authService.getHeadersObject(false))
 }
 
 saveUserInfo(userInfo:any):Promise<any>{
@@ -131,12 +131,12 @@ saveUserInfo(userInfo:any):Promise<any>{
     if(userPreferenceId === undefined){
       Storage.get({key:'fsUserPreferenceId'}).then( storage => {
         userPreferenceId = JSON.parse(storage.value).preferencesId;
-        this.http.patch<any>(environment.saveUserInfo+userPreferenceId+"/",userInfo,this.authService.getHeadersObject()).subscribe( () => {
+        this.http.patch<any>(environment.saveUserInfo+userPreferenceId+"/",userInfo,this.authService.getHeadersObject(true)).subscribe( () => {
           resolve();
         });
       })
     }else{
-      this.http.patch<any>(environment.saveUserInfo+userPreferenceId+"/",userInfo,this.authService.getHeadersObject()).subscribe( () => {
+      this.http.patch<any>(environment.saveUserInfo+userPreferenceId+"/",userInfo,this.authService.getHeadersObject(true)).subscribe( () => {
         resolve();
       });
     }
@@ -144,7 +144,7 @@ saveUserInfo(userInfo:any):Promise<any>{
 }
 
 getUserWeights(period:string){
-  return this.http.get<any>(environment.getUserWeights+"?range="+period,this.authService.getHeadersObject());
+  return this.http.get<any>(environment.getUserWeights+"?range="+period,this.authService.getHeadersObject(false));
 }
 
 getWeekArray(){

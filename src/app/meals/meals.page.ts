@@ -87,7 +87,7 @@ export class MealsPage implements OnInit, AfterViewInit {
   }
 
   navigateToDashboard(){
-    this.router.navigateByUrl("/patient-dashboard");
+    this.router.navigateByUrl("/tabs/dashboard");
   }
 
   slideChanged( meal:any){

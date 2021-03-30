@@ -16,7 +16,7 @@ export class SettingsService {
 
   checkUserOwnInfo(){
     return new Promise<any>((resolve,reject)=>{
-          this.http.get(environment.userOwnInfo,this.authService.getHeadersObject()).subscribe( userOwninfo => {
+          this.http.get(environment.userOwnInfo,this.authService.getHeadersObject(false)).subscribe( userOwninfo => {
               resolve(userOwninfo);
           },err=>{
             reject();
@@ -26,7 +26,7 @@ export class SettingsService {
 
 fetchUserPreferences(){
   return new Promise<any>((resolve,reject)=>{
-        this.http.get<any>(environment.userSettings,this.authService.getHeadersObject()).subscribe( userSettings => {
+        this.http.get<any>(environment.userSettings,this.authService.getHeadersObject(false)).subscribe( userSettings => {
             resolve(userSettings);
         },err=>{
           reject();
@@ -46,7 +46,7 @@ storeNewUserPreferences(){
           "value": "true",
           "valueType": "string",
           "deviceType": "0_all"
-        }],this.authService.getHeadersObject()).subscribe( newUserPreferences => {
+        }],this.authService.getHeadersObject(true)).subscribe( newUserPreferences => {
             resolve(newUserPreferences);
         },err=>{
           reject();
@@ -77,7 +77,7 @@ storeNewUserPreferences(){
           "value": value.toString(),
           "valueType": "string",
           "deviceType": "0_all"
-        },this.authService.getHeadersObject()).subscribe( updateUserGoal => {
+        },this.authService.getHeadersObject(true)).subscribe( updateUserGoal => {
               resolve(updateUserGoal);
           },err=>{
             reject();

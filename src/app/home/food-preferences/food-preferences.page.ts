@@ -47,16 +47,16 @@ export class FoodPreferencesPage implements OnInit {
     this.fpService.foodPreferencesDisLikes = this.foodPreferencesDislike;
     this.fpService.storeFoodPreferencesToDB().then( () => {});
     //this.navCtrl.navigateForward('/home/food-preferences/eating-pattern');
-    this.navCtrl.navigateBack('/home');
+    this.navCtrl.navigateBack('/tabs/home');
   }
 
   cancelFoodPreferences(){
     if(this.counter != 0){
         this.visitedCancelFP = "/cancelFoodPreferences";
-        this.navCtrl.navigateForward('/home/food-preferences/cancel-preference');
+        this.navCtrl.navigateForward('/tabs/home/food-preferences/cancel-preference');
     }else{
         this.fpService.foodPreferences = [];
-        this.navCtrl.navigateBack('/home');
+        this.navCtrl.navigateBack('/tabs/home');
     }
     
 }

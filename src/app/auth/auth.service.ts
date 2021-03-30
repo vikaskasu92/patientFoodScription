@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Auth } from 'aws-amplify';
 import { Plugins } from '@capacitor/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { FoodscriptionCommonService } from '../sharedFiles/foodscription-common.service';
 
 const { Storage } = Plugins;
 
@@ -11,7 +12,8 @@ const { Storage } = Plugins;
 })
 export class AuthService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,
+              private fpCommon:FoodscriptionCommonService) { }
 
   appPlatform:string;
   username:string;
@@ -63,16 +65,23 @@ export class AuthService {
   }
 
   getCurrentUserDetails(){
-      return this.http.get<any>("https://accounts.phrqltest.com/api/me/profile/",this.getHeadersObject());
+      return this.http.get<any>("https://accounts.phrqltest.com/api/me/profile/",this.getHeadersObject(false));
   }
 
-  getHeadersObject(){
+  getHeadersObject(notGet:boolean){
     let headers = null;
     if(this.appPlatform === "web"){
+      if(notGet){
+        headers = {
+          headers :  new HttpHeaders().set('Content-Type', 'application/json').set('X-CSRFToken',this.fpCommon.getCookie("csrftoken")),
+          withCredentials:true
+        }
+      }else{
         headers = {
           headers :  new HttpHeaders().set('Content-Type', 'application/json'),
           withCredentials:true
         }
+      }
     }else{
         headers = {
           headers :  new HttpHeaders().set('Content-Type', 'application/json').set('Authorization',`Bearer ${this.accessToken}`)

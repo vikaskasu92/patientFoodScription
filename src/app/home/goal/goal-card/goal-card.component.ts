@@ -59,7 +59,7 @@ export class GoalCardComponent implements OnInit {
   }
  
   setGoal(){
-    this.navCtrl.navigateForward('/home/goal');
+    this.navCtrl.navigateForward('/tabs/home/goal');
   }
 
 }

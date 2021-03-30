@@ -13,7 +13,7 @@ export class PreferencesCardComponent implements OnInit {
   ngOnInit() {}
 
   navigate(navigateTo:string){
-    this.navCtrl.navigateForward('/home/'+navigateTo);
+    this.navCtrl.navigateForward('/tabs/home/'+navigateTo);
   }
 
 }
