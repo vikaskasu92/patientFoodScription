@@ -17,7 +17,7 @@ export class DataService {
 
   constructor(private http:HttpClient,
             private authService:AuthService,
-            private fpCommon:FoodscriptionCommonService) {
+            private fsCommon:FoodscriptionCommonService) {
                 this.weekAray = this.getWeekArray();
              }
 
@@ -94,7 +94,7 @@ getNextInfiniteMeals(nextUrl:string){
 
 getIngredientCategories(ingredientIds:any){
   if(this.authService.appPlatform === "web"){
-    let token = this.fpCommon.getCookie("csrftoken");
+    let token = this._getCookie("csrftoken");
     return new Promise<any>((resolve,reject)=>{
       this.http.post<any>(environment.ingredientsCategory,ingredientIds,{
         headers :  new HttpHeaders().set('Content-Type', 'application/json').set('X-CSRFToken',token),
@@ -126,7 +126,7 @@ saveMealsNotFollowed(mealElementId:number,followed:boolean,followedReason1:strin
     followedReason.push(followedReason2);
   }
   if(this.authService.appPlatform === "web"){
-    let token = this.fpCommon.getCookie("csrftoken");
+    let token = this._getCookie("csrftoken");
     return new Promise<any>((resolve,reject)=>{
       this.http.put<any>("https://fs-api.phrqltest.com/api/meal-element/"+mealElementId+"/followed/",{
         "followed":followed,
@@ -168,7 +168,7 @@ saveUserInfo(userInfo:any):Promise<any>{
       Storage.get({key:'fsUserPreferenceId'}).then( storage => {
         userPreferenceId = JSON.parse(storage.value).preferencesId;
         if(this.authService.appPlatform === "web"){
-          let token = this.fpCommon.getCookie("csrftoken");
+          let token = this._getCookie("csrftoken");
           this.http.patch<any>(environment.saveUserInfo+userPreferenceId+"/",userInfo,{
             headers :  new HttpHeaders().set('Content-Type', 'application/json').set('X-CSRFToken',token),
             withCredentials:true
@@ -183,7 +183,7 @@ saveUserInfo(userInfo:any):Promise<any>{
       })
     }else{
       if(this.authService.appPlatform === "web"){
-        let token = this.fpCommon.getCookie("csrftoken");
+        let token = this._getCookie("csrftoken");
         this.http.patch<any>(environment.saveUserInfo+userPreferenceId+"/",userInfo,{
           headers :  new HttpHeaders().set('Content-Type', 'application/json').set('X-CSRFToken',token),
           withCredentials:true
@@ -325,6 +325,22 @@ generateWeekArray():Date[]{
         'checked':true
       })
     }
+  }
+
+  private _getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
   }
 
       
