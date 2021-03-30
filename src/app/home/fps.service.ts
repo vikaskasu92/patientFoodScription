@@ -22,9 +22,10 @@ export class FpService {
 
     updateMealFavorite(id:number,favorite:boolean){
       if(this.authService.appPlatform === "web"){
+        let token = this.fpCommon.getCookie("csrftoken");
         return new Promise<any>((resolve,reject)=>{
           this.http.patch<any>("https://fs-api.phrqltest.com/api/recipe/"+id+"/favorite-rating/",{ "favorite":favorite},{
-            headers :  new HttpHeaders().set('Content-Type', 'application/json').set('X-CSRFToken',this.fpCommon.getCookie("csrftoken")),
+            headers :  new HttpHeaders().set('Content-Type', 'application/json').set('X-CSRFToken',token),
             withCredentials:true
           }).subscribe( favoriteUpdate => {
               resolve(favoriteUpdate);
@@ -46,12 +47,13 @@ export class FpService {
 
     storeFoodPreferencesToDB(){
       if(this.authService.appPlatform === "web"){
+        let token = this.fpCommon.getCookie("csrftoken");
         return new Promise<any>((resolve,reject)=>{
           this.http.patch<any>("https://fs-api.phrqltest.com/api/user-food-preference/"+this.authService.userPreferenceId,{
             "cuisineLikes":this.foodPreferencesLikes,
             "cuisineDislikes":this.foodPreferencesDisLikes
         },{
-          headers :  new HttpHeaders().set('Content-Type', 'application/json').set('X-CSRFToken',this.fpCommon.getCookie("csrftoken")),
+          headers :  new HttpHeaders().set('Content-Type', 'application/json').set('X-CSRFToken',token),
           withCredentials:true
         }).subscribe( addFavorites => {
              resolve(addFavorites);
@@ -77,10 +79,11 @@ export class FpService {
 
     updateMealRating(rating:number,id:number){
       if(this.authService.appPlatform === "web"){
+        let token = this.fpCommon.getCookie("csrftoken");
         return new Promise<any>((resolve,reject)=>{
           this.http.patch<any>("https://fs-api.phrqltest.com/api/recipe/"+id+"/favorite-rating/",{"rating":rating},
           {
-            headers :  new HttpHeaders().set('Content-Type', 'application/json').set('X-CSRFToken',this.fpCommon.getCookie("csrftoken")),
+            headers :  new HttpHeaders().set('Content-Type', 'application/json').set('X-CSRFToken',token),
             withCredentials:true
           }).subscribe( addRating => {
               resolve(addRating);

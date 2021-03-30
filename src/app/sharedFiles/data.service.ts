@@ -94,9 +94,10 @@ getNextInfiniteMeals(nextUrl:string){
 
 getIngredientCategories(ingredientIds:any){
   if(this.authService.appPlatform === "web"){
+    let token = this.fpCommon.getCookie("csrftoken");
     return new Promise<any>((resolve,reject)=>{
       this.http.post<any>(environment.ingredientsCategory,ingredientIds,{
-        headers :  new HttpHeaders().set('Content-Type', 'application/json').set('X-CSRFToken',this.fpCommon.getCookie("csrftoken")),
+        headers :  new HttpHeaders().set('Content-Type', 'application/json').set('X-CSRFToken',token),
         withCredentials:true
       }).subscribe( ingredients => {
           resolve(ingredients);
@@ -125,12 +126,13 @@ saveMealsNotFollowed(mealElementId:number,followed:boolean,followedReason1:strin
     followedReason.push(followedReason2);
   }
   if(this.authService.appPlatform === "web"){
+    let token = this.fpCommon.getCookie("csrftoken");
     return new Promise<any>((resolve,reject)=>{
       this.http.put<any>("https://fs-api.phrqltest.com/api/meal-element/"+mealElementId+"/followed/",{
         "followed":followed,
         "followedReason":followedReason
       },{
-        headers :  new HttpHeaders().set('Content-Type', 'application/json').set('X-CSRFToken',this.fpCommon.getCookie("csrftoken")),
+        headers :  new HttpHeaders().set('Content-Type', 'application/json').set('X-CSRFToken',token),
         withCredentials:true
       }).subscribe( mealsFollowed => {
         resolve(mealsFollowed);
@@ -166,8 +168,9 @@ saveUserInfo(userInfo:any):Promise<any>{
       Storage.get({key:'fsUserPreferenceId'}).then( storage => {
         userPreferenceId = JSON.parse(storage.value).preferencesId;
         if(this.authService.appPlatform === "web"){
+          let token = this.fpCommon.getCookie("csrftoken");
           this.http.patch<any>(environment.saveUserInfo+userPreferenceId+"/",userInfo,{
-            headers :  new HttpHeaders().set('Content-Type', 'application/json').set('X-CSRFToken',this.fpCommon.getCookie("csrftoken")),
+            headers :  new HttpHeaders().set('Content-Type', 'application/json').set('X-CSRFToken',token),
             withCredentials:true
           }).subscribe( () => {
             resolve();
@@ -180,8 +183,9 @@ saveUserInfo(userInfo:any):Promise<any>{
       })
     }else{
       if(this.authService.appPlatform === "web"){
+        let token = this.fpCommon.getCookie("csrftoken");
         this.http.patch<any>(environment.saveUserInfo+userPreferenceId+"/",userInfo,{
-          headers :  new HttpHeaders().set('Content-Type', 'application/json').set('X-CSRFToken',this.fpCommon.getCookie("csrftoken")),
+          headers :  new HttpHeaders().set('Content-Type', 'application/json').set('X-CSRFToken',token),
           withCredentials:true
         }).subscribe( () => {
           resolve();

@@ -38,6 +38,7 @@ fetchUserPreferences(){
 
 storeNewUserPreferences(){
   if(this.authService.appPlatform === "web"){
+    let token = this.fpCommon.getCookie("csrftoken");
     return new Promise<any>((resolve,reject)=>{
       this.http.post<any>(environment.userBulkSettings,[{
         "key": "showGoal",
@@ -50,7 +51,7 @@ storeNewUserPreferences(){
         "valueType": "string",
         "deviceType": "0_all"
       }], {
-        headers :  new HttpHeaders().set('Content-Type', 'application/json').set('X-CSRFToken',this.fpCommon.getCookie("csrftoken")),
+        headers :  new HttpHeaders().set('Content-Type', 'application/json').set('X-CSRFToken',token),
         withCredentials:true
       }).subscribe( newUserPreferences => {
           resolve(newUserPreferences);
@@ -100,6 +101,7 @@ storeNewUserPreferences(){
 
   updateUserSettings(preferencesId:number,value:boolean,preferenceType:string){
     if(this.authService.appPlatform === "web"){
+      let token = this.fpCommon.getCookie("csrftoken");
       return new Promise<any>((resolve,reject)=>{
         this.http.patch<any>("https://fs-api.phrqltest.com/api/user-settings/"+preferencesId+"/",{
         "key": preferenceType,
@@ -107,7 +109,7 @@ storeNewUserPreferences(){
         "valueType": "string",
         "deviceType": "0_all"
       },{
-        headers :  new HttpHeaders().set('Content-Type', 'application/json').set('X-CSRFToken',this.fpCommon.getCookie("csrftoken")),
+        headers :  new HttpHeaders().set('Content-Type', 'application/json').set('X-CSRFToken',token),
         withCredentials:true
       }).subscribe( updateUserGoal => {
             resolve(updateUserGoal);
