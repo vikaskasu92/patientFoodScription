@@ -85,6 +85,11 @@ export class ShoppingcartPage implements OnInit {
     })
   }
   
+  goBack(event:any){
+    event.preventDefault();
+    this.router.navigateByUrl("/tabs/meals");
+  }
+  
   instacart(){
     this.loadCtrl.create({
       message:'Navigating to Instacart...',

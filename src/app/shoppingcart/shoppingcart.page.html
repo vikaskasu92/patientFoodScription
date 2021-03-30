@@ -45,7 +45,7 @@
                 
               </div>
             </ion-list>
-            <ion-grid>
+            <ion-grid class="cart-checkout">
              <!-- <ion-row>
                 <ion-col size="12" size-md="8" offsetMd="2" size-lg="8" offsetLg="2">
                   <ion-button expand="block" color="success" (click)="amazonFresh()">
@@ -63,10 +63,18 @@
               <ion-row *ngIf="totalItems !== 0">
                 <ion-col size="12" class="ion-text-center" size-lg="4" offset-lg="4">
                   <a href="#" class="empty-cart-btn" (click)="emptyCart($event)">Empty cart</a>
+                  <a href="#" class="back-cart-btn" (click)="goBack($event)">Back</a>
                 </ion-col>
                 <ion-col size="12" size-md="8" offsetMd="2" size-lg="8" offsetLg="2">
                   <ion-button expand="block" color="secondary" (click)="instacart()">
                     Checkout with Instacart
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+              <ion-row *ngIf="totalItems === 0">
+                <ion-col size="12" size-md="8" offsetMd="2" size-lg="8" offsetLg="2">
+                  <ion-button expand="block" color="secondary" (click)="goBack($event)">
+                    Back
                   </ion-button>
                 </ion-col>
               </ion-row>
