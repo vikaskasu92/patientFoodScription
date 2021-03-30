@@ -40,6 +40,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>FoodScription would like to access camera to take photos for your replacement recipe</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>FaceId is used to authenticate user to access FoodScription</string>
 	<key>NSHealthShareUsageDescription</key>
 	<string>FoodScription would like to access the Steps Information</string>
 	<key>NSHealthUpdateUsageDescription</key>
