@@ -135,16 +135,7 @@ export class LoginPage implements OnInit {
       }).then( modal => {
          modal.present();
          this.authService.awsLogin({"email":this.loginForm.controls.username.value,"password":this.loginForm.controls.password.value}).then(userData => {
-          console.log(userData);
-          this.authService.accessToken = userData.signInUserSession.idToken.jwtToken;
-          this.authService.refreshToken = userData.signInUserSession.refreshToken.token;
-          this.dataService.getMeals("02/02/2021","03/03/2021","7").then(data =>{
-            console.log(data);
-          })
-          this.authService.getCurrentUserDetails().subscribe((profile:any) => {
-            this.authService.userPreferenceId = profile.id;
-            console.log("profile is ",profile)
-          });
+          this._commonLoginProcess(modal,userData);
         }).catch(error =>{
           this.invalid_user = true;
         });
@@ -156,19 +147,17 @@ export class LoginPage implements OnInit {
 
 
 
-  private _commonLoginProcess(loader:HTMLIonLoadingElement){
-    this.settingsService.checkUserOwnInfo().then( userInfo => {
-    //  this.authService.userPreferenceId = userInfo.preferencesId;
-     // this.authService.setUserPreferenceIdInStorage(userInfo.preferencesId);
+  private _commonLoginProcess(loader:HTMLIonLoadingElement,userData:any){
+    console.log(userData);
+    this.authService.accessToken = userData.signInUserSession.idToken.jwtToken;
+    this.authService.refreshToken = userData.signInUserSession.refreshToken.token;
+    this.authService.getCurrentUserDetails().subscribe((profile:any) => {
+      this.authService.username = profile.email;
+      this.dataService.connectToChatServer(this.authService.username);
+      this.authService.userPreferenceId = profile.id;
       loader.dismiss();
-      userInfo.preferencesAvailable === true ? this.router.navigate(['/meals']) : this.router.navigateByUrl('/on-boarding'); 
-      this.settingsService.fetchUserPreferences().then( preferences => {
-        this.settingsService.createOrUpdatePreferences(preferences);
-      }).catch(()=>{
-        this.router.navigateByUrl("/error/Error Fetching User Preferences/login");
-      });
-    }).catch( ()=>{
-      this.router.navigateByUrl("/error/Error Fetching User Information/login");
+      console.log("profile is ",profile);
+      this.router.navigateByUrl("/tabs");
     });
   }
 
@@ -183,9 +172,8 @@ export class LoginPage implements OnInit {
        backdropDismiss:false
      }).then( modal => {
         modal.present();
-        this.authService.awsLogin({"email":res.split(":")[0],"password":res.split(":")[1]}).then(() => {
-         // this._commonLoginProcess(modal);
-          this.dataService.connectToChatServer(this.authService.username);
+        this.authService.awsLogin({"email":res.split(":")[0],"password":res.split(":")[1]}).then((userData:any) => {
+         this._commonLoginProcess(modal,userData);
         },error =>{
           this.keychainTouchId.delete("fspfaLoginKey").then(() => {
             modal.dismiss();
