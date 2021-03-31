@@ -149,7 +149,7 @@ export class LoginPage implements OnInit {
 
   private _commonLoginProcess(loader:HTMLIonLoadingElement,userData:any){
     console.log(userData);
-    this.authService.accessToken = userData.signInUserSession.idToken.jwtToken;
+    this.authService.accessToken = userData.signInUserSession.accessToken.jwtToken;
     this.authService.refreshToken = userData.signInUserSession.refreshToken.token;
     this.authService.getCurrentUserDetails().subscribe((profile:any) => {
       this.authService.username = profile.email;
